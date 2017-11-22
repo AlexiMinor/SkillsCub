@@ -8,10 +8,16 @@
     <base href="~/" />
 
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+    
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+
+   
 </head>
-<body>
+<body  class="menubar-hoverable header-fixed menubar-pin">
     @RenderBody()
 
     @RenderSection("scripts", required: false)
+    
+   
 </body>
 </html>

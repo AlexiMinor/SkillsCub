@@ -673,11 +673,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GithubRepos\\SC\\SkillsCub\\SkillsCub.Models\\SkillsCub.Models.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GithubRepos\\SkillsCub\\SkillsCub\\SkillsCub.Models\\SkillsCub.Models.csproj",
       "projectName": "SkillsCub.Models",
-      "projectPath": "C:\\Users\\User\\Documents\\GithubRepos\\SC\\SkillsCub\\SkillsCub.Models\\SkillsCub.Models.csproj",
+      "projectPath": "C:\\Users\\User\\Documents\\GithubRepos\\SkillsCub\\SkillsCub\\SkillsCub.Models\\SkillsCub.Models.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GithubRepos\\SC\\SkillsCub\\SkillsCub.Models\\obj\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GithubRepos\\SkillsCub\\SkillsCub\\SkillsCub.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
