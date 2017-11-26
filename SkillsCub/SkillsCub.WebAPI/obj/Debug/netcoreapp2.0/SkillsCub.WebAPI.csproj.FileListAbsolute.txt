@@ -9,3 +9,5 @@ C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.WebAPI\obj\Deb
 C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.WebAPI\bin\Debug\netcoreapp2.0\SkillsCub.WebAPI.pdb
 C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.WebAPI\obj\Debug\netcoreapp2.0\SkillsCub.WebAPI.dll
 C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.WebAPI\obj\Debug\netcoreapp2.0\SkillsCub.WebAPI.pdb
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.WebAPI\bin\Debug\netcoreapp2.0\SkilsCub.TokenModels.dll
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.WebAPI\bin\Debug\netcoreapp2.0\SkilsCub.TokenModels.pdb

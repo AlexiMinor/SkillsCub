@@ -1,0 +1,12 @@
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\bin\Debug\netcoreapp2.0\SkillsCub.MVC.deps.json
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\bin\Debug\netcoreapp2.0\SkillsCub.MVC.runtimeconfig.json
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\bin\Debug\netcoreapp2.0\SkillsCub.MVC.runtimeconfig.dev.json
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\bin\Debug\netcoreapp2.0\SkillsCub.MVC.dll
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\bin\Debug\netcoreapp2.0\SkillsCub.MVC.pdb
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\SkillsCub.MVC.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\SkillsCub.MVC.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\SkillsCub.MVC.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\SkillsCub.MVC.AssemblyInfo.cs
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\SkillsCub.MVC.dll
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.MVC\obj\Debug\netcoreapp2.0\SkillsCub.MVC.pdb

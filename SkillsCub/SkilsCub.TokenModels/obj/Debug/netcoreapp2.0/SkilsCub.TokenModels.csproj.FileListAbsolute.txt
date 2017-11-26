@@ -1,0 +1,9 @@
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\bin\Debug\netcoreapp2.0\SkilsCub.TokenModels.deps.json
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\bin\Debug\netcoreapp2.0\SkilsCub.TokenModels.dll
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\obj\Debug\netcoreapp2.0\SkilsCub.TokenModels.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\obj\Debug\netcoreapp2.0\SkilsCub.TokenModels.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\obj\Debug\netcoreapp2.0\SkilsCub.TokenModels.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\obj\Debug\netcoreapp2.0\SkilsCub.TokenModels.AssemblyInfo.cs
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\bin\Debug\netcoreapp2.0\SkilsCub.TokenModels.pdb
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\obj\Debug\netcoreapp2.0\SkilsCub.TokenModels.dll
+C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkilsCub.TokenModels\obj\Debug\netcoreapp2.0\SkilsCub.TokenModels.pdb
