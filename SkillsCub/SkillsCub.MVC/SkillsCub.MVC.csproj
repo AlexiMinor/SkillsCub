@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-SkillsCub.MVC-BB8E4BB9-01DF-48A0-AA55-0760AA3AE34C</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/08072aeb-29f9-48f7-891d-c97a4bed00a6/resourcegroups/SkillsCub/providers/microsoft.insights/components/SkillsCub</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/08072aeb-29f9-48f7-891d-c97a4bed00a6/resourcegroups/SkillsCub/providers/microsoft.insights/components/SkillsCub</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
@@ -839,6 +842,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\core\cache\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
