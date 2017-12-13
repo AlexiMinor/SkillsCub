@@ -88,11 +88,11 @@
 			$(this).data('eventObject', eventObject);
 
 			// make the event draggable using jQuery UI
-			$(this).draggable({
-				zIndex: 999,
-				revert: true, // will cause the event to go back to its
-				revertDuration: 0, //  original position after the drag
-			});
+			//$(this).draggable({
+			//	zIndex: 999,
+			//	revert: true, // will cause the event to go back to its
+			//	revertDuration: 0, //  original position after the drag
+			//});
 		});
 	};
 
@@ -113,8 +113,8 @@
 		$('#calendar').fullCalendar({
 			height: 700,
 			header: false,
-			editable: true,
-			droppable: true,
+			editable: false,
+			droppable: false,
 			drop: function (date, allDay) { // this function is called when something is dropped
 				// retrieve the dropped element's stored Event Object
 				var originalEventObject = $(this).data('eventObject');

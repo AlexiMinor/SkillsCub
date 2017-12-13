@@ -1,10 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Контакты";
+    Layout = "_Layout";
 }
 <section>
-    <div class="section-body">
+    <div class="section-body contain-lg">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 ">
                 <h1 class="text-primary">@ViewData["Title"]</h1>
             </div><!--end .col -->
             <div class="col-xs-12">
@@ -16,20 +17,19 @@
             </div><!--end .col -->
         </div>
 
-        Позвоните/напишите
         <div class="row">
-            <div class="col-lg-offset-1 col-md-8">
+            <div class="col-xs-12">
                 <div class="card">
                     <div class="card-body no-padding">
                         <ul class="list">
                             <li class="tile">
-                                <a class="tile-content ink-reaction">
+                                <a href="tel:+375259187062" class="tile-content ink-reaction">
                                     <div class="tile-icon">
                                         <i class="fa fa-phone"></i>
                                     </div>
                                     <div class="tile-text">
-                                        (650) 555-1234
-                                        <small>Mobile</small>
+                                        +375 (25) 918 70 62
+                                        <small>Позвоните нам</small>
                                     </div>
                                 </a>
 
@@ -38,26 +38,14 @@
                             <li class="divider-inset"></li>
 
                             <li class="tile">
-                                <a class="tile-content ink-reaction">
+                                <a href="mailto:skillscub@gmail.com" class="tile-content ink-reaction">
                                     <div class="tile-icon">
                                         <i class="fa fa-envelope"></i>
                                         
                                     </div>
                                     <div class="tile-text">
-                                        ali_conners@example.com
-                                        <small>Work</small>
-                                    </div>
-                                </a>
-                            </li>
-                            
-                            <li class="divider-inset"></li>
-
-                            <li class="tile">
-                                <a class="tile-content ink-reaction">
-                                    <div class="tile-icon"></div>
-                                    <div class="tile-text">
-                                        ali_conners@example.com
-                                        <small>Work</small>
+                                        skillscub@gmail.com
+                                        <small>Напишите нам</small>
                                     </div>
                                 </a>
                             </li>
@@ -72,13 +60,13 @@
         </div>
         
         <div class="row">
-            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+            <div class="col-xs-12">
                 <div class="card">
                     <div class="card-body no-padding">
-                        <div id="marker-map" class="border-gray height-10"></div>
+                        <div id="marker-map" class="border-gray height-12"></div>
                     </div>
                 </div><!--end .card -->
-                <em class="text-caption">Map with marker</em>
+                <em class="text-caption">г. Минск, ул. Амураторская, 4, офис 518, 4 этаж.</em>
             </div>
         </div>
     </div>
