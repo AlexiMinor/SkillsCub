@@ -1,8 +1,0 @@
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\bin\Debug\netcoreapp2.0\SkillsCub.AuthService.deps.json
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\bin\Debug\netcoreapp2.0\SkillsCub.AuthService.dll
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\bin\Debug\netcoreapp2.0\SkillsCub.AuthService.pdb
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\obj\Debug\netcoreapp2.0\SkillsCub.AuthService.csproj.CoreCompileInputs.cache
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\obj\Debug\netcoreapp2.0\SkillsCub.AuthService.AssemblyInfoInputs.cache
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\obj\Debug\netcoreapp2.0\SkillsCub.AuthService.AssemblyInfo.cs
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\obj\Debug\netcoreapp2.0\SkillsCub.AuthService.dll
-C:\Users\User\Documents\GithubRepos\SkillsCub\SkillsCub\SkillsCub.AuthService\obj\Debug\netcoreapp2.0\SkillsCub.AuthService.pdb

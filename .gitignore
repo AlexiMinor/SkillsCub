@@ -2,3 +2,7 @@
 SkillsCub/\.vs/
 
 SkillsCub/SkillsCub\.MVC/obj/
+
+SkillsCub/SkillsCub\.AuthService/obj/
+
+SkillsCub/SkillsCub\.MVC/bin/
