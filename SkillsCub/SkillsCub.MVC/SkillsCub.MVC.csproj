@@ -841,6 +841,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\" />
     <Folder Include="wwwroot\js\core\cache\" />
   </ItemGroup>
 

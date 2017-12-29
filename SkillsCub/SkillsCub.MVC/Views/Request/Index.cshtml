@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Подать заявку";
+    Layout = "_Layout";
+}
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 margin-bottom-xxl">
+                        <h1 class="text-primary">Подать заявку</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-head">
+                        <header>Заявка на участие в системе SkillsCub™.</header>
+                    </div>
+                    <div class="card-body">
+                        <form class="form">
+                            <div class="form-group floating-label">
+                                <input type="text" class="form-control" id="regular1">
+                                <label for="regular1">Ваше имя и фамилия</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <input type="email" class="form-control" id="email">
+                                <label for="email">Ваш e-mail</label>
+                            </div>
+
+                            <div class="form-group floating-label">
+                                <input type="tel" class="form-control" id="tel">
+                                <label for="tel">Телефон</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <select id="select" name="select" class="form-control">
+                                    <option value="1">Организатор мероприятий</option>
+                                    <option value="40">Сценарист</option>
+                                    <option value="50">Писатель</option>
+                                    <option value="60">Юрист</option>
+                                </select>
+                                <label for="select">Интересующая Вас профессия</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <textarea name="textarea1" id="textarea1" class="form-control" rows="3" placeholder=""></textarea>
+                                <label for="textarea1">Как вы о нас узнали</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <label>Radio buttons</label>
+
+                                <div class="radio-inline radio-styled">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" value="option1" checked="">
+                                        <span>Да</span>
+                                    </label>
+                                </div>
+                                <div class="radio-inline radio-styled">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" value="option1">
+                                        <span>Нет</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group floating-label">
+                                <div class="checkbox checkbox-styled">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span>
+                                            Принимаю условие <a asp-action="Index" asp-controller="License" class="decorated-link">пользовательского соглашения</a>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12 text-center margin-bottom-xxl">
+                                    <button asp-controller="Request" asp-action="Index" class="btn ink-reaction btn-raised btn-lg centred-primary-btn">Подать заявку</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!--end .card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
