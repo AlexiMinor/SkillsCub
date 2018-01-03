@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using SkillsCub.MVC.Services;
+using SkillsCub.EmailSenderService;
 
-namespace SkillsCub.MVC.Services
+namespace SkillsCub.MVC.Extensions
 {
     public static class EmailSenderExtensions
     {

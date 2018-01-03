@@ -1,6 +1,8 @@
-﻿@{
+﻿@model SkillsCub.MVC.Models.ViewModels.RequestViewModel
+@{
     ViewBag.Title = "Подать заявку";
     Layout = "_Layout";
+    //TODO label with validation
 }
 <section>
     <div class="section-body contain-lg">
@@ -20,45 +22,72 @@
                         <header>Заявка на участие в системе SkillsCub™.</header>
                     </div>
                     <div class="card-body">
-                        <form class="form">
+                        <form class="form" method="post">
                             <div class="form-group floating-label">
-                                <input type="text" class="form-control" id="regular1">
-                                <label for="regular1">Ваше имя и фамилия</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname">
+                                <label for="firstname">Имя</label>
                             </div>
                             <div class="form-group floating-label">
-                                <input type="email" class="form-control" id="email">
+                                <input type="text" class="form-control" id="patronymic" name="patronymic">
+                                <label for="firstname">Отчество</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <input type="text" class="form-control" id="lastname" name="lastname">
+                                <label for="lastname">Фамилия</label>
+                            </div>
+                            
+                            <div class="form-group floating-label">
+                                <input type="email" class="form-control" id="email" name="email">
                                 <label for="email">Ваш e-mail</label>
                             </div>
-
+                            <div class="form-group">
+                                <label asp-for="Password"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ConfirmPassword"></label>
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
                             <div class="form-group floating-label">
-                                <input type="tel" class="form-control" id="tel">
+                                <input type="tel" class="form-control" id="tel" name="phone">
                                 <label for="tel">Телефон</label>
                             </div>
                             <div class="form-group floating-label">
-                                <select id="select" name="select" class="form-control">
+                                <select id="course" name="course" class="form-control">
                                     <option value="1">Организатор мероприятий</option>
-                                    <option value="40">Сценарист</option>
-                                    <option value="50">Писатель</option>
-                                    <option value="60">Юрист</option>
+                                    <option value="2">Сценарист</option>
+                                    <option value="3">Писатель</option>
+                                    <option value="4">Юрист</option>
                                 </select>
-                                <label for="select">Интересующая Вас профессия</label>
+                                <label for="course">Интересующая Вас профессия</label>
                             </div>
                             <div class="form-group floating-label">
-                                <textarea name="textarea1" id="textarea1" class="form-control" rows="3" placeholder=""></textarea>
-                                <label for="textarea1">Как вы о нас узнали</label>
+                                <select id="source" name="source" class="form-control">
+                                    <option value="1">Реклама в соц.сети</option>
+                                    <option value="2">Реклама в сети Интернет</option>
+                                    <option value="3">Телереклама</option>
+                                    <option value="4">Радиореклама</option>
+                                    <option value="5">Реклама в метро</option>
+                                    <option value="6">Билборды</option>
+                                    <option value="6">Флаеры и постеры</option>
+                                    <option value="7">Друзья и знакомые</option>
+                                </select>
+                                <label for="source">Интересующая Вас профессия</label>
                             </div>
                             <div class="form-group floating-label">
-                                <label>Radio buttons</label>
+                                <label>Это Ваше первое участие в SkillsCub?</label>
 
                                 <div class="radio-inline radio-styled">
                                     <label>
-                                        <input type="radio" name="optionsRadios" value="option1" checked="">
+                                        <input type="radio" name="firstTime" value="true" checked>
                                         <span>Да</span>
                                     </label>
                                 </div>
                                 <div class="radio-inline radio-styled">
                                     <label>
-                                        <input type="radio" name="optionsRadios" value="option1">
+                                        <input type="radio" name="firstTime" value="false">
                                         <span>Нет</span>
                                     </label>
                                 </div>

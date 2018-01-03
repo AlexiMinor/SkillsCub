@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SkillsCub.EmailSenderService;
+using SkillsCub.MVC.Extensions;
 using SkillsCub.MVC.Models;
 using SkillsCub.MVC.Models.AccountViewModels;
-using SkillsCub.MVC.Services;
+using IEmailSender = SkillsCub.EmailSenderService.IEmailSender;
 
 namespace SkillsCub.MVC.Controllers
 {

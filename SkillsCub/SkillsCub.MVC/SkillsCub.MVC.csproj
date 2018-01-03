@@ -846,6 +846,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SkillsCub.EmailSenderService\SkillsCub.EmailSenderService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 

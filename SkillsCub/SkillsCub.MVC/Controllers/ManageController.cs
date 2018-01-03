@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -9,10 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using SkillsCub.MVC.Extensions;
 using SkillsCub.MVC.Models;
 using SkillsCub.MVC.Models.ManageViewModels;
-using SkillsCub.MVC.Services;
+using IEmailSender = SkillsCub.EmailSenderService.IEmailSender;
 
 namespace SkillsCub.MVC.Controllers
 {

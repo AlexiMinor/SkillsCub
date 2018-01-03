@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SkillsCub.EmailSenderService;
 using SkillsCub.MVC.Data;
 using SkillsCub.MVC.Models;
-using SkillsCub.MVC.Services;
 
 namespace SkillsCub.MVC
 {
@@ -37,6 +37,8 @@ namespace SkillsCub.MVC
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
