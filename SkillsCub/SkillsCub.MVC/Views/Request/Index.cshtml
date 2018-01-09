@@ -1,4 +1,5 @@
-﻿@model SkillsCub.MVC.Models.ViewModels.RequestViewModel
+﻿@using SkillsCub.MVC.ViewModels
+@model SkillsCub.MVC.ViewModels.RequestViewModel
 @{
     ViewBag.Title = "Подать заявку";
     Layout = "_Layout";
@@ -29,7 +30,7 @@
                             </div>
                             <div class="form-group floating-label">
                                 <input type="text" class="form-control" id="patronymic" name="patronymic">
-                                <label for="firstname">Отчество</label>
+                                <label for="patronymic">Отчество</label>
                             </div>
                             <div class="form-group floating-label">
                                 <input type="text" class="form-control" id="lastname" name="lastname">
@@ -40,39 +41,30 @@
                                 <input type="email" class="form-control" id="email" name="email">
                                 <label for="email">Ваш e-mail</label>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Password"></label>
-                                <input asp-for="Password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="ConfirmPassword"></label>
-                                <input asp-for="ConfirmPassword" class="form-control" />
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                            </div>
+                            
                             <div class="form-group floating-label">
                                 <input type="tel" class="form-control" id="tel" name="phone">
                                 <label for="tel">Телефон</label>
                             </div>
                             <div class="form-group floating-label">
                                 <select id="course" name="course" class="form-control">
-                                    <option value="1">Организатор мероприятий</option>
-                                    <option value="2">Сценарист</option>
-                                    <option value="3">Писатель</option>
-                                    <option value="4">Юрист</option>
+                                    <option value="EventOrganizer">Организатор мероприятий</option>
+                                    <option value="Screenwriter">Сценарист</option>
+                                    <option value="Writer">Писатель</option>
+                                    <option value="Lawyer">Юрист</option>
                                 </select>
                                 <label for="course">Интересующая Вас профессия</label>
                             </div>
                             <div class="form-group floating-label">
                                 <select id="source" name="source" class="form-control">
-                                    <option value="1">Реклама в соц.сети</option>
-                                    <option value="2">Реклама в сети Интернет</option>
-                                    <option value="3">Телереклама</option>
-                                    <option value="4">Радиореклама</option>
-                                    <option value="5">Реклама в метро</option>
-                                    <option value="6">Билборды</option>
-                                    <option value="6">Флаеры и постеры</option>
-                                    <option value="7">Друзья и знакомые</option>
+                                    <option value="SocialNetwork">Реклама в соц.сети</option>
+                                    <option value="Internet">Реклама в сети Интернет</option>
+                                    <option value="Tv">Телереклама</option>
+                                    <option value="Radio">Радиореклама</option>
+                                    <option value="Metro">Реклама в метро</option>
+                                    <option value="Billboards">Билборды</option>
+                                    <option value="FlyersAndPosters">Флаеры и постеры</option>
+                                    <option value="Friends">Друзья и знакомые</option>
                                 </select>
                                 <label for="source">Интересующая Вас профессия</label>
                             </div>
@@ -95,7 +87,7 @@
                             <div class="form-group floating-label">
                                 <div class="checkbox checkbox-styled">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        @Html.CheckBoxFor(model => model.IsAgreeWithLicense)
                                         <span>
                                             Принимаю условие <a asp-action="Index" asp-controller="License" class="decorated-link">пользовательского соглашения</a>
                                         </span>

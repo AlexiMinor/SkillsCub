@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SkillsCub.DataLibrary;
+using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.MVC.Extensions;
-using SkillsCub.MVC.Models;
 using SkillsCub.MVC.Models.ManageViewModels;
 using IEmailSender = SkillsCub.EmailSenderService.IEmailSender;
 
@@ -265,7 +266,7 @@ namespace SkillsCub.MVC.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
+            var info = await _signInManager.GetExternalLoginInfoAsync(user.Id.ToString());
             if (info == null)
             {
                 throw new ApplicationException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");

@@ -1,26 +1,44 @@
-@using Microsoft.AspNetCore.Identity
-@using SkillsCub.MVC.Models
-
+﻿@using SkillsCub.DataLibrary
+@using SkillsCub.DataLibrary.Entities.Implementation
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
-            </li>
-        </ul>
-    </form>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+            <img src="~/img/avatar1.jpg?1403934956" alt="" />
+            <span class="profile-info">
+                Daniel Johnson
+                <small>Administrator</small>
+            </span>
+        </a>
+        <ul class="dropdown-menu animation-dock">
+            <li class="dropdown-header">Config</li>
+            <li><a href="../../html/pages/profile.html">My profile</a></li>
+            <li><a href="../../html/pages/blog/post.html">My blog <span class="badge style-danger pull-right">16</span></a></li>
+            <li><a href="../../html/pages/calendar.html">My appointments</a></li>
+            <li class="divider"></li>
+            <li><a href="../../html/pages/locked.html"><i class="fa fa-fw fa-lock"></i> Lock</a></li>
+            <li><a href="../../html/pages/login.html"><i class="fa fa-fw fa-power-off text-danger"></i> Logout</a></li>
+        </ul><!--end .dropdown-menu -->
+    </li>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
-    </ul>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+            <img src="~/img/avatar1.jpg?1403934956" alt="" />
+            <span class="profile-info">
+                Unauthorized User
+                <small>Guest</small>
+            </span>
+        </a>
+        <ul class="dropdown-menu animation-dock">
+            @*<li class="dropdown-header">Config</li>*@
+            <li><a asp-controller="Account" asp-action="Login">Войти</a></li>
+            <li><a href="#">Попробовать бесплатно<span class="badge style-danger pull-right">1</span></a></li>
+            <li><a asp-controller="Request" asp-action="Index">Подать заявку</a></li>
+        </ul><!--end .dropdown-menu -->
+    </li>
 }

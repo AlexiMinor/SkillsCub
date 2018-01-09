@@ -9,6 +9,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="MicroOrm.Dapper.Repositories" Version="1.8.3" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
@@ -841,12 +842,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
+    <Folder Include="Data\" />
+    <Folder Include="Repositories\" />
     <Folder Include="wwwroot\js\core\cache\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SkillsCub.DataLibrary\SkillsCub.DataLibrary.csproj" />
     <ProjectReference Include="..\SkillsCub.EmailSenderService\SkillsCub.EmailSenderService.csproj" />
+    <ProjectReference Include="..\SkillsCub.Utilities\SkillsCub.Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

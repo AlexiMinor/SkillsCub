@@ -1,0 +1,74 @@
+﻿@model List<SkillsCub.DataLibrary.Entities.Implementation.Request>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Не рассмотренные заявки</h4>
+            </div><!--end .col -->
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-body no-padding">
+                        <div class="table-responsive no-margin">
+                            <table class="table table-striped no-margin">
+                                <thead>
+                                    <tr>
+                                        <th>ФИО</th>
+                                        <th>E-mail</th>
+                                        <th>Телефон</th>
+                                        <th>Источник информации</th>
+                                        <th>Курс</th>
+                                        <th>Впервые ли</th>
+                                        <th>Подтвердить</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var modelItem in Model)
+                                    {
+                                        <tr>
+                                            <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
+                                            <td>@modelItem.Email</td>
+                                            <td>@modelItem.Phone</td>
+                                            <td>@modelItem.Source.ToString()</td>
+                                            <td>@modelItem.Course.ToString()</td>
+                                            @if (modelItem.FirstTime)
+                                            {
+                                                <td>
+                                                    ДА
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    НЕТ
+                                                </td>
+                                            }
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn ink-reaction btn-primary" asp-controller="Request" asp-action="Submit" asp-route-id="@modelItem.Id">Подтвердить</a>
+                                                    <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa fa-caret-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                        <li><a href="#">Изменить</a></li>
+                                                        <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div><!--end .table-responsive -->
+                    </div><!--end .card-body -->
+                </div><!--end .card -->
+            </div><!--end .col -->
+        </div>
+    </div>
+</section>

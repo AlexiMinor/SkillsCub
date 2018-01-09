@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SkillsCub.MVC.Models;
+using SkillsCub.MVC.ViewModels;
 
 namespace SkillsCub.MVC.Controllers
 {
