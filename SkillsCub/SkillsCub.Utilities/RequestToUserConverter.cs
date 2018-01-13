@@ -16,7 +16,9 @@ namespace SkillsCub.Utilities
             Email = request.Email,
             DateCreated = request.AppliedDate,
             PhoneNumber = request.Phone,
-            UserName = request.Email
+            UserName = request.Email,
+            IsActive = false,
+            LastModified = DateTime.Now
         };
     }
 }

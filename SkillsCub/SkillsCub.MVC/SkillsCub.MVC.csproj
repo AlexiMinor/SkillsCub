@@ -843,8 +843,10 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Pages\Account\" />
     <Folder Include="Repositories\" />
     <Folder Include="wwwroot\js\core\cache\" />
+    <Folder Include="wwwroot\js\special\" />
   </ItemGroup>
 
   <ItemGroup>

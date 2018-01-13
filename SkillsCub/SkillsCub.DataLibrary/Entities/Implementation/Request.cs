@@ -41,5 +41,6 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
 
         public bool FirstTime { get; set; }
 
+        //TODO add status
     }
 }

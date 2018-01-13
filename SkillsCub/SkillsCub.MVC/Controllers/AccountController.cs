@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Common;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.MVC.Extensions;
 using SkillsCub.MVC.Models.AccountViewModels;
+using SkillsCub.MVC.ViewModels.AccountViewModels;
 using IEmailSender = SkillsCub.EmailSenderService.IEmailSender;
 
 namespace SkillsCub.MVC.Controllers
@@ -17,6 +20,7 @@ namespace SkillsCub.MVC.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
@@ -25,12 +29,14 @@ namespace SkillsCub.MVC.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, 
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _roleManager = roleManager;
         }
 
         [TempData]
@@ -348,16 +354,67 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public IActionResult CreatePasswordForUser(Guid id)
+        public IActionResult AccessDenied()
         {
             return View();
         }
 
+
         [HttpGet]
-        public IActionResult AccessDenied()
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmRequest(Guid id)
         {
-            return View();
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString("D"));
+                if (user == null)
+                {
+                    throw new Exception("");
+                }
+                //set vmodel to Id and 2 passwords
+                return View(new ConfirmRequsetViewModel(){Id = id});
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmRequest(ConfirmRequsetViewModel model)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(model.Id.ToString("D"));
+                if (user == null)
+                {
+                    throw new Exception("");
+                }
+                user.IsActive = true;
+                user.EmailConfirmed = true;
+                var result = await _userManager.UpdateAsync(user);
+                var result2 = await _userManager.AddPasswordAsync(user, model.Password);
+                if (!_roleManager.Roles.Any(role => role.Name.Equals("User")))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("User"));
+                }
+                var result3 = await _userManager.AddToRoleAsync(user, "User");
+
+
+                if (!result.Succeeded || !result2.Succeeded || !result3.Succeeded) return null;
+
+                _logger.LogInformation("User created a new account with password.");
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation("User created a new account with password.");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         #region Helpers

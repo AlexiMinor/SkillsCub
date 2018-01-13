@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Equinox.Domain.Interfaces;
 using MicroOrm.Dapper.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -89,7 +90,7 @@ namespace SkillsCub.MVC.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         //[Authorize(Roles = "Admin")]
         public async Task<JsonResult> Submit(Guid id)
         {
@@ -100,18 +101,23 @@ namespace SkillsCub.MVC.Controllers
                 {
                    var user = RequestToUserConverter.ConvertToUser(request);
                     //TODO send email into which that info is placed: Link to Generate Password Page
-                    //Save this user to temp DBSet
+                   var message =
+                        $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
+                        $" Вы подали заявку на skillscub.com.Ваше участие было подтверждено. {Environment.NewLine}" +
+                        $" Для завершения регистрации пройдите по ссылке:{Environment.NewLine}" +
+                        $"https://{Request.Host}/Account/ConfirmRequest/?id={user.Id} {Environment.NewLine}" +
+                        " Если вы не регистрировались, то проигноирируйте данное сообщение.";
+                        await _emailSender.SendEmailAsync(request.Email, "test", message);
+                    var userIdentity  = await _userManager.CreateAsync(user);
+                    return Json(userIdentity);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                     throw;
                 }
-                //TODO send user link to create password and finish registration after it
             }
-
-            //TODO cast request to USER, get him a role, send him a password setup link
-            return null;
+            return Json(null);
         }
 
         [HttpGet]

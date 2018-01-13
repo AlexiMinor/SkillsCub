@@ -38,7 +38,7 @@ namespace SkillsCub.MVC
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IRepository<Request>, RequestRepository>();

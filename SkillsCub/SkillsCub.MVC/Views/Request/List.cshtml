@@ -17,51 +17,51 @@
                         <div class="table-responsive no-margin">
                             <table class="table table-striped no-margin">
                                 <thead>
-                                    <tr>
-                                        <th>ФИО</th>
-                                        <th>E-mail</th>
-                                        <th>Телефон</th>
-                                        <th>Источник информации</th>
-                                        <th>Курс</th>
-                                        <th>Впервые ли</th>
-                                        <th>Подтвердить</th>
-                                    </tr>
+                                <tr>
+                                    <th>ФИО</th>
+                                    <th>E-mail</th>
+                                    <th>Телефон</th>
+                                    <th>Источник информации</th>
+                                    <th>Курс</th>
+                                    <th>Впервые ли</th>
+                                    <th>Подтвердить</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var modelItem in Model)
-                                    {
-                                        <tr>
-                                            <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
-                                            <td>@modelItem.Email</td>
-                                            <td>@modelItem.Phone</td>
-                                            <td>@modelItem.Source.ToString()</td>
-                                            <td>@modelItem.Course.ToString()</td>
-                                            @if (modelItem.FirstTime)
-                                            {
-                                                <td>
-                                                    ДА
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    НЕТ
-                                                </td>
-                                            }
+                                @foreach (var modelItem in Model)
+                                {
+                                    <tr id="row-@modelItem.Id">
+                                        <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
+                                        <td>@modelItem.Email</td>
+                                        <td>@modelItem.Phone</td>
+                                        <td>@modelItem.Source.ToString()</td>
+                                        <td>@modelItem.Course.ToString()</td>
+                                        @if (modelItem.FirstTime)
+                                        {
                                             <td>
-                                                <div class="btn-group">
-                                                    <a class="btn ink-reaction btn-primary" asp-controller="Request" asp-action="Submit" asp-route-id="@modelItem.Id">Подтвердить</a>
-                                                    <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-caret-down"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                        <li><a href="#">Изменить</a></li>
-                                                        <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
-                                                    </ul>
-                                                </div>
+                                                ДА
                                             </td>
-                                        </tr>
-                                    }
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                НЕТ
+                                            </td>
+                                        }
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn ink-reaction btn-primary" onclick="submit('@modelItem.Id')">Подтвердить</a>
+                                                <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-caret-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                    <li><a href="#">Изменить</a></li>
+                                                    <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
 
                                 </tbody>
                             </table>
@@ -72,3 +72,41 @@
         </div>
     </div>
 </section>
+    
+
+@section Scripts{ 
+    <script>
+
+        function removeRow(id) {
+            $('#row-' + id).hide('slow', function() { $(this).remove(); });
+        };
+
+        function removeRequest(id) {
+            $.ajax({
+                url: '/Request/Remove',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: id
+                }
+            }).success(function() {
+                
+            });
+        };
+
+
+        function submit(id) {
+            removeRow(id);
+            $.ajax({
+                url: '/Request/Submit',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: id
+                }
+            }).success(function() {
+                
+            });
+        };
+    </script>
+}

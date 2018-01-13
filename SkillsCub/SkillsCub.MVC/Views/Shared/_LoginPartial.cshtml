@@ -1,5 +1,4 @@
-﻿@using SkillsCub.DataLibrary
-@using SkillsCub.DataLibrary.Entities.Implementation
+﻿@using SkillsCub.DataLibrary.Entities.Implementation
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -9,8 +8,8 @@
         <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
             <img src="~/img/avatar1.jpg?1403934956" alt="" />
             <span class="profile-info">
-                Daniel Johnson
-                <small>Administrator</small>
+                @((await UserManager.GetUserAsync(User)).FirstName) @((await UserManager.GetUserAsync(User)).LastName)
+                <small>@((await UserManager.GetRolesAsync(await UserManager.GetUserAsync(User)))[0])</small>
             </span>
         </a>
         <ul class="dropdown-menu animation-dock">

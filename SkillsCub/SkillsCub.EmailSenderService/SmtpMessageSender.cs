@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -8,12 +9,20 @@ namespace SkillsCub.EmailSenderService
 {
     public class EmailSender : IEmailSender
     {
-        public EmailSender(IOptions<EmailSettings> emailSettings)
+        public EmailSender()
         {
-            EmailSettings = emailSettings.Value;
+            //TODO get from settings
+            _emailSettings = new EmailSettings()
+            {
+                PrimaryDomain = "smtp.gmail.com",
+                PrimaryPort = 587,
+                UsernameEmail = "SkillsCub@gmail.com",
+                UsernamePassword = "80173190299",
+                FromEmail = "SkillsCub"
+            };
         }
 
-        public EmailSettings EmailSettings { get; }
+        private readonly EmailSettings _emailSettings;
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
@@ -21,30 +30,34 @@ namespace SkillsCub.EmailSenderService
             Execute(email, subject, message).Wait();
             return Task.FromResult(0);
         }
-      
+
         public async Task Execute(string email, string subject, string message)
         {
             try
             {
                 var toEmail = string.IsNullOrEmpty(email)
-                    ? EmailSettings.ToEmail
+                    ? _emailSettings.ToEmail
                     : email;
 
                 var mail = new MailMessage()
                 {
-                    From = new MailAddress(EmailSettings.UsernameEmail)
+                    From = new MailAddress(_emailSettings.UsernameEmail)
                 };
                 mail.To.Add(new MailAddress(toEmail));
-                mail.CC.Add(new MailAddress(EmailSettings.CcEmail));
+                if (!string.IsNullOrEmpty(_emailSettings.CcEmail))
+                {
+                    mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
+
+                }
 
                 mail.Subject = "SkillsCub - " + subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
 
-                using (var smtp = new SmtpClient(EmailSettings.SecondayDomain, EmailSettings.SecondaryPort))
+                using (var smtp = new SmtpClient(_emailSettings.PrimaryDomain, _emailSettings.PrimaryPort))
                 {
-                    smtp.Credentials = new NetworkCredential(EmailSettings.UsernameEmail, EmailSettings.UsernamePassword);
+                    smtp.Credentials = new NetworkCredential(_emailSettings.UsernameEmail, _emailSettings.UsernamePassword);
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(mail);
                 }
