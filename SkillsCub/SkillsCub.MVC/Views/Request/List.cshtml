@@ -6,94 +6,73 @@
 }
 
 <section>
-    <div class="section-body contain-lg">
-        <div class="row">
-            <div class="col-xs-12">
-                <h4>Не рассмотренные заявки</h4>
-            </div><!--end .col -->
-            <div class="col-xs-12">
-                <div class="card">
-                    <div class="card-body no-padding">
-                        <div class="table-responsive no-margin">
-                            <table class="table table-striped no-margin">
-                                <thead>
-                                <tr>
-                                    <th>ФИО</th>
-                                    <th>E-mail</th>
-                                    <th>Телефон</th>
-                                    <th>Источник информации</th>
-                                    <th>Курс</th>
-                                    <th>Впервые ли</th>
-                                    <th>Подтвердить</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach (var modelItem in Model)
-                                {
-                                    <tr id="row-@modelItem.Id">
-                                        <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
-                                        <td>@modelItem.Email</td>
-                                        <td>@modelItem.Phone</td>
-                                        <td>@modelItem.Source.ToString()</td>
-                                        <td>@modelItem.Course.ToString()</td>
-                                        @if (modelItem.FirstTime)
-                                        {
-                                            <td>
-                                                ДА
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                НЕТ
-                                            </td>
-                                        }
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn ink-reaction btn-primary" onclick="submit('@modelItem.Id')">Подтвердить</a>
-                                                <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-caret-down"></i>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <li><a href="#">Изменить</a></li>
-                                                    <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-
-                                </tbody>
-                            </table>
-                        </div><!--end .table-responsive -->
-                    </div><!--end .card-body -->
-                </div><!--end .card -->
-            </div><!--end .col -->
-        </div>
-    </div>
-</section>
-    
-
-@section Scripts{ 
-    <script>
-
-        function removeRow(id) {
-            $('#row-' + id).hide('slow', function() { $(this).remove(); });
-        };
-
-        function removeRequest(id) {
-            $.ajax({
-                url: '/Request/Remove',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    id: id
+    <div class="section-body">
+        <h2 class="text-primary">Не рассмотренные заявки</h2>
+        <div class="table-responsive">
+            <table class="table table-hover style-default-bright">
+                <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>E-mail</th>
+                    <th>Телефон</th>
+                    <th>Источник информации</th>
+                    <th>Курс</th>
+                    <th>Впервые ли</th>
+                    <th class="text-right">Подтвердить</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var modelItem in Model)
+                {
+                    <tr id="row-@modelItem.Id">
+                        <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
+                        <td>@modelItem.Email</td>
+                        <td>@modelItem.Phone</td>
+                        <td>@modelItem.Source.ToString()</td>
+                        <td>@modelItem.Course.ToString()</td>
+                        @if (modelItem.FirstTime)
+                        {
+                            <td>
+                                ДА
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                НЕТ
+                            </td>
+                        }
+                        <td class="text-right">
+                            <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Подтвердить" onclick="submit('@modelItem.Id')"><i class="fa fa-chevron-down "></i></button>
+                            <button disabled type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Copy row"><i class="fa fa-pencil"></i></button>
+                            <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Отклонить" onclick="reject('@modelItem.Id')"><i class="fa fa-remove"></i></button>
+                        </td>
+                        @*<td>
+                            <div class="btn-group">
+                                <a class="btn ink-reaction btn-primary" onclick="submit2('@modelItem.Id')">Подтвердить</a>
+                                <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <li><a>Изменить</a></li>
+                                    <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
+                                </ul>
+                            </div>
+                        </td>*@
+                    </tr>
                 }
-            }).success(function() {
-                
-            });
-        };
+                </tbody>
+            </table>
+        </div>
+    </div><!--end .card-body -->
+</section>
 
+
+@section Scripts{
+    <script>
+        function removeRow(id) {
+            $('#row-' + id).hide('slow', function () { $(this).remove(); });
+        };
 
         function submit(id) {
             removeRow(id);
@@ -103,9 +82,31 @@
                 dataType: 'json',
                 data: {
                     id: id
+                },
+                success: function () {
+                    removeRow(id);
+                },
+                error: function () {
+
                 }
-            }).success(function() {
-                
+            });
+        };
+
+        function reject(id) {
+            removeRow(id);
+            $.ajax({
+                url: '/Request/Reject',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: id
+                },
+                success: function () {
+                    removeRow(id);
+                },
+                error: function () {
+
+                }
             });
         };
     </script>

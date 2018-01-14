@@ -62,6 +62,7 @@ namespace SkillsCub.MVC.Controllers
                             Course = model.Course,
                             FirstTime = model.FirstTime,
                             Source = model.Source,
+                            Status = Status.Requested
                         };
                         _repository.Add(request);
                         var x = _repository.SaveChanges();
@@ -86,7 +87,7 @@ namespace SkillsCub.MVC.Controllers
         //[Authorize(Roles = "Admin")]
         public IActionResult List()
         {
-            var model = _repository.GetAll().ToList();
+            var model = _repository.GetAll().Where(request => request.Status.Equals(Status.Requested)).ToList();
             return View(model);
         }
 
@@ -94,30 +95,32 @@ namespace SkillsCub.MVC.Controllers
         //[Authorize(Roles = "Admin")]
         public async Task<JsonResult> Submit(Guid id)
         {
-            var request = _repository.GetById(id);
-            if (request!=null)
-            {
-                try
+                var request = _repository.GetById(id);
+                if (request != null)
                 {
-                   var user = RequestToUserConverter.ConvertToUser(request);
-                    //TODO send email into which that info is placed: Link to Generate Password Page
-                   var message =
-                        $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
-                        $" Вы подали заявку на skillscub.com.Ваше участие было подтверждено. {Environment.NewLine}" +
-                        $" Для завершения регистрации пройдите по ссылке:{Environment.NewLine}" +
-                        $"https://{Request.Host}/Account/ConfirmRequest/?id={user.Id} {Environment.NewLine}" +
-                        " Если вы не регистрировались, то проигноирируйте данное сообщение.";
+                    try
+                    {
+                        var user = RequestToUserConverter.ConvertToUser(request);
+                        //TODO send email into which that info is placed: Link to Generate Password Page
+                        var message =
+                            $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
+                            $" Вы подали заявку на skillscub.com.Ваше участие было подтверждено. {Environment.NewLine}" +
+                            $" Для завершения регистрации пройдите по ссылке:{Environment.NewLine}" +
+                            $"https://{Request.Host}/Account/ConfirmRequest/?id={user.Id} {Environment.NewLine}" +
+                            " Если вы не регистрировались, то проигноирируйте данное сообщение.";
                         await _emailSender.SendEmailAsync(request.Email, "test", message);
-                    var userIdentity  = await _userManager.CreateAsync(user);
-                    return Json(userIdentity);
+                        var userIdentity = await _userManager.CreateAsync(user);
+                        request.Status = Status.WaitingApprove;
+                        return Json(userIdentity);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
-            return Json(null);
+                //TODO not sure about is it a good practise
+            return null;
         }
 
         [HttpGet]
@@ -133,12 +136,26 @@ namespace SkillsCub.MVC.Controllers
         //[Authorize(Roles = "Admin")]
         public JsonResult Reject(Guid id)
         {
-            //Ajax
-            _repository.Remove(id);
-            var repoResponce = _repository.SaveChanges();
+            try
+            {
+                var request = _repository.GetById(id);
+                if (request==null)
+                {
+                    return null;
+                }
+                request.Status = Status.Rejected;
+                _repository.Update(request);
+                var repoResponce = _repository.SaveChanges();
 
-            //TODO Get Requests from Database
-            return null;
+                //TODO Get Requests from Database
+                return Json(repoResponce);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
     }
 }

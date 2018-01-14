@@ -6,3 +6,17 @@ SkillsCub/SkillsCub\.MVC/obj/
 SkillsCub/SkillsCub\.AuthService/obj/
 
 SkillsCub/SkillsCub\.MVC/bin/
+
+SkillsCub/SkillsCub\.EmailSenderService/bin/
+
+SkillsCub/SkillsCub\.EmailSenderService/obj/
+
+SkillsCub/SkillsCub\.DataLibrary/bin/
+
+SkillsCub/SkillsCub\.DataLibrary/obj/
+
+SkillsCub/SkillsCub\.TelegramLogger/obj/
+
+SkillsCub/SkillsCub\.Utilities/bin/
+
+SkillsCub/SkillsCub\.Utilities/obj/
