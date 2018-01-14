@@ -21,6 +21,7 @@ namespace SkillsCub.MVC
             WebHost.CreateDefaultBuilder(args)
                 .UseApplicationInsights()
                 .UseStartup<Startup>()
+                .UseIISIntegration()
                 .Build();
     }
 }

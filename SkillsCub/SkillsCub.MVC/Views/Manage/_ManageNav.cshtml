@@ -1,4 +1,6 @@
-﻿@using SkillsCub.MVC.Views.Manage
+﻿@using Microsoft.AspNetCore.Identity
+@using SkillsCub.DataLibrary.Entities.Implementation
+@using SkillsCub.MVC.Views.Manage
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
