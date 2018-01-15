@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -26,12 +24,19 @@ namespace SkillsCub.EmailSenderService
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-
-            Execute(email, subject, message).Wait();
-            return Task.FromResult(0);
+            try
+            {
+                Execute(email, subject, message).Wait();
+                return Task.FromResult(0);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task Execute(string email, string subject, string message)
+        private async Task Execute(string email, string subject, string message)
         {
             try
             {

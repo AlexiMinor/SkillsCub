@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SkillsCub.MVC.Models;
 using SkillsCub.MVC.ViewModels;
+using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ITelegramLogger _telegramLogger;
+
+        public HomeController(ITelegramLogger emailSender)
+        {
+            _telegramLogger = emailSender;
+        }
+
         public IActionResult Index()
         {
             return View();
