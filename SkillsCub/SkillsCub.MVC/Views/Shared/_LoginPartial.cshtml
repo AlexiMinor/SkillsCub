@@ -1,0 +1,43 @@
+﻿@using SkillsCub.DataLibrary.Entities.Implementation
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+            <img src="~/img/avatar1.jpg?1403934956" alt="" />
+            <span class="profile-info">
+                @((await UserManager.GetUserAsync(User)).FirstName) @((await UserManager.GetUserAsync(User)).LastName)
+                <small>@((await UserManager.GetRolesAsync(await UserManager.GetUserAsync(User)))[0])</small>
+            </span>
+        </a>
+        <ul class="dropdown-menu animation-dock">
+            <li class="dropdown-header">Config</li>
+            <li><a href="../../html/pages/profile.html">My profile</a></li>
+            <li><a href="../../html/pages/blog/post.html">My blog <span class="badge style-danger pull-right">16</span></a></li>
+            <li><a href="../../html/pages/calendar.html">My appointments</a></li>
+            <li class="divider"></li>
+            <li><a href="../../html/pages/locked.html"><i class="fa fa-fw fa-lock"></i> Lock</a></li>
+            <li><a href="../../html/pages/login.html"><i class="fa fa-fw fa-power-off text-danger"></i> Logout</a></li>
+        </ul><!--end .dropdown-menu -->
+    </li>
+}
+else
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+            <img src="~/img/avatar1.jpg?1403934956" alt="" />
+            <span class="profile-info">
+                Unauthorized User
+                <small>Guest</small>
+            </span>
+        </a>
+        <ul class="dropdown-menu animation-dock">
+            @*<li class="dropdown-header">Config</li>*@
+            <li><a asp-controller="Account" asp-action="Login">Войти</a></li>
+            <li><a href="#">Попробовать бесплатно<span class="badge style-danger pull-right">1</span></a></li>
+            <li><a asp-controller="Request" asp-action="Index">Подать заявку</a></li>
+        </ul><!--end .dropdown-menu -->
+    </li>
+}

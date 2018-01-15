@@ -1,0 +1,108 @@
+﻿@using SkillsCub.MVC.ViewModels
+@model SkillsCub.MVC.ViewModels.RequestViewModel
+@{
+    ViewBag.Title = "Подать заявку";
+    Layout = "_Layout";
+    //TODO label with validation
+}
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 margin-bottom-xxl">
+                        <h1 class="text-primary">Подать заявку</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-head">
+                        <header>Заявка на участие в системе SkillsCub™.</header>
+                    </div>
+                    <div class="card-body">
+                        <form class="form" method="post">
+                            <div class="form-group floating-label">
+                                <input type="text" class="form-control" id="firstname" name="firstname">
+                                <label for="firstname">Имя</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <input type="text" class="form-control" id="patronymic" name="patronymic">
+                                <label for="patronymic">Отчество</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <input type="text" class="form-control" id="lastname" name="lastname">
+                                <label for="lastname">Фамилия</label>
+                            </div>
+                            
+                            <div class="form-group floating-label">
+                                <input type="email" class="form-control" id="email" name="email">
+                                <label for="email">Ваш e-mail</label>
+                            </div>
+                            
+                            <div class="form-group floating-label">
+                                <input type="tel" class="form-control" id="tel" name="phone">
+                                <label for="tel">Телефон</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <select id="course" name="course" class="form-control">
+                                    <option value="EventOrganizer">Организатор мероприятий</option>
+                                    <option value="Screenwriter">Сценарист</option>
+                                    <option value="Writer">Писатель</option>
+                                    <option value="Lawyer">Юрист</option>
+                                </select>
+                                <label for="course">Интересующая Вас профессия</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <select id="source" name="source" class="form-control">
+                                    <option value="SocialNetwork">Реклама в соц.сети</option>
+                                    <option value="Internet">Реклама в сети Интернет</option>
+                                    <option value="Tv">Телереклама</option>
+                                    <option value="Radio">Радиореклама</option>
+                                    <option value="Metro">Реклама в метро</option>
+                                    <option value="Billboards">Билборды</option>
+                                    <option value="FlyersAndPosters">Флаеры и постеры</option>
+                                    <option value="Friends">Друзья и знакомые</option>
+                                </select>
+                                <label for="source">Откуда узнали о нас</label>
+                            </div>
+                            <div class="form-group floating-label">
+                                <label>Это Ваше первое участие в SkillsCub?</label>
+
+                                <div class="radio-inline radio-styled">
+                                    <label>
+                                        <input type="radio" name="firstTime" value="true" checked>
+                                        <span>Да</span>
+                                    </label>
+                                </div>
+                                <div class="radio-inline radio-styled">
+                                    <label>
+                                        <input type="radio" name="firstTime" value="false">
+                                        <span>Нет</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group floating-label">
+                                <div class="checkbox checkbox-styled">
+                                    <label>
+                                        @Html.CheckBoxFor(model => model.IsAgreeWithLicense)
+                                        <span>
+                                            Принимаю условие <a asp-action="Index" asp-controller="License" class="decorated-link">пользовательского соглашения</a>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12 text-center margin-bottom-xxl">
+                                    <button asp-controller="Request" asp-action="Index" class="btn ink-reaction btn-raised btn-lg centred-primary-btn">Подать заявку</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!--end .card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

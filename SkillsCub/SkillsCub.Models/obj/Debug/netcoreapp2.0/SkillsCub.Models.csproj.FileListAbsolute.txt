@@ -1,9 +1,0 @@
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\bin\Debug\netcoreapp2.0\SkillsCub.Models.deps.json
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\bin\Debug\netcoreapp2.0\SkillsCub.Models.dll
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\bin\Debug\netcoreapp2.0\SkillsCub.Models.pdb
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\obj\Debug\netcoreapp2.0\SkillsCub.Models.csprojResolveAssemblyReference.cache
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\obj\Debug\netcoreapp2.0\SkillsCub.Models.csproj.CoreCompileInputs.cache
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\obj\Debug\netcoreapp2.0\SkillsCub.Models.AssemblyInfoInputs.cache
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\obj\Debug\netcoreapp2.0\SkillsCub.Models.AssemblyInfo.cs
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\obj\Debug\netcoreapp2.0\SkillsCub.Models.dll
-C:\Users\User\Documents\GithubRepos\SC\SkillsCub\SkillsCub.Models\obj\Debug\netcoreapp2.0\SkillsCub.Models.pdb

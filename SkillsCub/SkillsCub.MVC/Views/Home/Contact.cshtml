@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Контакты";
+    Layout = "_Layout";
+}
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12 ">
+                <h1 class="text-primary">@ViewData["Title"]</h1>
+            </div><!--end .col -->
+            <div class="col-xs-12">
+                <article class="margin-bottom-xxl">
+                    <p class="lead">
+                        Для того, чтобы связаться с нами, воспользуйтесь любым из доступных каналов связи. Мы рады помочь Вам по любым интересующим вопросам!
+                    </p>
+                </article>
+            </div><!--end .col -->
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-body no-padding">
+                        <ul class="list">
+                            <li class="tile">
+                                <a href="tel:+375259187062" class="tile-content ink-reaction">
+                                    <div class="tile-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div class="tile-text">
+                                        +375 (25) 918 70 62
+                                        <small>Позвоните нам</small>
+                                    </div>
+                                </a>
+
+                            </li>
+
+                            <li class="divider-inset"></li>
+
+                            <li class="tile">
+                                <a href="mailto:skillscub@gmail.com" class="tile-content ink-reaction">
+                                    <div class="tile-icon">
+                                        <i class="fa fa-envelope"></i>
+                                        
+                                    </div>
+                                    <div class="tile-text">
+                                        skillscub@gmail.com
+                                        <small>Напишите нам</small>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--end .card-body -->
+                </div><!--end .card -->
+            </div>
+        </div><!--end .col -->
+        
+        <div class="row">
+            Время работы
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-body no-padding">
+                        <div id="marker-map" class="border-gray height-12"></div>
+                    </div>
+                </div><!--end .card -->
+                <em class="text-caption">г. Минск, ул. Амураторская, 4, офис 518, 4 этаж.</em>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="~/js/libs/spin.js/spin.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyBiM0QuDlvrJFQ84DxyUp0oQl7EMkaC9mI&amp;sensor=false"></script>
+    <script src="~/js/libs/gmaps/gmaps.js"></script>
+    <script src="~/js/core/demo/Demo.js"></script>
+    <script src="~/js/core/demo/DemoPageMaps.js"></script>
+}
