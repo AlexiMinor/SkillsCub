@@ -852,6 +852,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SkillsCub.DataLibrary\SkillsCub.DataLibrary.csproj" />
     <ProjectReference Include="..\SkillsCub.EmailSenderService\SkillsCub.EmailSenderService.csproj" />
+    <ProjectReference Include="..\SkillsCub.TelegramLogger\SkillsCub.TelegramLogger.csproj" />
     <ProjectReference Include="..\SkillsCub.Utilities\SkillsCub.Utilities.csproj" />
   </ItemGroup>
 

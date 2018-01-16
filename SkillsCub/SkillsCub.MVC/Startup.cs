@@ -17,6 +17,7 @@ using SkillsCub.DataLibrary.Repositories.Context;
 using SkillsCub.DataLibrary.Repositories.Implementation;
 using SkillsCub.EmailSenderService;
 using SkillsCub.MVC.Models;
+using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC
 {
@@ -41,6 +42,7 @@ namespace SkillsCub.MVC
             
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ITelegramLogger, TelegramLogger.TelegramLogger>();
             services.AddTransient<IRepository<Request>, RequestRepository>();
 
             services.AddMvc();
