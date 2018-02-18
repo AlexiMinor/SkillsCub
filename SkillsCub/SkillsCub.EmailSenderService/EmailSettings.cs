@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SkillsCub.EmailSenderService
+﻿namespace SkillsCub.EmailSenderService
 {
     public class EmailSettings
     {

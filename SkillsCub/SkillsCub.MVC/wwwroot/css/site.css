@@ -7,3 +7,11 @@
     background-color: #e5e6e6;
     color: #03A9F4;
 }
+
+.padding-bottom-xxl {
+    padding-bottom: 20px;
+
+}
+.padding-bottom-xxxl {
+    padding-bottom: 30px;
+}
