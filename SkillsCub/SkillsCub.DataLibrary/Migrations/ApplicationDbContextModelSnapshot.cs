@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using SkillsCub.DataLibrary;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Context;
 using System;
@@ -130,6 +129,26 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Answer", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CourseTaskID");
+
+                    b.Property<string>("UserID");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CourseTaskID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Answers");
+                });
+
             modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -193,6 +212,66 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Course", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("ConsultationDate");
+
+                    b.Property<int>("CourseName");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<string>("TeacherId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.CourseExcercise", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CourseID");
+
+                    b.Property<Guid>("ExcerciseID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("ExcerciseID");
+
+                    b.ToTable("CourseExcercises");
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Excercise", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ConditionOfProblem");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Excercises");
+                });
+
             modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Request", b =>
                 {
                     b.Property<Guid>("Id")
@@ -225,6 +304,26 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.UserCourse", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("AssignationDate");
+
+                    b.Property<Guid>("CourseID");
+
+                    b.Property<string>("StudentID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("UserCourses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -270,6 +369,50 @@ namespace SkillsCub.DataLibrary.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Answer", b =>
+                {
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.CourseExcercise", "CourseExcercise")
+                        .WithMany("Answers")
+                        .HasForeignKey("CourseTaskID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "User")
+                        .WithMany("Answers")
+                        .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Course", b =>
+                {
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Teacher")
+                        .WithMany("Courses")
+                        .HasForeignKey("TeacherId");
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.CourseExcercise", b =>
+                {
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Course", "Course")
+                        .WithMany("CourseExcercises")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Excercise", "Excercise")
+                        .WithMany("CourseExcercises")
+                        .HasForeignKey("ExcerciseID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.UserCourse", b =>
+                {
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Course", "Course")
+                        .WithMany("Students")
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Student")
+                        .WithMany("CurrentCourses")
+                        .HasForeignKey("StudentID");
                 });
 #pragma warning restore 612, 618
         }

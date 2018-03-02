@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace SkillsCub.DataLibrary.Entities.Implementation
@@ -13,5 +15,13 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         public DateTime DateCreated { get; set; }
         public DateTime LastModified { get; set; }
         public bool IsActive { get; set; }
+
+        
+        public IEnumerable<Course> Courses { get; set; }
+
+        public IEnumerable<UserCourse> CurrentCourses { get; set; }
+
+        public IEnumerable<Answer> Answers { get; set; }
+
     }
 }
