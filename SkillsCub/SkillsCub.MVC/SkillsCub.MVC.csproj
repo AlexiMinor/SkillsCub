@@ -9,16 +9,12 @@
 
   <ItemGroup>
     <Compile Remove="Data\**" />
-    <Compile Remove="Pages\**" />
     <Compile Remove="Repositories\**" />
     <Content Remove="Data\**" />
-    <Content Remove="Pages\**" />
     <Content Remove="Repositories\**" />
     <EmbeddedResource Remove="Data\**" />
-    <EmbeddedResource Remove="Pages\**" />
     <EmbeddedResource Remove="Repositories\**" />
     <None Remove="Data\**" />
-    <None Remove="Pages\**" />
     <None Remove="Repositories\**" />
   </ItemGroup>
 
@@ -854,11 +850,6 @@
     <None Include="wwwroot\js\libs\wizard\README.md" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\site.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\js\core\cache\" />
-    <Folder Include="wwwroot\js\special\" />
   </ItemGroup>
 
   <ItemGroup>

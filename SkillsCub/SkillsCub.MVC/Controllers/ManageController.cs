@@ -26,7 +26,7 @@ namespace SkillsCub.MVC.Controllers
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
 
-        private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
+        private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
@@ -109,24 +109,24 @@ namespace SkillsCub.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendVerificationEmail(IndexViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
+
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                var email = user.Email;
+                await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
+
+                StatusMessage = "Verification email sent. Please check your email.";
+                return RedirectToAction(nameof(Index));
             }
 
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-            var email = user.Email;
-            await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
-
-            StatusMessage = "Verification email sent. Please check your email.";
-            return RedirectToAction(nameof(Index));
+            return null;
         }
 
         [HttpGet]
@@ -494,7 +494,7 @@ namespace SkillsCub.MVC.Controllers
         private string GenerateQrCodeUri(string email, string unformattedKey)
         {
             return string.Format(
-                AuthenicatorUriFormat,
+                AuthenticatorUriFormat,
                 _urlEncoder.Encode("SkillsCub.MVC"),
                 _urlEncoder.Encode(email),
                 unformattedKey);

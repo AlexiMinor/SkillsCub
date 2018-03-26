@@ -1,0 +1,52 @@
+﻿@model SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser
+@{
+    ViewBag.Title = "Регистрация преподавателя";
+    Layout = "_Layout";
+}
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 margin-bottom-xxl">
+                        <h1 class="text-primary">Регистрация преподавателя</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="col-xs-12">
+                    <form class="form" method="post">
+                        <div class="form-group floating-label">
+                            <input type="text" class="form-control" id="firstname" name="firstname">
+                            <label for="firstname">Имя</label>
+                        </div>
+                        <div class="form-group floating-label">
+                            <input type="text" class="form-control" id="patronymic" name="patronymic">
+                            <label for="patronymic">Отчество</label>
+                        </div>
+                        <div class="form-group floating-label">
+                            <input type="text" class="form-control" id="lastname" name="lastname">
+                            <label for="lastname">Фамилия</label>
+                        </div>
+
+                        <div class="form-group floating-label">
+                            <input type="email" class="form-control" id="email" name="email">
+                            <label for="email">Ваш e-mail</label>
+                        </div>
+
+                        <div class="form-group floating-label">
+                            <input type="tel" class="form-control" id="tel" name="phone">
+                            <label for="tel">Телефон</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 text-center margin-bottom-xxl">
+                                <button class="btn ink-reaction btn-raised btn-lg centred-primary-btn">Зарегестрировать</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

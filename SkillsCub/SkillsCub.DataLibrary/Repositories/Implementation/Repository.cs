@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Equinox.Domain.Interfaces;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SkillsCub.DataLibrary.Repositories.Context;
+using SkillsCub.DataLibrary.Repositories.Interfaces;
 
 namespace SkillsCub.DataLibrary.Repositories.Implementation
 {
@@ -17,34 +19,45 @@ namespace SkillsCub.DataLibrary.Repositories.Implementation
             DbSet = Db.Set<TEntity>();
         }
 
-        public virtual void Add(TEntity obj)
+        public virtual async Task Add(TEntity obj)
         {
-            DbSet.Add(obj);
+            await DbSet.AddAsync(obj);
         }
 
-        public virtual TEntity GetById(Guid id)
+        public virtual async Task<TEntity> GetById(Guid id)
         {
-            return DbSet.Find(id);
+            return await DbSet.FindAsync(id);
         }
 
-        public virtual IQueryable<TEntity> GetAll()
+        public virtual async Task<IQueryable<TEntity>> GetAll()
         {
             return DbSet;
         }
 
-        public virtual void Update(TEntity obj)
+        public async Task<IQueryable<TEntity>> FindBy(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
+        {
+            var result= DbSet.Where(predicate);
+            if (includes.Any())
+            {
+                result = includes.Aggregate(result, (current, include) => current.Include(include));
+            }
+
+            return result;
+        }
+
+        public virtual async Task Update(TEntity obj)
         {
             DbSet.Update(obj);
         }
 
-        public virtual void Remove(Guid id)
+        public virtual async Task Remove(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
         }
 
-        public int SaveChanges()
+        public async Task<int> SaveChanges()
         {
-            return Db.SaveChanges();
+            return await Db.SaveChangesAsync();
         }
 
         public void Dispose()

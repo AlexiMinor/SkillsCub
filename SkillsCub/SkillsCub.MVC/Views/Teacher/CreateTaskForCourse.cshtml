@@ -1,0 +1,71 @@
+﻿@using SkillsCub.MVC.ViewModels
+@model SkillsCub.MVC.ViewModels.ExerciseModel
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<section>
+    <div class="section-body contain-lg">
+        <!-- BEGIN SUMMERNOTE -->
+
+        <form class="form form-validation" role="form" novalidate="novalidate" method="post">
+            <div class="card card-bordered style-primary">
+                <div class="card-head">
+                    <header><i class="fa fa-fw fa-tag"></i> Создание задания для курса @Model.CourseId</header>
+                </div>
+                <div class="card-body style-default-bright">
+                    <div class="form-group">
+                        <input asp-for="Name" type="text" class="form-control">
+                        <label>Название</label>
+                    </div>
+                    <br><br>
+                        <div class="form-group">
+                            @Html.TextAreaFor(model => model.Detail, new { id = "summernote" })
+                            <label for="summernote">Условие</label>
+                        </div>
+
+                    <br><br>
+                    <div class="form-group">
+                        <div class="input-daterange input-group" id="demo-date-range">
+                            <div class="input-group-content">
+                                <input type="text" class="form-control" name="start" />
+                                <label>Date range</label>
+                            </div>
+                            <span class="input-group-addon">to</span>
+                            <div class="input-group-content">
+                                <input type="text" class="form-control" name="end" />
+                                <div class="form-control-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--end .card-body -->
+                <div class="card-actionbar style-default-bright">
+                    <div class="card-actionbar-row">
+                        <button type="reset" class="btn btn-flat btn-default ink-reaction">Отменить</button>
+                        <button type="submit" class="btn btn-flat btn-default ink-reaction">Подтвердить</button>
+                    </div>
+                </div><!--end .card -->
+                <!-- END SUMMERNOTE -->
+            </div>
+
+        </form>
+    </div>
+</section>
+
+@section Css
+    {
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/summernote/summernote.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/bootstrap-datepicker/datepicker3.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css" />
+}
+@section Scripts
+    {
+    <script src="~/js/libs/summernote/summernote.min.js"></script>
+    <script src="~/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/js/core/demo/DemoFormEditors.js"></script>
+    <script src="~/js/core/demo/DemoFormComponents.js"></script>
+    }

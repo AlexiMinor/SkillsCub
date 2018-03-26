@@ -1,0 +1,76 @@
+﻿@model SkillsCub.MVC.ViewModels.AccountViewModels.ConfirmRequsetViewModel
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillsCub - Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css' />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/materialadmin.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/material-design-iconic-font.min.css" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="~/js/libs/utils/html5shiv.js"></script>
+    <script type="text/javascript" src="~/js/libs/utils/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="menubar-hoverable header-fixed ">
+
+    <section class="section-account">
+        <div class="img-backdrop" style="background-image: url('/img/img16.jpg')"></div>
+        <div class="spacer"></div>
+        <div class="card contain-sm style-transparent">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="form floating-label" asp-controller="Account" asp-action="ConfirmTeacher" accept-charset="utf-8" method="post">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <div class="form-group">
+                                <label asp-for="Password">Пароль</label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ConfirmPassword">Подтвердите пароль</label>
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-12 text-right">
+                                    <button class="btn btn-primary btn-raised" type="submit">Подтвердить</button>
+                                </div><!--end .col -->
+                            </div>
+                        </form>
+                    </div><!--end .col -->
+                </div><!--end .row -->
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </section>
+    <!-- END LOGIN SECTION -->
+    <!-- BEGIN JAVASCRIPT -->
+    <script src="~/js/libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="~/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/js/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="~/js/libs/spin.js/spin.min.js"></script>
+    <script src="~/js/libs/autosize/jquery.autosize.min.js"></script>
+    <script src="~/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+    <script src="~/js/core/source/App.js"></script>
+    <script src="~/js/core/source/AppNavigation.js"></script>
+    <script src="~/js/core/source/AppOffcanvas.js"></script>
+    <script src="~/js/core/source/AppCard.js"></script>
+    <script src="~/js/core/source/AppForm.js"></script>
+    <script src="~/js/core/source/AppNavSearch.js"></script>
+    <script src="~/js/core/source/AppVendor.js"></script>
+    <script src="~/js/core/demo/Demo.js"></script>
+    <!-- END JAVASCRIPT -->
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+</body>
+
+</html>
+

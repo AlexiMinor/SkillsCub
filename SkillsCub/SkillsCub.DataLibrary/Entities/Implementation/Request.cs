@@ -35,7 +35,7 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         [Display(Name = "Phone")]
         public string Phone { get; set; }
 
-        public CourseName Course { get; set; }
+        public CourseType Course { get; set; }
 
         public Source Source { get; set; }
 

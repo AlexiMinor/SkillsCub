@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Equinox.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using SkillsCub.DataLibrary.Entities.Implementation;
+using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.EmailSenderService;
 using SkillsCub.MVC.ViewModels;
 using SkillsCub.TelegramLogger;
@@ -64,7 +65,7 @@ namespace SkillsCub.MVC.Controllers
                             Status = Status.Requested
                         };
                         await _telegramLogger.Debug(
-                            $"Request created. {Environment.NewLine} Request body: {Environment.NewLine} {Json(request)}");
+                            $"Request created. {Environment.NewLine} Request body: {Environment.NewLine} {JsonConvert.SerializeObject(request)}");
                         _repository.Add(request);
                         var x = _repository.SaveChanges();
                         await _telegramLogger.Debug($"Request {request.Id:D} added to DB with status Requested");
@@ -89,9 +90,9 @@ namespace SkillsCub.MVC.Controllers
 
         [HttpGet]
         //[Authorize(Roles = "Admin")]
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            var model = _repository.GetAll().Where(request => request.Status.Equals(Status.Requested)).ToList();
+            var model = (await _repository.GetAll()).Where(request => request.Status.Equals(Status.Requested)).ToList();
             return View(model);
         }
 
@@ -99,7 +100,7 @@ namespace SkillsCub.MVC.Controllers
         //[Authorize(Roles = "Admin")]
         public async Task<JsonResult> Submit(Guid id)
         {
-            var request = _repository.GetById(id);
+            var request = await _repository.GetById(id);
             
             if (request != null)
             {
@@ -107,7 +108,7 @@ namespace SkillsCub.MVC.Controllers
                 try
                 {
                     var user = RequestToUserConverter.ConvertToUser(request);
-                    await _telegramLogger.Debug($"User {user.Id:D} created from request from Request {id:D}. {Environment.NewLine} User body: {Environment.NewLine} {Json(user)}");
+                    await _telegramLogger.Debug($"User {user.Id:D} created from request from Request {id:D}. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
 
                     //TODO send email into which that info is placed: Link to Generate Password Page
                     var message =
@@ -120,7 +121,7 @@ namespace SkillsCub.MVC.Controllers
                     await _telegramLogger.Debug($"Message for User {user.Id} sended");
 
                     var userIdentity = await _userManager.CreateAsync(user);
-                    await _telegramLogger.Debug($"User {Json(userIdentity)} created in DB");
+                    await _telegramLogger.Debug($"User {JsonConvert.SerializeObject(userIdentity)} created in DB");
 
                     request.Status = Status.WaitingApprove;
 
@@ -136,7 +137,6 @@ namespace SkillsCub.MVC.Controllers
                 {
                     await _telegramLogger.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
                     Console.WriteLine(ex);
-                    throw;
                 }
             }
             await _telegramLogger.Debug($"Request {id:D} not exist in DB.");
@@ -147,11 +147,11 @@ namespace SkillsCub.MVC.Controllers
 
         [HttpGet]
         //[Authorize(Roles = "Admin")]
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var model = _repository.GetAll().ToList();
+            var model = await _repository.GetById(id);
             //TODO Get Requests from Database
-            return null;
+            return View(model);
         }
 
         [HttpGet]
@@ -160,21 +160,21 @@ namespace SkillsCub.MVC.Controllers
         {
             try
             {
-                var request = _repository.GetById(id);
+                var request = await _repository.GetById(id);
                 if (request == null)
                 {
                     await _telegramLogger.Debug($"Request {id:D} not exist in DB.");
                     return null;
                 }
-                await _telegramLogger.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {Json(request)}");
+                await _telegramLogger.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {JsonConvert.SerializeObject(request)}");
 
                 request.Status = Status.Rejected;
                 _repository.Update(request);
-                var repoResponce = _repository.SaveChanges();
+                var repoResponse = _repository.SaveChanges();
                 await _telegramLogger.Debug($"Request {id:D} status changes to Rejected in DB.");
 
                 //TODO Get Requests from Database
-                return Json(repoResponce);
+                return Json(repoResponse);
             }
             catch (Exception ex)
             {

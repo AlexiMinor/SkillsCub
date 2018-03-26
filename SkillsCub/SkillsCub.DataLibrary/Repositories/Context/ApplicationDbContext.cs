@@ -9,10 +9,9 @@ namespace SkillsCub.DataLibrary.Repositories.Context
         public DbSet<Request> Requests { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<UserCourse> UserCourses { get; set; }
-        public DbSet<Excercise> Excercises { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
 
-        public DbSet<CourseExcercise> CourseExcercises { get; set; }
         public DbSet<Answer> Answers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

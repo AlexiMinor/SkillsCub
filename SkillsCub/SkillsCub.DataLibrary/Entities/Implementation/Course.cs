@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SkillsCub.DataLibrary.Entities.Implementation
 {
@@ -15,12 +14,10 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         public string Description { get; set; }
 
         public DateTime ConsultationDate { get; set; }
-
+        public string ConsultationPlace { get; set; }
         public DateTime StartDate { get; set; }
-
-        public CourseName CourseName { get; set; }
+        public CourseType Type { get; set; }
         public bool IsActive { get; set; }
-
 
         public string TeacherId { get; set; }
         [ForeignKey("TeacherId")]
@@ -28,7 +25,7 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
 
         public IEnumerable<UserCourse> Students { get; set; }
 
-        public IEnumerable<CourseExcercise> CourseExcercises { get; set; }
+        public IEnumerable<Exercise> Exercises { get; set; }
 
 
     }

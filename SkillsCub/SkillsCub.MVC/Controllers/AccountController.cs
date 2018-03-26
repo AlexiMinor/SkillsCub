@@ -390,12 +390,37 @@ namespace SkillsCub.MVC.Controllers
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmRequestForTeacher(Guid id)
+        {
+
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString("D"));
+                if (user == null)
+                {
+                    await _telegramLogger.Error($"User {id:D} not exist in DB");
+                    return null;
+                }
+                await _telegramLogger.Debug($"User {id:D} go to create password View");
+
+                //set vmodel to Id and 2 passwords
+                return View(new ConfirmRequsetViewModel(){Id = id});
+
+            }
+            catch (Exception ex)
+            {
+                await _telegramLogger.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
+                return null;
+            }
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ConfirmRequest(ConfirmRequsetViewModel model)
         {
-            
             try
             {
                 if (ModelState.IsValid)
@@ -453,6 +478,66 @@ namespace SkillsCub.MVC.Controllers
             }
         }
 
+        public async Task<IActionResult> ConfirmTeacher(ConfirmRequsetViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _telegramLogger.Debug($"Teacher {model.Id:D} create password");
+
+                    var user = await _userManager.FindByIdAsync(model.Id.ToString("D"));
+                    if (user == null)
+                    {
+                        await _telegramLogger.Error($"Teacher {model.Id:D} not exist in DB");
+                        return null;
+                    }
+                    //possible move activation after password set
+                    user.IsActive = true;
+                    user.EmailConfirmed = true;
+                    var result = await _userManager.UpdateAsync(user);
+                    await _telegramLogger.Debug($"Teacher {model.Id:D} email confirmed & activate");
+
+                    var result2 = await _userManager.AddPasswordAsync(user, model.Password);
+                    await _telegramLogger.Debug($"Teacher {model.Id:D} password added");
+
+                    if (!_roleManager.Roles.Any(role => role.Name.Equals("Teacher")))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Teacher"));
+                        await _telegramLogger.Debug($"Teacher role added");
+
+                    }
+                    var result3 = await _userManager.AddToRoleAsync(user, "Teacher");
+                    await _telegramLogger.Debug($"Role added to Teacher {model.Id:D} ");
+
+
+                    if (!result.Succeeded || !result2.Succeeded || !result3.Succeeded)
+                    {
+                        await _telegramLogger.Error($"SMTH with User {model.Id:D} went wrong. " +
+                                                    $"{Environment.NewLine} Activation: {Json(result)} " +
+                                                    $"{Environment.NewLine} Adding password: {Json(result2)} " +
+                                                    $"{Environment.NewLine} Adding role: {Json(result3)}");
+
+                        return null;
+                    }
+
+                    _logger.LogInformation("User created a new account with password.");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User created a new account with password.");
+                    return RedirectToAction("Index", "Home");
+                }
+                await _telegramLogger.Error($"Model of creation password of User {model.Id:D} non valid. ");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
+
+                return null;
+            }
+        }
+
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
@@ -476,5 +561,7 @@ namespace SkillsCub.MVC.Controllers
         }
 
         #endregion
+
+      
     }
 }

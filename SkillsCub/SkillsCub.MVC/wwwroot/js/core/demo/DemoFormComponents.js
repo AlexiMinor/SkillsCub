@@ -23,9 +23,6 @@
 		this._initMultiSelect();
 		this._initInputMask();
 		this._initDatePicker();
-		this._initSliders();
-		this._initSpinners();
-		this._initColorPickers();
 	};
 
 	// =========================================================================
@@ -88,67 +85,6 @@
 	};
 
 	// =========================================================================
-	// COLORPICKER
-	// =========================================================================
-
-	p._initColorPickers = function () {
-		if (!$.isFunction($.fn.colorpicker)) {
-			return;
-		}
-		$('#cp1').colorpicker();
-		$('#cp2').colorpicker();
-		$('#cp3').colorpicker().on('changeColor', function (ev) {
-			$(ev.currentTarget).closest('.card-body').css('background', ev.color.toHex());
-		});
-	};
-
-	// =========================================================================
-	// SPINNERS
-	// =========================================================================
-
-	p._initSpinners = function () {
-		if (!$.isFunction($.fn.spinner)) {
-			return;
-		}
-		$("#spinner").spinner({min: 16});
-		$("#spinner-decimal").spinner({step: 0.01, numberFormat: "n", max: 1});
-	};
-
-	// =========================================================================
-	// SLIDERS
-	// =========================================================================
-
-	p._initSliders = function () {
-		if (!$.isFunction($.fn.slider)) {
-			return;
-		}
-		$("#slider").slider({range: "min", value: 50, min: 0, max: 100,
-			slide: function (event, ui) {
-				$('#slider-value').empty().append(ui.value);
-			}
-		});
-		$("#slider-step").slider({value: 100, min: 0, max: 500, step: 50,
-			slide: function (event, ui) {
-				$('#step-value').empty().append(ui.value);
-			}
-		});
-		$("#slider-range").slider({range: true, min: 0, max: 100, values: [25, 75],
-			slide: function (event, ui) {
-				$('#range-value1').empty().append(ui.values[ 0 ]);
-				$('#range-value2').empty().append(ui.values[ 1 ]);
-			}
-		});
-
-		$("#eq > span").each(function () {
-			var value = parseInt($(this).text(), 10);
-			$(this).empty().slider({value: value, range: "min", animate: true, orientation: "vertical"});
-			$(this).css('height', '100px');
-			$(this).css('margin-right', '30px');
-			$(this).css('float', 'left');
-		});
-	};
-
-	// =========================================================================
 	// SELECT2
 	// =========================================================================
 
@@ -180,11 +116,7 @@
 		if (!$.isFunction($.fn.inputmask)) {
 			return;
 		}
-		$(":input").inputmask();
-		$(".form-control.dollar-mask").inputmask('$ 999,999,999.99', {numericInput: true, rightAlignNumerics: false});
-		$(".form-control.euro-mask").inputmask('€ 999.999.999,99', {numericInput: true, rightAlignNumerics: false});
 		$(".form-control.time-mask").inputmask('h:s', {placeholder: 'hh:mm'});
-		$(".form-control.time12-mask").inputmask('hh:mm t', {placeholder: 'hh:mm xm', alias: 'time12', hourFormat: '12'});
 	};
 
 	// =========================================================================
@@ -195,12 +127,9 @@
 		if (!$.isFunction($.fn.datepicker)) {
 			return;
 		}
-
-		$('#demo-date').datepicker({autoclose: true, todayHighlight: true});
-		$('#demo-date-month').datepicker({autoclose: true, todayHighlight: true, minViewMode: 1});
-		$('#demo-date-format').datepicker({autoclose: true, todayHighlight: true, format: "yyyy/mm/dd"});
-		$('#demo-date-range').datepicker({todayHighlight: true});
-		$('#demo-date-inline').datepicker({todayHighlight: true});
+		$('#start-date').datepicker({todayHighlight: true});
+        $('#consult-date').datepicker({ todayHighlight: true });
+	    $('#demo-date-range').datepicker({ todayHighlight: true });
 	};
 
 	// =========================================================================

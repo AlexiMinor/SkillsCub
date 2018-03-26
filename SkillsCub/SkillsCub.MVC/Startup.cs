@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Equinox.Domain.Interfaces;
-using MicroOrm.Dapper.Repositories;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SkillsCub.DataLibrary;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Context;
 using SkillsCub.DataLibrary.Repositories.Implementation;
+using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.EmailSenderService;
-using SkillsCub.MVC.Models;
 using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC
@@ -43,7 +35,11 @@ namespace SkillsCub.MVC
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITelegramLogger, TelegramLogger.TelegramLogger>();
+            services.AddTransient<IRepository<Answer>, AnswerRepository>();
+            services.AddTransient<IRepository<Course>, CourseRepository>();
+            services.AddTransient<IRepository<Exercise>, ExerciseRepository>();
             services.AddTransient<IRepository<Request>, RequestRepository>();
+            services.AddTransient<IRepository<UserCourse>, UserCourseRepository>();
 
             services.AddMvc();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));

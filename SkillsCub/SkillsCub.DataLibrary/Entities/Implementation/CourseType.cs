@@ -1,6 +1,6 @@
 ﻿namespace SkillsCub.DataLibrary.Entities.Implementation
 {
-    public enum CourseName
+    public enum CourseType
     {
         EventOrganizer,
         Screenwriter,

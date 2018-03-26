@@ -1,0 +1,178 @@
+﻿@using SkillsCub.DataLibrary.Entities.Implementation;
+@model SkillsCub.MVC.ViewModels.CourseViewModel
+
+@{
+    ViewBag.Title = "Создание курса";
+    Layout = "_Layout";
+}
+
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 margin-bottom-xxl">
+                        <h1 class="text-primary">Создание курса</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form form-validation" role="form" novalidate="novalidate" method="post">
+                    <div class="card">
+                        <div class="card-body ">
+                            <div id="rootwizard" class="form-wizard form-wizard-horizontal">
+
+                                    <div class="form-wizard-nav">
+                                        <div class="progress" style="width: 75%;">
+                                            <div class="progress-bar progress-bar-primary" style="width: 0%;"></div>
+                                        </div>
+                                        <ul class="nav nav-justified nav-pills">
+                                            <li class="active"><a href="#step1" data-toggle="tab"><span class="step">1</span> <span class="title">ТИП</span></a></li>
+                                            <li><a href="#step2" data-toggle="tab"><span class="step">2</span> <span class="title">КОНСУЛЬТАЦИЯ</span></a></li>
+                                            <li><a href="#step3" data-toggle="tab"><span class="step">3</span> <span class="title">УЧИТЕЛЬ</span></a></li>
+                                            <li><a href="#step4" data-toggle="tab"><span class="step">4</span> <span class="title">СТУДЕНТЫ</span></a></li>
+                                        </ul>
+                                    </div><!--end .form-wizard-nav -->
+                                    <div class="tab-content clearfix">
+                                        <div class="tab-pane active" id="step1">
+                                            <br><br>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <select asp-for="Type" id="type" name="type" class="form-control" asp-items="Html.GetEnumSelectList<CourseType>()"></select>
+                                                        <label for="type">Тип</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="form-group date" id="start-date">
+                                                        <div class="input-group-content">
+                                                            <input asp-for="StartDate" type="text" class="form-control" required>
+                                                            <label>Дата начала занятий</label>
+                                                            <p class="help-block">mm/dd/yyyy</p>
+                                                        </div>
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--end #step1 -->
+
+                                        <div class="tab-pane" id="step2">
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <div class="input-group date" id="consult-date">
+                                                            <div class="input-group-content">
+                                                                <input asp-for="ConsultationDate" type="text" class="form-control">
+                                                                <label>Дата консультации</label>
+                                                            </div>
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                        <br><br>
+                                                        <div class="input-group">
+                                                            <div class="input-group-content">
+                                                                <input asp-for="ConsultationTime" type="text" class="form-control time-mask">
+                                                                <label>Время консультации</label>
+                                                                <p class="help-block">Time: 24h</p>
+                                                            </div>
+                                                        </div>
+                                                        <br><br>
+                                                        <div class="input-group">
+                                                            <div class="input-group-content">
+                                                                <input asp-for="Place" type="text" class="form-control">
+                                                                <label>Место</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div><!--end #step2 -->
+                                        <div class="tab-pane" id="step3">
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <select asp-for="TeacherId" id="teacher" class="form-control" asp-items="@Model.Teachers"></select>
+                                                        <label for="teacher">Учитель</label>
+                                                    </div>
+                                                </div><!--end #step3 -->
+                                            </div><!--end #step3 -->
+
+                                        </div><!--end #step3 -->
+                                        <div class="tab-pane" id="step4">
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <select asp-for="StudentsId" id="students" class="form-control select2-list" asp-items="@Model.Students" multiple></select>
+                                                        <label for="teacher">Студенты</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--end .tab-content -->
+                                    <ul class="pager wizard">
+                                        <li class="previous first disabled"><a class="btn-raised" href="javascript:void(0);">First</a></li>
+                                        <li class="previous disabled"><a class="btn-raised" href="javascript:void(0);">Previous</a></li>
+                                        <li class="next last"><a class="btn-raised" href="javascript:void(0);">Last</a></li>
+                                        <li class="next"><a class="btn-raised" href="javascript:void(0);">Next</a></li>
+                                    </ul>
+
+                            </div>  <!--end #rootwizard -->
+                        </div><!--end .card-body -->
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <button type="reset" class="btn btn-flat btn-default ink-reaction">Отменить</button>
+                                <button type="submit" class="btn btn-flat btn-default ink-reaction">Подтвердить</button>
+                            </div>
+                        </div>
+                    </div> <!--end .card -->
+                    </form>
+                </div>
+            </div>
+            <em class="text-caption">Form wizard</em>
+        </div><!--end .col -->
+    </div><!--end .row -->
+</section>
+
+@section Css{
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/wizard/wizard.css">
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/bootstrap-datepicker/datepicker3.css">
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css">
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/select2/select2.css">
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/bootstrap-tagsinput/bootstrap-tagsinput.css?1424887862" />
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/multi-select/multi-select.css">
+}
+
+@section Scripts{
+    <script src="~/js/libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="~/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/js/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="~/js/libs/spin.js/spin.min.js"></script>
+    <script src="~/js/libs/autosize/jquery.autosize.min.js"></script>
+    <script src="~/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+    <script src="~/js/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/js/libs/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/js/libs/wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/js/libs/inputmask/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/js/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="~/js/libs/select2/select2.min.js"></script>
+    <script src="~/js/libs/multi-select/jquery.multi-select.js"></script>
+    <script src="~/js/core/source/App.js"></script>
+    <script src="~/js/core/source/AppNavigation.js"></script>
+    <script src="~/js/core/source/AppOffcanvas.js"></script>
+    <script src="~/js/core/source/AppCard.js"></script>
+    <script src="~/js/core/source/AppForm.js"></script>
+    <script src="~/js/core/source/AppNavSearch.js"></script>
+    <script src="~/js/core/source/AppVendor.js"></script>
+    <script src="~/js/core/demo/Demo.js"></script>
+    <script src="~/js/core/demo/DemoFormWizard.js"></script>
+    <script src="~/js/core/demo/DemoFormComponents.js"></script>
+}

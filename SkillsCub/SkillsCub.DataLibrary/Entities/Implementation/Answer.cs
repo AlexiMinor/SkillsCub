@@ -11,9 +11,10 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
 
         public string Value { get;set; }
 
-        public Guid CourseTaskID { get; set; }
-        [ForeignKey("CourseTaskID")]
-        public CourseExcercise CourseExcercise { get; set; }
+        public int Mark { get; set; }
+        public Guid ExerciseID { get; set; }
+        [ForeignKey("ExerciseID")]
+        public Exercise Exercise { get; set; }
 
         public string UserID { get; set; }
         [ForeignKey("UserID")]
