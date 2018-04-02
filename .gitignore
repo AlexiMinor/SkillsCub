@@ -26,3 +26,5 @@ SkillsCub/SkillsCub\.Models/bin/
 SkillsCub/SkillsCub\.Models/obj/
 
 SkillsCub/SkillsCub\.TelegramLogger/bin/
+
+SkillsCub/SkillsCub\.MVC/appsettings\.json
