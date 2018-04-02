@@ -1,0 +1,73 @@
+﻿@model SkillsCub.MVC.ViewModels.CourseDetailViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="section-body contain-lg">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-tiles style-default-light">
+                <div class="row">
+
+                    <!-- BEGIN ARTICLES -->
+                    <div class="col-sm-9">
+                        @{
+                            if (Model?.Course?.Exercises!=null)
+                            {
+                                foreach (var exercise in Model.Course.Exercises)
+                                {
+                                    <article>
+                                        <div class="card-body style-default-dark">
+                                            <h2>@exercise.Name</h2>
+                                            <div class="opacity-75">C @exercise.OpenDateTime.Date.ToString("D") по @exercise.CloseDateTime.Date.ToString("D")</div>
+                                        </div>
+                                        <div class="card-body style-default-bright">
+                                            @Html.Raw(exercise.ConditionOfProblem)
+                                        </div>
+                                        <div class="card-actionbar">
+                                            <div class="card-actionbar-row">
+                                                <a href="javascript:void(0);" class="btn btn-icon-toggle btn-danger ink-reaction pull-left"><i class="fa fa-heart"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="fa fa-reply"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-flat btn-default-dark ink-reaction">Submit</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                }
+                            }
+                        }
+                        <article>
+                            <div class="card-body text-center">
+                                <h2>Добавить задачу</h2>
+                                <a asp-action="CreateTaskForCourse" asp-route-id="@Model?.Course?.ID" class="btn ink-reaction btn-floating-action btn-primary"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </article>
+                        <!-- end article -->
+                    </div><!-- .col -->
+                    <!-- END ARTICLES -->
+                    <!-- BEGIN BLOG MENUBAR -->
+                    <div class="col-sm-3">
+                        <div class="card-body">
+                            <h3 class="text-light">Студенты</h3>
+                            <ul class="nav nav-pills nav-stacked nav-transparent">
+                                @{
+                                    if (Model?.Students != null)
+                                    {
+                                        foreach (var modelStudent in Model.Students)
+                                        {
+                                            <li><a href=""><span class="badge pull-right">42</span>@modelStudent.FirstName @modelStudent.Patronymic @modelStudent.LastName</a></li>
+
+                                        }
+                                    }
+                                   
+                                }
+                            </ul>
+                        </div><!-- .card-body -->
+                    </div><!--end .col -->
+                    <!-- BEGIN BLOG MENUBAR -->
+                </div><!-- .row -->
+            </div>
+        </div><!--end .col -->
+    </div><!--end .row -->
+</div><!--end .section-body -->

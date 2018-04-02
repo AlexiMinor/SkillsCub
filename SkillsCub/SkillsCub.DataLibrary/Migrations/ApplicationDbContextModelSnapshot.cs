@@ -134,9 +134,13 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("AnswerDateTime");
+
                     b.Property<Guid>("ExerciseID");
 
                     b.Property<int>("Mark");
+
+                    b.Property<DateTime>("MarkDateTime");
 
                     b.Property<string>("UserID");
 

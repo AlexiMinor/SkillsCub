@@ -12,6 +12,9 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         public string Value { get;set; }
 
         public int Mark { get; set; }
+
+        public DateTime AnswerDateTime { get; set; }
+        public DateTime MarkDateTime { get; set; }
         public Guid ExerciseID { get; set; }
         [ForeignKey("ExerciseID")]
         public Exercise Exercise { get; set; }

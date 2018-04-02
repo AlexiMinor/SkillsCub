@@ -15,8 +15,7 @@ using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC.Controllers
 {
-    //[Authorize(Roles = "Admin")]
-
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -58,7 +57,6 @@ namespace SkillsCub.MVC.Controllers
         {
             try
             {
-
                 if (ModelState.IsValid)
                 {
                     user.DateCreated = DateTime.Now;
@@ -73,7 +71,7 @@ namespace SkillsCub.MVC.Controllers
                         $" Для завершения регистрации пройдите по ссылке:{Environment.NewLine}" +
                         $"https://{Request.Host}/Account/ConfirmRequestForTeacher/?id={user.Id} {Environment.NewLine}" +
                         " Если вы не регистрировались, то проигноирируйте данное сообщение.";
-                    await _emailSender.SendEmailAsync(user.Email, "test", message);
+                    await _emailSender.SendEmailAsync(user.Email, "Подтверждение регистрации", message);
                     await _telegramLogger.Debug($"Message for User {user.Id} sended");
 
                     var userIdentity = await _userManager.CreateAsync(user);
@@ -146,7 +144,12 @@ namespace SkillsCub.MVC.Controllers
                 foreach (var userCourse in course.Students)
                 {
                     await _userCourseRepository.Add(userCourse);
-                    
+                    var user = await _userManager.FindByIdAsync(userCourse.StudentID);
+                    var message =
+                        $"Уважаемый {user.FirstName} {user.Patronymic}  {user.LastName}! {Environment.NewLine}" +
+                        $" Вы были зарегестрированы на курс {course.Name} на skillscub.com. Консультация будет проводиться {course.ConsultationDate:f} {course.ConsultationPlace}." +
+                        $"{Environment.NewLine} Если вы не регистрировались, то проигноирируйте данное сообщение.";
+                    await _emailSender.SendEmailAsync(user.Email, "Подтверждение курса", message);
                 }
 
                 await _userCourseRepository.SaveChanges();

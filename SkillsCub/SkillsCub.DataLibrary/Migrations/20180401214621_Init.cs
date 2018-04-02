@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SkillsCub.DataLibrary.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -261,8 +261,10 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(nullable: false),
+                    AnswerDateTime = table.Column<DateTime>(nullable: false),
                     ExerciseID = table.Column<Guid>(nullable: false),
                     Mark = table.Column<int>(nullable: false),
+                    MarkDateTime = table.Column<DateTime>(nullable: false),
                     UserID = table.Column<string>(nullable: true),
                     Value = table.Column<string>(nullable: true)
                 },

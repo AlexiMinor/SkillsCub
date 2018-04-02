@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<section>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Админка</h2>
+            </div>
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a asp-action="CreateCourse" class="btn btn-default-bright btn-block">Создать курс</a>
+                        <a asp-action="RegisterTeacher" class="btn btn-default-bright  btn-block">Зарегестрировать учителя</a>
+                        <a asp-controller="Request" asp-action="List" class="btn btn-default-bright btn-block">Реквесты</a>
+                    </div><!--end .card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

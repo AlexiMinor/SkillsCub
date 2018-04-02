@@ -478,7 +478,7 @@ namespace SkillsCub.MVC.Controllers
             }
         }
 
-        public async Task<IActionResult> ConfirmTeacher(ConfirmRequsetViewModel model)
+        public async Task<IActionResult> ConfirmRequestForTeacher(ConfirmRequsetViewModel model)
         {
             try
             {

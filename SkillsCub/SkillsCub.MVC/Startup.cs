@@ -43,6 +43,7 @@ namespace SkillsCub.MVC
 
             services.AddMvc();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddSingleton(Configuration);
 
         }
 

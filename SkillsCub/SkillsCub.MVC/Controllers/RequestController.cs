@@ -89,7 +89,7 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> List()
         {
             var model = (await _repository.GetAll()).Where(request => request.Status.Equals(Status.Requested)).ToList();
@@ -97,7 +97,7 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Submit(Guid id)
         {
             var request = await _repository.GetById(id);
@@ -125,8 +125,8 @@ namespace SkillsCub.MVC.Controllers
 
                     request.Status = Status.WaitingApprove;
 
-                    _repository.Update(request);
-                    _repository.SaveChanges();
+                    await _repository.Update(request);
+                    await _repository.SaveChanges();
 
                     await _telegramLogger.Debug($"Request {id:D} status changes to WaitingApprove in DB.");
 
@@ -146,7 +146,7 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var model = await _repository.GetById(id);
@@ -155,7 +155,7 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Reject(Guid id)
         {
             try

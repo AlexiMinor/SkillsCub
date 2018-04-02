@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
@@ -11,37 +13,55 @@ namespace SkillsCub.MVC.Controllers
     {
         private readonly IRepository<Answer> _answerRepository;
         private readonly IRepository<Exercise> _exerciseRepository;
+        private readonly IRepository<UserCourse> _userCourseRepository;
         private readonly IRepository<Course> _courseRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public TeacherController(IRepository<Answer> answerRepository,
             IRepository<Course> courseRepository,
-            IRepository<Exercise> exerciseRepository)
+            IRepository<Exercise> exerciseRepository, 
+            UserManager<ApplicationUser> userManager, 
+            IRepository<UserCourse> userCourseRepository)
         {
             _answerRepository = answerRepository;
             _courseRepository = courseRepository;
             _exerciseRepository = exerciseRepository;
+            _userManager = userManager;
+            _userCourseRepository = userCourseRepository;
         }
 
 
-        //TODO List of current courses
-        //TODO Create homework
         //todo add mark for answer
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var model = (await _courseRepository.FindBy(course => course.TeacherId.Equals(user.Id), course => course.Exercises)).ToList();
 
-        public async Task<IActionResult> CourseDetails(Guid id)
-        {
-            var model = await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises,
-                course => course.Students);
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CourseDetails(Guid id)
+        {
+            if (id != Guid.Empty)
+            {
+                var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises)).FirstOrDefault();
+                var uCourses = (await _userCourseRepository.FindBy(uCourse => uCourse.CourseID.Equals(id))).ToList();
+                var students = (await _userManager.GetUsersInRoleAsync("User")).Where(user =>
+                    uCourses.Any(course => course.StudentID.Equals(user.Id)));
+                return View(new CourseDetailViewModel() { Course = model, Students = students });
+
+            }
+
+            return View(new CourseDetailViewModel());
+        }
+
         [HttpGet]
         public IActionResult CreateTaskForCourse(Guid id)
         {
             return View(new ExerciseModel { CourseId = id });
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateTaskForCourse(ExerciseModel model)
         {
@@ -132,7 +152,7 @@ namespace SkillsCub.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddMarkForAnswer(Guid ansId)
         {
-            var answer = await _answerRepository.GetById(ansId);
+            var answer = (await _answerRepository.FindBy(a => a.ID.Equals(ansId), a=>a.Exercise)).FirstOrDefault();
             var model = new MarkViewModel
             {
                 Answer = answer,

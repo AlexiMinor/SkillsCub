@@ -12,8 +12,8 @@ using System;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180327211852_init")]
-    partial class init
+    [Migration("20180401214621_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -135,9 +135,13 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("AnswerDateTime");
+
                     b.Property<Guid>("ExerciseID");
 
                     b.Property<int>("Mark");
+
+                    b.Property<DateTime>("MarkDateTime");
 
                     b.Property<string>("UserID");
 
