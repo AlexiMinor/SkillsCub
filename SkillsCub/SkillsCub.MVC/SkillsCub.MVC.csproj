@@ -863,4 +863,8 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Teacher\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,4 @@
-﻿@using SkillsCub.MVC.ViewModels
-@model SkillsCub.MVC.ViewModels.ExerciseModel
+﻿@model SkillsCub.MVC.ViewModels.ExerciseModel
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
@@ -11,7 +10,7 @@
 
         <div class="card card-bordered style-primary">
             <div class="card-head">
-                <header><i class="fa fa-fw fa-tag"></i> Создание задания для курса @Model.CourseId</header>
+                <header><i class="fa fa-fw fa-tag"></i> Вы уверены что хотите удалить задание @Model.Name из курса @Model.CourseId</header>
             </div>
             <div class="card-body style-default-bright">
                 @Html.DisplayFor(model => model.Name)
@@ -35,16 +34,16 @@
 </section>
 
 @section Css
-    {
-    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/summernote/summernote.css" />
-    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/bootstrap-datepicker/datepicker3.css" />
-    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css" />
+{
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/summernote/summernote.css"/>
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/bootstrap-datepicker/datepicker3.css"/>
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css"/>
 }
+
 @section Scripts
-    {
+{
     <script src="~/js/libs/summernote/summernote.min.js"></script>
     <script src="~/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
     <script src="~/js/core/demo/DemoFormEditors.js"></script>
     <script src="~/js/core/demo/DemoFormComponents.js"></script>
-}
 }

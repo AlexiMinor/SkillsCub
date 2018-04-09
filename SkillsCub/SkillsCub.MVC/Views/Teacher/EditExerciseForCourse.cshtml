@@ -22,7 +22,7 @@
                     </div>
                     <br><br>
                     <div class="form-group">
-                        @Html.TextAreaFor(model => model.Detail, new {id = "summernote"})
+                        @Html.TextAreaFor(model => model.Detail, new { id = "summernote" })
                         <label for="summernote">Условие</label>
                     </div>
 
@@ -30,12 +30,12 @@
                     <div class="form-group">
                         <div class="input-daterange input-group" id="demo-date-range">
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="start" value="@Model.TimeToOpen"/>
+                                <input type="text" class="form-control" name="start" value="@Model.TimeToOpen" />
                                 <label>Date range</label>
                             </div>
                             <span class="input-group-addon">to</span>
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="end" value="@Model.TimeToClose"/>
+                                <input type="text" class="form-control" name="end" value="@Model.TimeToClose" />
                                 <div class="form-control-line"></div>
                             </div>
                         </div>
@@ -69,5 +69,4 @@
     <script src="~/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
     <script src="~/js/core/demo/DemoFormEditors.js"></script>
     <script src="~/js/core/demo/DemoFormComponents.js"></script>
-}
 }

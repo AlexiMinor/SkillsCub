@@ -45,10 +45,8 @@ namespace SkillsCub.MVC.Controllers
         {
             if (id != Guid.Empty)
             {
-                var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises)).FirstOrDefault();
-                var uCourses = (await _userCourseRepository.FindBy(uCourse => uCourse.CourseID.Equals(id))).ToList();
-                var students = (await _userManager.GetUsersInRoleAsync("User")).Where(user =>
-                    uCourses.Any(course => course.StudentID.Equals(user.Id)));
+                var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises, course => course.Students)).FirstOrDefault();
+                var students = (await _userCourseRepository.FindBy(uCourse => uCourse.CourseID.Equals(id), course => course.Student)).Select(uCourse => uCourse.Student).ToList();
                 return View(new CourseDetailViewModel() { Course = model, Students = students });
 
             }
@@ -148,11 +146,24 @@ namespace SkillsCub.MVC.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> AnswersList(Guid exId)
+        {
+            var ex = await _exerciseRepository.GetById(exId);
+            var answers = (await _answerRepository.FindBy(answer => answer.ExerciseID.Equals(exId),
+                answer => answer.User)).ToList();
+            var model = new ExerciseAnswersViewModel(){Exercise = ex, Answers = answers};
+
+            return model.Exercise != null 
+                ? (IActionResult) View(model) 
+                : NotFound();
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> AddMarkForAnswer(Guid ansId)
         {
-            var answer = (await _answerRepository.FindBy(a => a.ID.Equals(ansId), a=>a.Exercise)).FirstOrDefault();
+            var answer = (await _answerRepository.FindBy(a => a.ID.Equals(ansId), a=>a.Exercise, a=>a.User)).FirstOrDefault();
             var model = new MarkViewModel
             {
                 Answer = answer,

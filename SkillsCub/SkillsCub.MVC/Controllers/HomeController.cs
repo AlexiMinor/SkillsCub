@@ -30,12 +30,60 @@ namespace SkillsCub.MVC.Controllers
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user != null)
+            {
+                return RedirectToAction("Index", (await _userManager.GetRolesAsync(user)).FirstOrDefault());
+            }
             return View();
         }
 
-      public IActionResult About()
+        [AllowAnonymous]
+        public async Task<IActionResult> Init(int initWord)
+        {
+            if (initWord == 0)
+            {
+                try
+                {
+                    var user = new ApplicationUser()
+                    {
+                        Id = Guid.Empty.ToString("D"),
+                        Email = "aleximinor1310@gmail.com",
+                        UserName = "aleximinor1310@gmail.com",
+                        DateCreated = DateTime.Now,
+                        FirstName = "Alexi",
+                        LastName = "Minor",
+                        Patronymic = "S",
+                        IsActive = true,
+                        LastModified = DateTime.Now,
+                        EmailConfirmed = true,
+                    };
+
+                    await _userManager.CreateAsync(user);
+                    await _userManager.AddPasswordAsync(user, _configuration["User:Password"]);
+                    if (!_roleManager.Roles.Any(role => role.Name.Equals("Admin")))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                        await _telegramLogger.Debug("Admin role added");
+                    }
+                    await _userManager.AddToRoleAsync(user, "Admin");
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+
+            return NotFound();
+        }
+
+        public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 

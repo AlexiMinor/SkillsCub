@@ -15,26 +15,27 @@
                     <header><i class="fa fa-fw fa-tag"></i> Создание задания для курса @Model.CourseId</header>
                 </div>
                 <div class="card-body style-default-bright">
+                    @Html.HiddenFor(model => model.CourseId)
                     <div class="form-group">
                         <input asp-for="Name" type="text" class="form-control">
                         <label>Название</label>
                     </div>
                     <br><br>
-                        <div class="form-group">
-                            @Html.TextAreaFor(model => model.Detail, new { id = "summernote" })
-                            <label for="summernote">Условие</label>
-                        </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(model => model.Detail, new {id = "summernote"})
+                        <label for="summernote">Условие</label>
+                    </div>
 
                     <br><br>
                     <div class="form-group">
                         <div class="input-daterange input-group" id="demo-date-range">
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="start" />
+                                <input type="text" class="form-control" name="timeToOpen"/>
                                 <label>Date range</label>
                             </div>
                             <span class="input-group-addon">to</span>
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="end" />
+                                <input type="text" class="form-control" name="timeToClose"/>
                                 <div class="form-control-line"></div>
                             </div>
                         </div>

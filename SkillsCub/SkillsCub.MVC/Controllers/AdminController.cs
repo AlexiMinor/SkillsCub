@@ -22,26 +22,24 @@ namespace SkillsCub.MVC.Controllers
         private readonly ITelegramLogger _telegramLogger;
         private readonly IEmailSender _emailSender;
         private readonly IRepository<Course> _courseRepository;
-        private readonly IRepository<UserCourse> _userCourseRepository;
 
         public AdminController(
             UserManager<ApplicationUser> userManager,
             ITelegramLogger telegramLogger,
             IEmailSender emailSender,
-            IRepository<Course> courseRepository,
-            IRepository<UserCourse> userCourseRepository)
+            IRepository<Course> courseRepository
+        )
         {
             _userManager = userManager;
             _telegramLogger = telegramLogger;
             _emailSender = emailSender;
             _courseRepository = courseRepository;
-            _userCourseRepository = userCourseRepository;
         }
 
 
         public IActionResult Index()
         {
-            //TODO display analytical info
+            //TODO add displaying analytical info
             return View();
         }
 
@@ -63,7 +61,8 @@ namespace SkillsCub.MVC.Controllers
                     user.LastModified = DateTime.Now;
                     user.UserName = user.Email;
 
-                    await _telegramLogger.Debug($"Teacher with ID {user.Id:D} created. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
+                    await _telegramLogger.Debug(
+                        $"Teacher with ID {user.Id:D} created. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
                     //TODO fix security
                     var message =
                         $"Уважаемый {user.FirstName} {user.Patronymic}  {user.LastName}! {Environment.NewLine}" +
@@ -85,6 +84,7 @@ namespace SkillsCub.MVC.Controllers
                 await _telegramLogger.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
                 Console.WriteLine(ex);
             }
+
             return null;
         }
 
@@ -95,15 +95,17 @@ namespace SkillsCub.MVC.Controllers
             var model = new CourseViewModel
             {
                 Teachers = (await _userManager.GetUsersInRoleAsync("Teacher"))
-                    .Select(t => new SelectListItem { Value = t.Id, Text = $"{t.FirstName} {t.Patronymic} {t.LastName}" }).ToList(),
-                Students = (await _userManager.GetUsersInRoleAsync("User"))
-                        .Where(user => !user.CurrentCourses.Any())
-                        .Select(t =>
-                            new SelectListItem
-                            {
-                                Value = t.Id,
-                                Text = $"{t.FirstName} {t.Patronymic} {t.LastName}"
-                            })
+                    .Select(t => new SelectListItem {Value = t.Id, Text = $"{t.FirstName} {t.Patronymic} {t.LastName}"})
+                    .ToList(),
+
+                Students = (await _userManager.GetUsersInRoleAsync("Student"))
+                    .Where(user => user.CurrentCourses == null || !user.CurrentCourses.Any())
+                    .Select(t =>
+                        new SelectListItem
+                        {
+                            Value = t.Id,
+                            Text = $"{t.FirstName} {t.Patronymic} {t.LastName}"
+                        })
             };
             return View(model);
         }
@@ -111,10 +113,8 @@ namespace SkillsCub.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse(CourseViewModel model)
         {
-            //TODO Check
             if (ModelState.IsValid)
             {
-                //TODO move into mapper
                 var course = new Course
                 {
                     ID = Guid.NewGuid(),
@@ -126,9 +126,10 @@ namespace SkillsCub.MVC.Controllers
 
                 course.Students = new List<UserCourse>(
                     (await _userManager
-                        .GetUsersInRoleAsync("User"))
-                        .Where(user =>
-                            user.Id.Equals(model.StudentsId.ToString()))
+                        .GetUsersInRoleAsync("Student"))
+                    .Where(user =>
+                        model.StudentsId
+                            .Any(s => user.Id.Equals(s)))
                     .Select(user => new UserCourse()
                     {
                         ID = Guid.NewGuid(),
@@ -143,7 +144,6 @@ namespace SkillsCub.MVC.Controllers
 
                 foreach (var userCourse in course.Students)
                 {
-                    await _userCourseRepository.Add(userCourse);
                     var user = await _userManager.FindByIdAsync(userCourse.StudentID);
                     var message =
                         $"Уважаемый {user.FirstName} {user.Patronymic}  {user.LastName}! {Environment.NewLine}" +
@@ -152,10 +152,17 @@ namespace SkillsCub.MVC.Controllers
                     await _emailSender.SendEmailAsync(user.Email, "Подтверждение курса", message);
                 }
 
-                await _userCourseRepository.SaveChanges();
+                var teacher =
+                    (await _userManager.GetUsersInRoleAsync("Teacher")).FirstOrDefault(user =>
+                        user.Id.Equals(model.TeacherId));
+                var messageForTeacher =
+                    $"Уважаемый {teacher.FirstName} {teacher.Patronymic}  {teacher.LastName}! {Environment.NewLine}" +
+                    $" Вы были зарегестрированы на курс {course.Name} на skillscub.com как преподаватель. Консультация будет проводиться {course.ConsultationDate:f} {course.ConsultationPlace}." +
+                    $"{Environment.NewLine} Если вы не регистрировались, то проигноирируйте данное сообщение.";
+                await _emailSender.SendEmailAsync(teacher.Email, "Подтверждение курса", messageForTeacher);
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

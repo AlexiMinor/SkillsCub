@@ -28,9 +28,9 @@
                                         </div>
                                         <div class="card-actionbar">
                                             <div class="card-actionbar-row">
-                                                <a href="javascript:void(0);" class="btn btn-icon-toggle btn-danger ink-reaction pull-left"><i class="fa fa-heart"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="fa fa-reply"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-flat btn-default-dark ink-reaction">Submit</a>
+                                                <a asp-action="EditExerciseForCourse" asp-route-exId="@exercise.ID" class="btn btn-icon-toggle btn-danger ink-reaction pull-left"><i class="md md-mode-edit"></i></a>
+                                                <a asp-action="Delete" asp-route-exId="@exercise.ID" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="md md-delete"></i></a>
+                                                <a asp-action="AnswersList" asp-route-exId="@exercise.ID" class="btn btn-flat btn-default-dark ink-reaction">Ответы</a>
                                             </div>
                                         </div>
                                     </article>

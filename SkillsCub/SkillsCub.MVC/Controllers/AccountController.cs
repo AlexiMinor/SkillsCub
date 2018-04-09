@@ -247,8 +247,6 @@ namespace SkillsCub.MVC.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -363,7 +361,6 @@ namespace SkillsCub.MVC.Controllers
             return View();
         }
 
-
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmRequest(Guid id)
@@ -374,10 +371,10 @@ namespace SkillsCub.MVC.Controllers
                 var user = await _userManager.FindByIdAsync(id.ToString("D"));
                 if (user == null)
                 {
-                    await _telegramLogger.Error($"User {id:D} not exist in DB");
+                    await _telegramLogger.Error($"Student {id:D} not exist in DB");
                     return null;
                 }
-                await _telegramLogger.Debug($"User {id:D} go to create password View");
+                await _telegramLogger.Debug($"Student {id:D} go to create password View");
 
                 //set vmodel to Id and 2 passwords
                 return View(new ConfirmRequsetViewModel(){Id = id});
@@ -425,36 +422,36 @@ namespace SkillsCub.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _telegramLogger.Debug($"User {model.Id:D} create password");
+                    await _telegramLogger.Debug($"Student {model.Id:D} create password");
 
                     var user = await _userManager.FindByIdAsync(model.Id.ToString("D"));
                     if (user == null)
                     {
-                        await _telegramLogger.Error($"User {model.Id:D} not exist in DB");
+                        await _telegramLogger.Error($"Student {model.Id:D} not exist in DB");
                         return null;
                     }
                     //possible move activation after password set
                     user.IsActive = true;
                     user.EmailConfirmed = true;
                     var result = await _userManager.UpdateAsync(user);
-                    await _telegramLogger.Debug($"User {model.Id:D} email confirmed & activate");
+                    await _telegramLogger.Debug($"Student {model.Id:D} email confirmed & activate");
 
                     var result2 = await _userManager.AddPasswordAsync(user, model.Password);
-                    await _telegramLogger.Debug($"User {model.Id:D} password added");
+                    await _telegramLogger.Debug($"Student {model.Id:D} password added");
 
-                    if (!_roleManager.Roles.Any(role => role.Name.Equals("User")))
+                    if (!_roleManager.Roles.Any(role => role.Name.Equals("Student")))
                     {
-                        await _roleManager.CreateAsync(new IdentityRole("User"));
-                        await _telegramLogger.Debug($"User role added");
+                        await _roleManager.CreateAsync(new IdentityRole("Student"));
+                        await _telegramLogger.Debug("Student role added");
 
                     }
-                    var result3 = await _userManager.AddToRoleAsync(user, "User");
-                    await _telegramLogger.Debug($"Role added to User {model.Id:D} ");
+                    var result3 = await _userManager.AddToRoleAsync(user, "Student");
+                    await _telegramLogger.Debug($"Role added to Student {model.Id:D} ");
 
 
                     if (!result.Succeeded || !result2.Succeeded || !result3.Succeeded)
                     {
-                        await _telegramLogger.Error($"SMTH with User {model.Id:D} went wrong. " +
+                        await _telegramLogger.Error($"SMTH with Student {model.Id:D} went wrong. " +
                                                     $"{Environment.NewLine} Activation: {Json(result)} " +
                                                     $"{Environment.NewLine} Adding password: {Json(result2)} " +
                                                     $"{Environment.NewLine} Adding role: {Json(result3)}");
@@ -478,6 +475,9 @@ namespace SkillsCub.MVC.Controllers
             }
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ConfirmRequestForTeacher(ConfirmRequsetViewModel model)
         {
             try

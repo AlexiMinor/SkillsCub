@@ -5,73 +5,69 @@
     Layout = "_Layout";
 }
 
-<div class="section-body">
-    <div class="container">
-        <h2 class="text-light text-center">@Model.Name</h2>
-        <br>
+<section>
+    <div class="section-body">
+        <div class="container">
+            <h2 class="text-light text-center">@Model.Name</h2>
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    @foreach (var item in Model.Exercises.OrderBy(exercise => exercise.OpenDateTime).ToList())
+                    {
+                        if (item.OpenDateTime.Date <= DateTime.Now.Date)
+                        {
+                            <div class="card card-tiles style-default-light">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <article>
+                                            <div class="card-body style-default-dark">
+                                                <h2>@item.Name</h2>
+                                                <div class="opacity-50">
+                                                    C @item.OpenDateTime.Date.ToString("D") по @item.CloseDateTime.Date.ToString("D")
+                                                </div>
+                                            </div>
+                                            <div class="card-body style-default-bright">
+                                                @Html.Raw(item.ConditionOfProblem)
+                                                @{
+                                                    if (item.CloseDateTime.Date >= DateTime.Now.Date)
+                                                    {
+                                                        <a asp-action="AddAnswer" asp-route-id="@item.ID" class="btn btn-default">Добавить ответ</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="ExerciseDetails" asp-route-id="@item.ID" class="btn btn-default">Детали</a>
+                                                    }
+                                                }
+                                            </div>
+                                        </article><!-- end article -->
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card card-tiles style-default-light">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <article>
+                                            <div class="card-body style-default-dark">
+                                                <h2>@item.Name</h2>
+                                                <div class="opacity-50">
+                                                    Откроется @item.OpenDateTime.Date.ToString("D")
+                                                </div>
+                                            </div>
+                                            <div class="card-body style-default-bright">
+                                                В данный момент недоступно
+                                            </div>
 
-        <!-- BEGIN FIXED TIMELINE -->
-        <ul class="timeline collapse-lg timeline-hairline">
-           @foreach (var item in Model.Exercises.OrderBy(exercise => exercise.OpenDateTime).ToList())
-           {
-               if (item.OpenDateTime.Date<=DateTime.Now.Date)
-               {
-                   <li class="timeline-inverted">
-                       <div class="timeline-circ circ-xl style-primary"><i class="fa fa-question"></i></div>
-                       <div class="timeline-entry">
-                           <div class="card style-default-bright">
-                               <div class="card-body small-padding">
-                                   <span class="opacity-50">
-                                       C @item.OpenDateTime.Date.ToString("D") по @item.CloseDateTime.Date.ToString("D")
-                                   </span>
-                               </div>
-                               <div class="card-body no-padding">
-                                   @Html.Raw(item.ConditionOfProblem)
-                               </div><!--end .card-body -->
-                               
-                               @{
-                                   if (item.CloseDateTime.Date >= DateTime.Now.Date)
-                                   {
-                                       <div class="card-body no-padding text-center">
-                                           <h2>Добавить ответ</h2>
-                                           <a asp-action="AddAnswer" asp-route-id="@item.ID" class="btn ink-reaction btn-floating-action btn-primary"><i class="fa fa-plus"></i></a>
-                                       </div>
-                                   }
-                                   else
-                                   {
-                                       <div class="card-body no-padding">
-                                           <h2>Детали</h2>
-                                           <a asp-action="ExerciseDetails" asp-route-id="@item.ID" class="btn ink-reaction btn-floating-action btn-primary"><i class="fa fa-plus"></i></a>
-                                       </div>
-                                   }
-                               }
-
-                           </div><!--end .card -->
-                       </div><!--end .timeline-entry -->
-                   </li>
-
-               }
-               else
-               {
-                   <li class="timeline-inverted">
-                       <div class="timeline-circ circ-xl style-primary"><i class="fa fa-question"></i></div>
-                       <div class="timeline-entry">
-                           <div class="card style-default-bright">
-                               <div class="card-body small-padding">
-                                   <p>
-                                       <span class="opacity-50">
-                                           Откроется @item.OpenDateTime.Date.ToString("D")
-                                       </span>
-                                   </p>
-                                   В данный момент недоступно
-                               </div>
-                           </div><!--end .card -->
-                       </div><!--end .timeline-entry -->
-                   </li>
-               }
-           }
-        </ul>
-        <!-- END FIXED TIMELINE -->
-
-    </div><!--end .container -->
-</div>
+                                        </article><!-- end article -->
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div><!--end .container -->
+    </div>
+</section>

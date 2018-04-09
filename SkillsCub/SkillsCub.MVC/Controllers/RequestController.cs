@@ -69,12 +69,9 @@ namespace SkillsCub.MVC.Controllers
                         _repository.Add(request);
                         var x = _repository.SaveChanges();
                         await _telegramLogger.Debug($"Request {request.Id:D} added to DB with status Requested");
-                        RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
-                    else
-                    {
-                        return View();
-                    }
+                    return View();
                 }
             }
             catch (Exception ex)
@@ -83,8 +80,6 @@ namespace SkillsCub.MVC.Controllers
                 Console.WriteLine(ex);
                 throw;
             }
-
-            //TODO Send email
             return View();
         }
 
@@ -110,7 +105,6 @@ namespace SkillsCub.MVC.Controllers
                     var user = RequestToUserConverter.ConvertToUser(request);
                     await _telegramLogger.Debug($"User {user.Id:D} created from request from Request {id:D}. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
 
-                    //TODO send email into which that info is placed: Link to Generate Password Page
                     var message =
                         $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
                         $" Вы подали заявку на skillscub.com.Ваше участие было подтверждено. {Environment.NewLine}" +
@@ -118,10 +112,10 @@ namespace SkillsCub.MVC.Controllers
                         $"https://{Request.Host}/Account/ConfirmRequest/?id={user.Id} {Environment.NewLine}" +
                         " Если вы не регистрировались, то проигноирируйте данное сообщение.";
                     await _emailSender.SendEmailAsync(request.Email, "test", message);
-                    await _telegramLogger.Debug($"Message for User {user.Id} sended");
+                    await _telegramLogger.Debug($"Message for Student {user.Id} sended");
 
                     var userIdentity = await _userManager.CreateAsync(user);
-                    await _telegramLogger.Debug($"User {JsonConvert.SerializeObject(userIdentity)} created in DB");
+                    await _telegramLogger.Debug($"Student {JsonConvert.SerializeObject(userIdentity)} created in DB");
 
                     request.Status = Status.WaitingApprove;
 
@@ -154,7 +148,7 @@ namespace SkillsCub.MVC.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Reject(Guid id)
         {
@@ -168,12 +162,17 @@ namespace SkillsCub.MVC.Controllers
                 }
                 await _telegramLogger.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {JsonConvert.SerializeObject(request)}");
 
+                var message =
+                    $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
+                    $"Вы подали заявку на skillscub.com.Ваше участие было отклонено.{Environment.NewLine}" + 
+                    " Если вы не регистрировались, то проигноирируйте данное сообщение.";
+                await _emailSender.SendEmailAsync(request.Email, "test", message);
+                await _telegramLogger.Debug($"Message for rejected request {request.Id} sended");
+
                 request.Status = Status.Rejected;
                 _repository.Update(request);
                 var repoResponse = _repository.SaveChanges();
                 await _telegramLogger.Debug($"Request {id:D} status changes to Rejected in DB.");
-
-                //TODO Get Requests from Database
                 return Json(repoResponse);
             }
             catch (Exception ex)

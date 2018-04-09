@@ -5,4 +5,78 @@
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+
+<section>
+    <div class="section-body">
+        <div class="container">
+            @if (Model.Answer != null)
+            {
+                <h2 class="text-light text-center">@Model.Answer.Exercise.Name</h2>
+                <br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-tiles style-default-light">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <article>
+                                        <div class="card-body style-default-dark">
+                                            <h2>@Model.Answer.Exercise.Name</h2>
+                                            <div class="opacity-50">
+                                                C @Model.Answer.Exercise.OpenDateTime.Date.ToString("D") по @Model.Answer.Exercise.CloseDateTime.Date.ToString("D")
+                                            </div>
+                                        </div>
+                                        <div class="card-body style-default-bright">
+                                            @Html.Raw(Model.Answer.Exercise.ConditionOfProblem)
+                                        </div>
+                                    </article><!-- end article -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-tiles style-default-light">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <article>
+                                        <div class="card-body style-default-dark">
+                                            <h2>Ответ студента @Model.Answer.User.FirstName @Model.Answer.User.Patronymic @Model.Answer.User.LastName</h2>
+                                            <div class="opacity-50">
+                                                Добавлен @Model.Answer.AnswerDateTime.ToString("D")
+                                            </div>
+                                        </div>
+                                        <div class="card-body style-default-bright">
+                                            @Html.Raw(Model.Answer.Value)
+                                        </div>
+                                        <form asp-action="AddMarkForAnswer" method="post">
+                                            <div class="card-body style-default-bright">
+                                                @Html.HiddenFor(model => model.Answer.ExerciseID)
+                                                <div class="form-group">
+                                                    <input type="number" asp-for="Answer.Mark" class="form-control" value="1" />
+                                                    <p class="help-block">От 1 до 100</p>
+                                                </div>
+                                            </div>
+                                            <div class="card-actionbar">
+                                                <div class="card-actionbar-row">
+                                                    <a href="#" class="btn btn-flat btn-default ink-reaction">Cancel</a>
+                                                    <button type="submit" class="btn btn-flat btn-accent ink-reaction">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </article><!-- end article -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div><!--end .container -->
+    </div>
+</section>
+
+@section Css
+    {
+    <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css" />
+}
+@section Scripts
+    {
+    <script src="~/js/libs/spin.js/spin.js"></script>
+    <script src="~/js/core/demo/DemoFormComponents.js"></script>
+}
