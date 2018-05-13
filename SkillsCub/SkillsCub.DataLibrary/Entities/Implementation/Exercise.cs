@@ -6,12 +6,11 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
 {
     public class Exercise
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 
         public string ConditionOfProblem { get; set; }
-
         
         public DateTime OpenDateTime { get; set; }
         public DateTime CloseDateTime { get; set; }
@@ -19,11 +18,8 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         public DateTime CreationDate { get; set; }
         public DateTime? LastEditDate { get; set; }
 
-
-        public Guid CourseID { get; set; }
-        [ForeignKey("CourseID")]
+        public Guid CourseId { get; set; }
+        [ForeignKey("CourseId")]
         public Course Course { get; set; }
-
-
     }
 }

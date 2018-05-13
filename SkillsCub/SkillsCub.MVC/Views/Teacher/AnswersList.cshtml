@@ -43,7 +43,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="comment-title">@answer.User.FirstName @answer.User.Patronymic @answer.User.LastName <small>@answer.AnswerDateTime.ToString("G")</small></h4>
-                                            <a asp-action="AddMarkForAnswer" asp-route-ansId="@answer.ID" class="btn btn-default-dark stick-top-right">Оценить</a>
+                                            <a asp-action="AddMarkForAnswer" asp-route-ansId="@answer.Id" class="btn btn-default-dark stick-top-right">Оценить</a>
                                         </div>
                                     </div>
                                 </li>

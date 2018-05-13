@@ -7,7 +7,7 @@ namespace SkillsCub.Utilities
     {
         public static ApplicationUser ConvertToUser(Request request) => new ApplicationUser
         {
-            //this ID'll be send to e-mail
+            //this Id'll be send to e-mail
             Id = Guid.NewGuid().ToString("D"),
 
             FirstName = request.FirstName,

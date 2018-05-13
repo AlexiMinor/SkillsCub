@@ -6,6 +6,5 @@ namespace SkillsCub.MVC.ViewModels
     public class CourseDetailViewModel
     {
         public Course Course { get; set; }
-        public  IEnumerable<ApplicationUser> Students { get; set; }
     }
 }

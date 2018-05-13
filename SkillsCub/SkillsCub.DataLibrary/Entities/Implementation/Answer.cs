@@ -7,20 +7,21 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
 {
     public class Answer
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         public string Value { get;set; }
 
         public int Mark { get; set; }
+        public string MarkComment { get; set; }
 
         public DateTime AnswerDateTime { get; set; }
         public DateTime MarkDateTime { get; set; }
-        public Guid ExerciseID { get; set; }
-        [ForeignKey("ExerciseID")]
+        public Guid ExerciseId { get; set; }
+        [ForeignKey("ExerciseId")]
         public Exercise Exercise { get; set; }
 
-        public string UserID { get; set; }
-        [ForeignKey("UserID")]
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
         public ApplicationUser User{ get; set; }
 
     }

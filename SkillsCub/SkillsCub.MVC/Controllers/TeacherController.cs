@@ -13,21 +13,18 @@ namespace SkillsCub.MVC.Controllers
     {
         private readonly IRepository<Answer> _answerRepository;
         private readonly IRepository<Exercise> _exerciseRepository;
-        private readonly IRepository<UserCourse> _userCourseRepository;
         private readonly IRepository<Course> _courseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public TeacherController(IRepository<Answer> answerRepository,
             IRepository<Course> courseRepository,
             IRepository<Exercise> exerciseRepository, 
-            UserManager<ApplicationUser> userManager, 
-            IRepository<UserCourse> userCourseRepository)
+            UserManager<ApplicationUser> userManager)
         {
             _answerRepository = answerRepository;
             _courseRepository = courseRepository;
             _exerciseRepository = exerciseRepository;
             _userManager = userManager;
-            _userCourseRepository = userCourseRepository;
         }
 
 
@@ -45,9 +42,8 @@ namespace SkillsCub.MVC.Controllers
         {
             if (id != Guid.Empty)
             {
-                var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises, course => course.Students)).FirstOrDefault();
-                var students = (await _userCourseRepository.FindBy(uCourse => uCourse.CourseID.Equals(id), course => course.Student)).Select(uCourse => uCourse.Student).ToList();
-                return View(new CourseDetailViewModel() { Course = model, Students = students });
+                var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises, course => course.Student)).FirstOrDefault();
+                return View(new CourseDetailViewModel() { Course = model});
 
             }
 
@@ -67,8 +63,8 @@ namespace SkillsCub.MVC.Controllers
             await _exerciseRepository.Add(
                 new Exercise()
                 {
-                    ID = Guid.NewGuid(),
-                    CourseID = model.CourseId,
+                    Id = Guid.NewGuid(),
+                    CourseId = model.CourseId,
                     Name = model.Name,
                     CreationDate = DateTime.Now,
                     OpenDateTime = model.TimeToOpen,
@@ -86,7 +82,7 @@ namespace SkillsCub.MVC.Controllers
             return View(new ExerciseModel
             {
                 Name = model.Name,
-                CourseId =  model.CourseID,
+                CourseId =  model.CourseId,
                 TimeToOpen = model.OpenDateTime,
                 TimeToClose = model.CloseDateTime,
                 Detail = model.ConditionOfProblem
@@ -98,8 +94,8 @@ namespace SkillsCub.MVC.Controllers
         {
             await _exerciseRepository.Update(new Exercise()
             {
-                ID = model.Id,
-                CourseID = model.CourseId,
+                Id = model.Id,
+                CourseId = model.CourseId,
                 Name = model.Name,
                 LastEditDate = DateTime.Now,
                 OpenDateTime = model.TimeToOpen,
@@ -120,7 +116,7 @@ namespace SkillsCub.MVC.Controllers
                 return View(new ExerciseModel
                 {
                     Name = model.Name,
-                    CourseId = model.CourseID,
+                    CourseId = model.CourseId,
                     TimeToOpen = model.OpenDateTime,
                     TimeToClose = model.CloseDateTime,
                     Detail = model.ConditionOfProblem
@@ -141,7 +137,7 @@ namespace SkillsCub.MVC.Controllers
             await _exerciseRepository.Remove(id);
             await _exerciseRepository.SaveChanges();
 
-            return RedirectToAction("CourseDetails", new { id = exercise.CourseID });
+            return RedirectToAction("CourseDetails", new { id = exercise.CourseId });
 
         }
 
@@ -150,7 +146,7 @@ namespace SkillsCub.MVC.Controllers
         public async Task<IActionResult> AnswersList(Guid exId)
         {
             var ex = await _exerciseRepository.GetById(exId);
-            var answers = (await _answerRepository.FindBy(answer => answer.ExerciseID.Equals(exId),
+            var answers = (await _answerRepository.FindBy(answer => answer.ExerciseId.Equals(exId),
                 answer => answer.User)).ToList();
             var model = new ExerciseAnswersViewModel(){Exercise = ex, Answers = answers};
 
@@ -163,7 +159,7 @@ namespace SkillsCub.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddMarkForAnswer(Guid ansId)
         {
-            var answer = (await _answerRepository.FindBy(a => a.ID.Equals(ansId), a=>a.Exercise, a=>a.User)).FirstOrDefault();
+            var answer = (await _answerRepository.FindBy(a => a.Id.Equals(ansId), a=>a.Exercise, a=>a.User)).FirstOrDefault();
             var model = new MarkViewModel
             {
                 Answer = answer,
@@ -175,10 +171,10 @@ namespace SkillsCub.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMarkForAnswer(MarkViewModel mark)
         {
-            var answer = await _answerRepository.GetById(mark.Answer.ID);
+            var answer = await _answerRepository.GetById(mark.Answer.Id);
             answer.Mark = mark.Answer.Mark;
             await _answerRepository.Update(answer);
-
+            await _answerRepository.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -12,8 +12,8 @@ using System;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180401214621_Init")]
-    partial class Init
+    [Migration("20180513105505_Reinit")]
+    partial class Reinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -132,26 +132,28 @@ namespace SkillsCub.DataLibrary.Migrations
 
             modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Answer", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("AnswerDateTime");
 
-                    b.Property<Guid>("ExerciseID");
+                    b.Property<Guid>("ExerciseId");
 
                     b.Property<int>("Mark");
 
+                    b.Property<string>("MarkComment");
+
                     b.Property<DateTime>("MarkDateTime");
 
-                    b.Property<string>("UserID");
+                    b.Property<string>("UserId");
 
                     b.Property<string>("Value");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ExerciseID");
+                    b.HasIndex("ExerciseId");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Answers");
                 });
@@ -224,6 +226,8 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("AssignationDate");
+
                     b.Property<DateTime>("ConsultationDate");
 
                     b.Property<string>("ConsultationPlace");
@@ -236,11 +240,15 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<DateTime>("StartDate");
 
+                    b.Property<string>("StudentId");
+
                     b.Property<string>("TeacherId");
 
                     b.Property<int>("Type");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("StudentId");
 
                     b.HasIndex("TeacherId");
 
@@ -249,14 +257,14 @@ namespace SkillsCub.DataLibrary.Migrations
 
             modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Exercise", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CloseDateTime");
 
                     b.Property<string>("ConditionOfProblem");
 
-                    b.Property<Guid>("CourseID");
+                    b.Property<Guid>("CourseId");
 
                     b.Property<DateTime>("CreationDate");
 
@@ -266,9 +274,9 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<DateTime>("OpenDateTime");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CourseID");
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Exercises");
                 });
@@ -305,26 +313,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Requests");
-                });
-
-            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.UserCourse", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("AssignationDate");
-
-                    b.Property<Guid>("CourseID");
-
-                    b.Property<string>("StudentID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CourseID");
-
-                    b.HasIndex("StudentID");
-
-                    b.ToTable("UserCourses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -376,18 +364,22 @@ namespace SkillsCub.DataLibrary.Migrations
                 {
                     b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Exercise", "Exercise")
                         .WithMany()
-                        .HasForeignKey("ExerciseID")
+                        .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "User")
                         .WithMany("Answers")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Course", b =>
                 {
-                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Teacher")
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Student")
                         .WithMany("Courses")
+                        .HasForeignKey("StudentId");
+
+                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Teacher")
+                        .WithMany("CoursesAsTeacher")
                         .HasForeignKey("TeacherId");
                 });
 
@@ -395,20 +387,8 @@ namespace SkillsCub.DataLibrary.Migrations
                 {
                     b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Course", "Course")
                         .WithMany("Exercises")
-                        .HasForeignKey("CourseID")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.UserCourse", b =>
-                {
-                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Course", "Course")
-                        .WithMany("Students")
-                        .HasForeignKey("CourseID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Student")
-                        .WithMany("CurrentCourses")
-                        .HasForeignKey("StudentID");
                 });
 #pragma warning restore 612, 618
         }

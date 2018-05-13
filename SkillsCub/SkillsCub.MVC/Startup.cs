@@ -39,7 +39,6 @@ namespace SkillsCub.MVC
             services.AddTransient<IRepository<Course>, CourseRepository>();
             services.AddTransient<IRepository<Exercise>, ExerciseRepository>();
             services.AddTransient<IRepository<Request>, RequestRepository>();
-            services.AddTransient<IRepository<UserCourse>, UserCourseRepository>();
 
             services.AddMvc();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));

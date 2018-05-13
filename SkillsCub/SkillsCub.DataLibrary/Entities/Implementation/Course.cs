@@ -19,11 +19,16 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         public CourseType Type { get; set; }
         public bool IsActive { get; set; }
 
+
+        public DateTime AssignationDate { get; set; }
+
         public string TeacherId { get; set; }
         [ForeignKey("TeacherId")]
         public ApplicationUser Teacher { get; set; }
 
-        public IEnumerable<UserCourse> Students { get; set; }
+        public string StudentId { get; set; }
+        [ForeignKey("StudentId")]
+        public ApplicationUser Student { get; set; }
 
         public IEnumerable<Exercise> Exercises { get; set; }
 

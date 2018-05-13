@@ -31,11 +31,11 @@
                                                 @{
                                                     if (item.CloseDateTime.Date >= DateTime.Now.Date)
                                                     {
-                                                        <a asp-action="AddAnswer" asp-route-id="@item.ID" class="btn btn-default">Добавить ответ</a>
+                                                        <a asp-action="AddAnswer" asp-route-id="@item.Id" class="btn btn-default">Добавить ответ</a>
                                                     }
                                                     else
                                                     {
-                                                        <a asp-action="ExerciseDetails" asp-route-id="@item.ID" class="btn btn-default">Детали</a>
+                                                        <a asp-action="ExerciseDetails" asp-route-id="@item.Id" class="btn btn-default">Детали</a>
                                                     }
                                                 }
                                             </div>

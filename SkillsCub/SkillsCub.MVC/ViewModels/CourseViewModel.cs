@@ -15,7 +15,7 @@ namespace SkillsCub.MVC.ViewModels
         public string Place { get; set; }
 
         public string TeacherId { get; set; }
-        public IEnumerable<string> StudentsId { get; set; }
+        public string StudentId { get; set; }
 
         public IEnumerable<SelectListItem> Teachers { get; set; }
         public IEnumerable<SelectListItem> Students { get; set; }

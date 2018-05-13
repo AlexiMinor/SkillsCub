@@ -28,9 +28,9 @@
                                 
                                 <form asp-action="AddAnswer" method="post" class="well clearfix">
                                     <h4>Введите ответ</h4>
-                                    @Html.HiddenFor(model => model.Answer.ExerciseID)
-                                    @Html.HiddenFor(model => model.Answer.UserID)
-                                    @Html.HiddenFor(model => model.Answer.ID)
+                                    @Html.HiddenFor(model => model.Answer.ExerciseId)
+                                    @Html.HiddenFor(model => model.Answer.UserId)
+                                    @Html.HiddenFor(model => model.Answer.Id)
 
                                     @Html.TextAreaFor(model => model.Answer.Value, new { id = "summernote" })
                                     <button class="btn btn-default" type="submit">Подтвердить</button>
