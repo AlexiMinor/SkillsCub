@@ -29,7 +29,7 @@
                                         <div class="card-actionbar">
                                             <div class="card-actionbar-row">
                                                 <a asp-action="EditExerciseForCourse" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-danger ink-reaction pull-left"><i class="md md-mode-edit"></i></a>
-                                                <a asp-action="Delete" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="md md-delete"></i></a>
+                                                <a asp-action="Delete" asp-route-id="@exercise.Id" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="md md-delete"></i></a>
                                                 <a asp-action="AnswersList" asp-route-exId="@exercise.Id" class="btn btn-flat btn-default-dark ink-reaction">Ответы</a>
                                             </div>
                                         </div>
@@ -52,13 +52,15 @@
                             <h3 class="text-light">Студенты</h3>
                             <ul class="nav nav-pills nav-stacked nav-transparent">
                                 @{
-                                    if (Model?.Students != null)
+                                    if (Model?.Course?.Student != null)
                                     {
-                                        foreach (var modelStudent in Model.Students)
-                                        {
-                                            <li><a href=""><span class="badge pull-right">42</span>@modelStudent.FirstName @modelStudent.Patronymic @modelStudent.LastName</a></li>
+                                        <li>
+                                            <a href="">
+                                                <span class="badge pull-right">42</span>
+                                                @Model.Course?.Student.FirstName @Model.Course?.Student.Patronymic @Model.Course?.Student.LastName
+                                            </a>
+                                        </li>
 
-                                        }
                                     }
                                    
                                 }

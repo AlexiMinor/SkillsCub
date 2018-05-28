@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SkillsCub.Core.Services;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.MVC.ViewModels;
@@ -15,16 +16,18 @@ namespace SkillsCub.MVC.Controllers
         private readonly IRepository<Exercise> _exerciseRepository;
         private readonly IRepository<Course> _courseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IStorageClient _storageClient;
 
         public TeacherController(IRepository<Answer> answerRepository,
             IRepository<Course> courseRepository,
-            IRepository<Exercise> exerciseRepository, 
-            UserManager<ApplicationUser> userManager)
+            IRepository<Exercise> exerciseRepository,
+            UserManager<ApplicationUser> userManager, IStorageClient storageClient)
         {
             _answerRepository = answerRepository;
             _courseRepository = courseRepository;
             _exerciseRepository = exerciseRepository;
             _userManager = userManager;
+            _storageClient = storageClient;
         }
 
 
@@ -43,7 +46,7 @@ namespace SkillsCub.MVC.Controllers
             if (id != Guid.Empty)
             {
                 var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises, course => course.Student)).FirstOrDefault();
-                return View(new CourseDetailViewModel() { Course = model});
+                return View(new CourseDetailViewModel() { Course = model });
 
             }
 
@@ -53,15 +56,15 @@ namespace SkillsCub.MVC.Controllers
         [HttpGet]
         public IActionResult CreateTaskForCourse(Guid id)
         {
-            return View(new ExerciseModel { CourseId = id });
+            return View(new ExerciseModelRequest() { CourseId = id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTaskForCourse(ExerciseModel model)
+        public async Task<IActionResult> CreateTaskForCourse(ExerciseModelRequest model)
         {
-            //Insert data in DB
-            await _exerciseRepository.Add(
-                new Exercise()
+            try
+            {
+                var exercise = new Exercise()
                 {
                     Id = Guid.NewGuid(),
                     CourseId = model.CourseId,
@@ -70,27 +73,56 @@ namespace SkillsCub.MVC.Controllers
                     OpenDateTime = model.TimeToOpen,
                     CloseDateTime = model.TimeToClose,
                     ConditionOfProblem = model.Detail
-                });
-            await _exerciseRepository.SaveChanges();
-            return RedirectToAction("CourseDetails", new { id = model.CourseId });
+                };
+                await _exerciseRepository.Add(exercise);
+                await _exerciseRepository.SaveChanges();
+
+                if (model.Files != null && model.Files.Any())
+                {
+                    foreach (var file in model.Files)
+                    {
+                        using (var stream = file.OpenReadStream())
+                        {
+                            await _storageClient.UploadFileAsync(stream, $"{file.FileName}", $"exercise_{exercise.Id:N}");
+                        }
+                    }
+                }
+
+                return RedirectToAction("CourseDetails", new { id = model.CourseId });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
         }
 
         [HttpGet]
         public async Task<IActionResult> EditExerciseForCourse(Guid exId)
         {
             var model = await _exerciseRepository.GetById(exId);
-            return View(new ExerciseModel
+            if (model != null)
             {
-                Name = model.Name,
-                CourseId =  model.CourseId,
-                TimeToOpen = model.OpenDateTime,
-                TimeToClose = model.CloseDateTime,
-                Detail = model.ConditionOfProblem
-            });
+                var viewModel = new ExerciseModelRequest
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    CourseId = model.CourseId,
+                    TimeToOpen = model.OpenDateTime,
+                    TimeToClose = model.CloseDateTime,
+                    Detail = model.ConditionOfProblem,
+                };
+
+                viewModel.AttachedFiles = await _storageClient.GetFilesFromNodeAsync($"exercise_{viewModel.Id:N}");
+    
+                return View(viewModel);
+            }
+
+            return NotFound();
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditExerciseForCourse(ExerciseModel model)
+        public async Task<IActionResult> EditExerciseForCourse(ExerciseModelRequest model)
         {
             await _exerciseRepository.Update(new Exercise()
             {
@@ -103,6 +135,16 @@ namespace SkillsCub.MVC.Controllers
                 ConditionOfProblem = model.Detail
             });
             await _exerciseRepository.SaveChanges();
+            if (model.Files!=null && model.Files.Any())
+            {
+                foreach (var file in model.Files)
+                {
+                    using (var stream = file.OpenReadStream())
+                    {
+                        await _storageClient.UploadFileAsync(stream, $"{file.FileName}", $"exercise_{model.Id:N}");
+                    }
+                }
+            }
             return RedirectToAction("CourseDetails", new { id = model.CourseId });
         }
 
@@ -115,6 +157,7 @@ namespace SkillsCub.MVC.Controllers
             if (model != null)
                 return View(new ExerciseModel
                 {
+                    Id = model.Id,
                     Name = model.Name,
                     CourseId = model.CourseId,
                     TimeToOpen = model.OpenDateTime,
@@ -137,6 +180,8 @@ namespace SkillsCub.MVC.Controllers
             await _exerciseRepository.Remove(id);
             await _exerciseRepository.SaveChanges();
 
+            await _storageClient.RemoveFolderAsync($"exercise_{exercise.Id:N}");
+
             return RedirectToAction("CourseDetails", new { id = exercise.CourseId });
 
         }
@@ -148,10 +193,10 @@ namespace SkillsCub.MVC.Controllers
             var ex = await _exerciseRepository.GetById(exId);
             var answers = (await _answerRepository.FindBy(answer => answer.ExerciseId.Equals(exId),
                 answer => answer.User)).ToList();
-            var model = new ExerciseAnswersViewModel(){Exercise = ex, Answers = answers};
+            var model = new ExerciseAnswersViewModel() { Exercise = ex, Answers = answers };
 
-            return model.Exercise != null 
-                ? (IActionResult) View(model) 
+            return model.Exercise != null
+                ? (IActionResult)View(model)
                 : NotFound();
         }
 
@@ -159,7 +204,7 @@ namespace SkillsCub.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddMarkForAnswer(Guid ansId)
         {
-            var answer = (await _answerRepository.FindBy(a => a.Id.Equals(ansId), a=>a.Exercise, a=>a.User)).FirstOrDefault();
+            var answer = (await _answerRepository.FindBy(a => a.Id.Equals(ansId), a => a.Exercise, a => a.User)).FirstOrDefault();
             var model = new MarkViewModel
             {
                 Answer = answer,
@@ -178,8 +223,6 @@ namespace SkillsCub.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-
-
         //todo think
         [HttpPost]
         public async Task<IActionResult> CloseCourse(Guid id)
@@ -192,6 +235,5 @@ namespace SkillsCub.MVC.Controllers
 
             return RedirectToAction("Index");
         }
-
     }
 }

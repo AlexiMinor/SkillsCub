@@ -1,5 +1,5 @@
 ﻿@using SkillsCub.MVC.ViewModels
-@model SkillsCub.MVC.ViewModels.ExerciseModel
+@model ExerciseModelRequest
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
@@ -9,7 +9,7 @@
     <div class="section-body contain-lg">
         <!-- BEGIN SUMMERNOTE -->
 
-        <form class="form form-validation" role="form" novalidate="novalidate" method="post">
+        <form class="form form-validation" role="form" novalidate="novalidate" method="post" enctype="multipart/form-data">
             <div class="card card-bordered style-primary">
                 <div class="card-head">
                     <header><i class="fa fa-fw fa-tag"></i> Создание задания для курса @Model.CourseId</header>
@@ -22,7 +22,7 @@
                     </div>
                     <br><br>
                     <div class="form-group">
-                        @Html.TextAreaFor(model => model.Detail, new {id = "summernote"})
+                        @Html.TextAreaFor(model => model.Detail, new { id = "summernote" })
                         <label for="summernote">Условие</label>
                     </div>
 
@@ -30,13 +30,23 @@
                     <div class="form-group">
                         <div class="input-daterange input-group" id="demo-date-range">
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="timeToOpen"/>
+                                <input type="text" class="form-control" name="timeToOpen" />
                                 <label>Date range</label>
                             </div>
                             <span class="input-group-addon">to</span>
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="timeToClose"/>
+                                <input type="text" class="form-control" name="timeToClose" />
                                 <div class="form-control-line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div class="form-group">
+                        <div class="input-daterange input-group">
+                            <div class="input-group-content">
+                                <label>Доп. материалы</label>
+                                <input type="file" asp-for="Files" multiple />
                             </div>
                         </div>
                     </div>

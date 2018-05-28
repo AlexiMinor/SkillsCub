@@ -11,56 +11,56 @@
         <div class="table-responsive">
             <table class="table table-hover style-default-bright">
                 <thead>
-                <tr>
-                    <th>ФИО</th>
-                    <th>E-mail</th>
-                    <th>Телефон</th>
-                    <th>Источник информации</th>
-                    <th>Курс</th>
-                    <th>Впервые ли</th>
-                    <th class="text-right">Подтвердить</th>
-                </tr>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>E-mail</th>
+                        <th>Телефон</th>
+                        <th>Источник информации</th>
+                        <th>Курс</th>
+                        <th>Впервые ли</th>
+                        <th class="text-right">Подтвердить</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach (var modelItem in Model)
-                {
-                    <tr id="row-@modelItem.Id">
-                        <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
-                        <td>@modelItem.Email</td>
-                        <td>@modelItem.Phone</td>
-                        <td>@modelItem.Source.ToString()</td>
-                        <td>@modelItem.Course.ToString()</td>
-                        @if (modelItem.FirstTime)
-                        {
-                            <td>
-                                ДА
+                    @foreach (var modelItem in Model)
+                    {
+                        <tr id="row-@modelItem.Id">
+                            <td>@($"{modelItem.FirstName} {modelItem.Patronymic} {modelItem.LastName}")</td>
+                            <td>@modelItem.Email</td>
+                            <td>@modelItem.Phone</td>
+                            <td>@modelItem.Source.ToString()</td>
+                            <td>@modelItem.Course.ToString()</td>
+                            @if (modelItem.FirstTime)
+                            {
+                                <td>
+                                    ДА
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    НЕТ
+                                </td>
+                            }
+                            <td class="text-right">
+                                <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Подтвердить" onclick="submit('@modelItem.Id')"><i class="fa fa-chevron-down "></i></button>
+                                <button disabled type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Copy row"><i class="fa fa-pencil"></i></button>
+                                <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Отклонить" onclick="reject('@modelItem.Id')"><i class="fa fa-remove"></i></button>
                             </td>
-                        }
-                        else
-                        {
-                            <td>
-                                НЕТ
-                            </td>
-                        }
-                        <td class="text-right">
-                            <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Подтвердить" onclick="submit('@modelItem.Id')"><i class="fa fa-chevron-down "></i></button>
-                            <button disabled type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Copy row"><i class="fa fa-pencil"></i></button>
-                            <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Отклонить" onclick="reject('@modelItem.Id')"><i class="fa fa-remove"></i></button>
-                        </td>
-                        @*<td>
-                            <div class="btn-group">
-                                <a class="btn ink-reaction btn-primary" onclick="submit2('@modelItem.Id')">Подтвердить</a>
-                                <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <li><a>Изменить</a></li>
-                                    <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
-                                </ul>
-                            </div>
-                        </td>*@
-                    </tr>
-                }
+                            @*<td>
+                                    <div class="btn-group">
+                                        <a class="btn ink-reaction btn-primary" onclick="submit2('@modelItem.Id')">Подтвердить</a>
+                                        <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li><a>Изменить</a></li>
+                                            <li><a href="#"><i class="fa fa-fw fa-times text-danger"></i>Удалить</a></li>
+                                        </ul>
+                                    </div>
+                                </td>*@
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -69,45 +69,5 @@
 
 
 @section Scripts{
-    <script>
-        function removeRow(id) {
-            $('#row-' + id).hide('slow', function () { $(this).remove(); });
-        };
-
-        function submit(id) {
-            removeRow(id);
-            $.ajax({
-                url: '/Request/Submit',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function () {
-                    removeRow(id);
-                },
-                error: function () {
-
-                }
-            });
-        };
-
-        function reject(id) {
-            removeRow(id);
-            $.ajax({
-                url: '/Request/Reject',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function () {
-                    removeRow(id);
-                },
-                error: function () {
-
-                }
-            });
-        };
-    </script>
+    <script src="~/js/site.js"></script>
 }

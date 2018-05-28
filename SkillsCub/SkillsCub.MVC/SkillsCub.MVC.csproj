@@ -853,6 +853,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ContentTypeResolver\ContentTypeResolver.csproj" />
+    <ProjectReference Include="..\MegaNzService\MegaNzService.csproj" />
+    <ProjectReference Include="..\SkillsCub.Core\SkillsCub.Core.csproj" />
     <ProjectReference Include="..\SkillsCub.DataLibrary\SkillsCub.DataLibrary.csproj" />
     <ProjectReference Include="..\SkillsCub.EmailSenderService\SkillsCub.EmailSenderService.csproj" />
     <ProjectReference Include="..\SkillsCub.TelegramLogger\SkillsCub.TelegramLogger.csproj" />
@@ -864,7 +867,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Teacher\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

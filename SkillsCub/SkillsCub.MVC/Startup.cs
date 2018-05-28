@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CG.Web.MegaApiClient;
+using ContentTypeResolver;
+using MegaNzService;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SkillsCub.Core.Services;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Context;
 using SkillsCub.DataLibrary.Repositories.Implementation;
@@ -25,13 +29,14 @@ namespace SkillsCub.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITelegramLogger, TelegramLogger.TelegramLogger>();
@@ -39,6 +44,9 @@ namespace SkillsCub.MVC
             services.AddTransient<IRepository<Course>, CourseRepository>();
             services.AddTransient<IRepository<Exercise>, ExerciseRepository>();
             services.AddTransient<IRepository<Request>, RequestRepository>();
+            services.AddTransient<IMegaApiClient, MegaApiClient>();
+            services.AddTransient<IStorageClient, MegaNzClient>();
+            services.AddTransient<IContentTypeResolver, ContentTypeResolver.ContentTypeResolver>();
 
             services.AddMvc();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));

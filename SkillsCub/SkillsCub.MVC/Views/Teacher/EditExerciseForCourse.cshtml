@@ -1,5 +1,5 @@
 ﻿@using SkillsCub.MVC.ViewModels
-@model SkillsCub.MVC.ViewModels.ExerciseModel
+@model ExerciseModelRequest
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
@@ -9,8 +9,9 @@
     <div class="section-body contain-lg">
         <!-- BEGIN SUMMERNOTE -->
 
-        <form class="form form-validation" role="form" novalidate="novalidate" method="post">
-            @Html.HiddenFor(model => model.Id)
+        <form class="form form-validation" role="form" novalidate="novalidate" method="post" enctype="multipart/form-data">
+            @Html.HiddenFor(model => model.Id, new { @id = "exerciseId" })
+            @Html.HiddenFor(model => model.CourseId)
             <div class="card card-bordered style-primary">
                 <div class="card-head">
                     <header><i class="fa fa-fw fa-tag"></i> Создание задания для курса @Model.CourseId</header>
@@ -30,18 +31,51 @@
                     <div class="form-group">
                         <div class="input-daterange input-group" id="demo-date-range">
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="start" value="@Model.TimeToOpen" />
+                                <input type="text" class="form-control" name="timeToOpen" value="@Model.TimeToOpen" />
                                 <label>Date range</label>
                             </div>
                             <span class="input-group-addon">to</span>
                             <div class="input-group-content">
-                                <input type="text" class="form-control" name="end" value="@Model.TimeToClose" />
+                                <input type="text" class="form-control" name="timeToClose" value="@Model.TimeToClose" />
                                 <div class="form-control-line"></div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <div class="input-daterange input-group">
+                            <div class="input-group-content">
+                                <label>Доп. материалы</label>
+                                <input type="file" asp-for="Files" multiple />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Attaches</label>
+                        <br />
+                        @foreach (var attach in Model.AttachedFiles)
+                        {
+                            <div class="row" id="row-@attach.FileName">
 
+                                <div class="col-sm-12 col-md-10">
+
+                                    <p><i class="md md-attach-file"></i>@attach.FileName</p>
+                                </div>
+                                <div class="col-sm-12 col-md-2">
+                                    <div class="btn-group">
+                                        <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@Model.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
+                                        <button type="button" class="btn ink-reaction btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-caret-down"></i></button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a id="@attach.FileName" href="#" class="remove-file-button"><i class="fa fa-fw fa-times text-danger"></i> Remove item</a>
+                                            </li>
+                                        </ul>
+                                    </div><!--end .btn-group -->
+                                </div>
+                                <hr class="special-hr"/>
+                            </div>
+                            }
+                        </div>
+                </div>
 
                 <!--end .card-body -->
                 <div class="card-actionbar style-default-bright">
@@ -49,9 +83,8 @@
                         <button type="reset" class="btn btn-flat btn-default ink-reaction">Отменить</button>
                         <button type="submit" class="btn btn-flat btn-default ink-reaction">Подтвердить</button>
                     </div>
-                </div><!--end .card -->
-                <!-- END SUMMERNOTE -->
-            </div>
+                </div>
+            </div><!--end .card -->
 
         </form>
     </div>
@@ -69,4 +102,5 @@
     <script src="~/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
     <script src="~/js/core/demo/DemoFormEditors.js"></script>
     <script src="~/js/core/demo/DemoFormComponents.js"></script>
+    <script src="~/js/site.js"></script>
 }

@@ -15,3 +15,7 @@
 .padding-bottom-xxxl {
     padding-bottom: 30px;
 }
+
+.special-hr {
+    margin-bottom: 10px !important;
+}
