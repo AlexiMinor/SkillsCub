@@ -4,7 +4,7 @@ namespace SkillsCub.MVC.ViewModels
 {
     public class MarkViewModel
     {
-        public Answer Answer { get; set; }
+        public Exercise Exercise { get; set; }
 
     }
 }

@@ -25,11 +25,29 @@
                                     <div class="card-body style-default-bright">
                                         @Html.Raw(Model.Exercise.ConditionOfProblem)
                                     </div>
+                                    <div class="card-body style-default-bright">
+                                        @foreach (var attach in Model.AttachedFiles)
+                                        {
+                                            <div class="row" id="row-@attach.FileName">
+
+                                                <div class="col-sm-12 col-md-10">
+
+                                                    <p><i class="md md-attach-file"></i>@attach.FileName</p>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2">
+                                                    <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@Model.Exercise.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
+                                                </div>
+                                                <hr class="special-hr" />
+                                            </div>
+                                        }
+                                    </div>
                                 </article><!-- end article -->
                             </div>
                         </div>
                     </div>
-                    @if (Model.Answer != null)
+
+
+                    @if (!string.IsNullOrEmpty(Model.Exercise.AnswerValue))
                     {
                         <div class="card card-tiles style-default-light">
                             <div class="row">
@@ -38,18 +56,18 @@
                                         <div class="card-body style-default-dark">
                                             <h2>Ваш ответ</h2>
                                             <div class="opacity-50">
-                                                Добавлен @Model.Answer.AnswerDateTime.ToString("D")
+                                                Добавлен @Model.Exercise.AnswerDateTime.ToString("D")
                                             </div>
                                         </div>
                                         <div class="card-body style-default-bright">
-                                            @Html.Raw(Model.Answer.Value)
+                                            @Html.Raw(Model.Exercise.AnswerValue)
 
-                                            @if (Model.Answer.Mark != 0)
+                                            @if (Model.Exercise.Mark != 0)
                                             {
                                                 <div class="well clearfix">
-                                                    <h4>Оценка была добавлена @Model.Answer.MarkDateTime</h4>
+                                                    <h4>Оценка была добавлена @Model.Exercise.MarkDateTime</h4>
                                                     <p>
-                                                        @Model.Answer.Mark
+                                                        @Model.Exercise.Mark
                                                     </p>
                                                 </div>
                                             }
@@ -59,7 +77,6 @@
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div><!--end .container -->

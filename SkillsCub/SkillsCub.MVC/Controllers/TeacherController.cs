@@ -12,18 +12,16 @@ namespace SkillsCub.MVC.Controllers
 {
     public class TeacherController : Controller
     {
-        private readonly IRepository<Answer> _answerRepository;
         private readonly IRepository<Exercise> _exerciseRepository;
         private readonly IRepository<Course> _courseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IStorageClient _storageClient;
 
-        public TeacherController(IRepository<Answer> answerRepository,
+        public TeacherController(
             IRepository<Course> courseRepository,
             IRepository<Exercise> exerciseRepository,
             UserManager<ApplicationUser> userManager, IStorageClient storageClient)
         {
-            _answerRepository = answerRepository;
             _courseRepository = courseRepository;
             _exerciseRepository = exerciseRepository;
             _userManager = userManager;
@@ -45,7 +43,7 @@ namespace SkillsCub.MVC.Controllers
         {
             if (id != Guid.Empty)
             {
-                var model = (await _courseRepository.FindBy(course => course.ID.Equals(id), course => course.Exercises, course => course.Student)).FirstOrDefault();
+                var model = (await _courseRepository.FindBy(course => course.Id.Equals(id), course => course.Exercises, course => course.Student)).FirstOrDefault();
                 return View(new CourseDetailViewModel() { Course = model });
 
             }
@@ -188,26 +186,12 @@ namespace SkillsCub.MVC.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> AnswersList(Guid exId)
+        public async Task<IActionResult> AddMarkForAnswer(Guid exId)
         {
-            var ex = await _exerciseRepository.GetById(exId);
-            var answers = (await _answerRepository.FindBy(answer => answer.ExerciseId.Equals(exId),
-                answer => answer.User)).ToList();
-            var model = new ExerciseAnswersViewModel() { Exercise = ex, Answers = answers };
-
-            return model.Exercise != null
-                ? (IActionResult)View(model)
-                : NotFound();
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> AddMarkForAnswer(Guid ansId)
-        {
-            var answer = (await _answerRepository.FindBy(a => a.Id.Equals(ansId), a => a.Exercise, a => a.User)).FirstOrDefault();
+            var exercise = (await _exerciseRepository.FindBy(a => a.Id.Equals(exId), a => a.User)).FirstOrDefault();
             var model = new MarkViewModel
             {
-                Answer = answer,
+                Exercise = exercise,
             };
 
             return View(model);
@@ -216,10 +200,10 @@ namespace SkillsCub.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMarkForAnswer(MarkViewModel mark)
         {
-            var answer = await _answerRepository.GetById(mark.Answer.Id);
-            answer.Mark = mark.Answer.Mark;
-            await _answerRepository.Update(answer);
-            await _answerRepository.SaveChanges();
+            var exercise = await _exerciseRepository.GetById(mark.Exercise.Id);
+            exercise.Mark = mark.Exercise.Mark;
+            await _exerciseRepository.Update(exercise);
+            await _exerciseRepository.SaveChanges();
             return RedirectToAction("Index");
         }
 

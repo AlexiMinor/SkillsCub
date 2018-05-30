@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SkillsCub.DataLibrary.Migrations
 {
-    public partial class Reinit : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -185,7 +185,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     AssignationDate = table.Column<DateTime>(nullable: false),
                     ConsultationDate = table.Column<DateTime>(nullable: false),
                     ConsultationPlace = table.Column<string>(nullable: true),
@@ -199,7 +199,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Courses", x => x.ID);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Courses_AspNetUsers_StudentId",
                         column: x => x.StudentId,
@@ -219,13 +219,19 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    AnswerDateTime = table.Column<DateTime>(nullable: false),
+                    AnswerValue = table.Column<string>(nullable: true),
                     CloseDateTime = table.Column<DateTime>(nullable: false),
                     ConditionOfProblem = table.Column<string>(nullable: true),
                     CourseId = table.Column<Guid>(nullable: false),
                     CreationDate = table.Column<DateTime>(nullable: false),
                     LastEditDate = table.Column<DateTime>(nullable: true),
+                    Mark = table.Column<int>(nullable: false),
+                    MarkComment = table.Column<string>(nullable: true),
+                    MarkDateTime = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    OpenDateTime = table.Column<DateTime>(nullable: false)
+                    OpenDateTime = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -234,49 +240,15 @@ namespace SkillsCub.DataLibrary.Migrations
                         name: "FK_Exercises_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Answers",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    AnswerDateTime = table.Column<DateTime>(nullable: false),
-                    ExerciseId = table.Column<Guid>(nullable: false),
-                    Mark = table.Column<int>(nullable: false),
-                    MarkComment = table.Column<string>(nullable: true),
-                    MarkDateTime = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Answers_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Answers_AspNetUsers_UserId",
+                        name: "FK_Exercises_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_ExerciseId",
-                table: "Answers",
-                column: "ExerciseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_UserId",
-                table: "Answers",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -331,13 +303,15 @@ namespace SkillsCub.DataLibrary.Migrations
                 name: "IX_Exercises_CourseId",
                 table: "Exercises",
                 column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exercises_UserId",
+                table: "Exercises",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Answers");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -354,10 +328,10 @@ namespace SkillsCub.DataLibrary.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Requests");
+                name: "Exercises");
 
             migrationBuilder.DropTable(
-                name: "Exercises");
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

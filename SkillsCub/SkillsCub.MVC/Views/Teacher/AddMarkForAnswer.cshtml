@@ -9,9 +9,9 @@
 <section>
     <div class="section-body">
         <div class="container">
-            @if (Model.Answer != null)
+            @if (Model.Exercise != null)
             {
-                <h2 class="text-light text-center">@Model.Answer.Exercise.Name</h2>
+                <h2 class="text-light text-center">@Model.Exercise.Name</h2>
                 <br>
                 <div class="row">
                     <div class="col-lg-12">
@@ -20,13 +20,13 @@
                                 <div class="col-sm-12">
                                     <article>
                                         <div class="card-body style-default-dark">
-                                            <h2>@Model.Answer.Exercise.Name</h2>
+                                            <h2>@Model.Exercise.Name</h2>
                                             <div class="opacity-50">
-                                                C @Model.Answer.Exercise.OpenDateTime.Date.ToString("D") по @Model.Answer.Exercise.CloseDateTime.Date.ToString("D")
+                                                C @Model.Exercise.OpenDateTime.Date.ToString("D") по @Model.Exercise.CloseDateTime.Date.ToString("D")
                                             </div>
                                         </div>
                                         <div class="card-body style-default-bright">
-                                            @Html.Raw(Model.Answer.Exercise.ConditionOfProblem)
+                                            @Html.Raw(Model.Exercise.ConditionOfProblem)
                                         </div>
                                     </article><!-- end article -->
                                 </div>
@@ -37,23 +37,23 @@
                                 <div class="col-sm-12">
                                     <article>
                                         <div class="card-body style-default-dark">
-                                            <h2>Ответ студента @Model.Answer.User.FirstName @Model.Answer.User.Patronymic @Model.Answer.User.LastName</h2>
+                                            <h2>Ответ студента @Model.Exercise.User.FirstName @Model.Exercise.User.Patronymic @Model.Exercise.User.LastName</h2>
                                             <div class="opacity-50">
-                                                Добавлен @Model.Answer.AnswerDateTime.ToString("D")
+                                                Добавлен @Model.Exercise.AnswerDateTime.ToString("D")
                                             </div>
                                         </div>
                                         <div class="card-body style-default-bright">
-                                            @Html.Raw(Model.Answer.Value)
+                                            @Html.Raw(Model.Exercise.AnswerValue)
                                         </div>
                                         <form asp-action="AddMarkForAnswer" method="post">
                                             <div class="card-body style-default-bright">
-                                                @Html.HiddenFor(model => model.Answer.Id)
+                                                @Html.HiddenFor(model => model.Exercise.Id)
                                                 <div class="form-group">
-                                                    <input type="number" asp-for="Answer.Mark" class="form-control" value="1" />
+                                                    <input type="number" asp-for="Exercise.Mark" class="form-control" value="1" />
                                                     <p class="help-block">От 1 до 100</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input asp-for="Answer.MarkComment" type="text" class="form-control">
+                                                    <input asp-for="Exercise.MarkComment" type="text" class="form-control">
                                                     <label>Комментарий</label>
                                                 </div>
                                             </div>

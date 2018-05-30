@@ -40,7 +40,6 @@ namespace SkillsCub.MVC
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITelegramLogger, TelegramLogger.TelegramLogger>();
-            services.AddTransient<IRepository<Answer>, AnswerRepository>();
             services.AddTransient<IRepository<Course>, CourseRepository>();
             services.AddTransient<IRepository<Exercise>, ExerciseRepository>();
             services.AddTransient<IRepository<Request>, RequestRepository>();

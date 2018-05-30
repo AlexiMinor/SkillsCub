@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CG.Web.MegaApiClient;
+using Microsoft.Extensions.Configuration;
 using SkillsCub.Core;
 using SkillsCub.Core.Services;
 
@@ -12,16 +13,18 @@ namespace MegaNzService
     public class MegaNzClient : IStorageClient
     {
         private readonly IMegaApiClient _client;
+        private readonly IConfiguration  _configuration;
 
-        public MegaNzClient(IMegaApiClient client)
+        public MegaNzClient(IMegaApiClient client, IConfiguration configuration)
         {
             _client = client;
+            _configuration = configuration;
         }
 
         public async Task UploadFileAsync(Stream file, string filename, string folderName)
         {
 
-            var token = await _client.LoginAsync("Email", "Password");
+            var token = await _client.LoginAsync(_configuration["Mega:Email"], _configuration["Mega:Password"]);
             if (token != null)
             {
                 var nodes = (await _client.GetNodesAsync()).ToList();
@@ -29,7 +32,7 @@ namespace MegaNzService
                 var targetNodeParent =
                     nodes.FirstOrDefault(node => node.ParentId.Equals(parent.Id) && node.Name.Equals(folderName)) ??
                     await _client.CreateFolderAsync(folderName, parent);
-                var targetNode = await _client.UploadAsync(file, filename, targetNodeParent, new Progress<double>());
+                await _client.UploadAsync(file, filename, targetNodeParent, new Progress<double>());
             }
 
             await _client.LogoutAsync();
@@ -39,7 +42,7 @@ namespace MegaNzService
         {
             try
             {
-                var token = await _client.LoginAsync("Email", "Password");
+                var token = await _client.LoginAsync(_configuration["Mega:Email"], _configuration["Mega:Password"]);
                 if (token != null)
                 {
                     var nodes = (await _client.GetNodesAsync()).ToList();
@@ -75,7 +78,7 @@ namespace MegaNzService
         public async Task<Stream> DownloadFileFromNodeAsync(string fileName, string folderName)
         {
 
-            var token = await _client.LoginAsync("Email", "Password");
+            var token = await _client.LoginAsync(_configuration["Mega:Email"], _configuration["Mega:Password"]);
             if (token != null)
             {
                 var nodes = await _client.GetNodesAsync();
@@ -99,7 +102,7 @@ namespace MegaNzService
 
         public async Task<Stream> DownloadFolderAsync(string folderName)
         {
-            var token = await _client.LoginAsync("Email", "Password");
+            var token = await _client.LoginAsync(_configuration["Mega:Email"], _configuration["Mega:Password"]);
             if (token != null)
             {
                 var nodes = await _client.GetNodesAsync();
@@ -123,7 +126,7 @@ namespace MegaNzService
         {
             try
             {
-                var token = await _client.LoginAsync("Email", "Password");
+                var token = await _client.LoginAsync(_configuration["Mega:Email"], _configuration["Mega:Password"]);
                 if (token != null)
                 {
                     var nodes = (await _client.GetNodesAsync()).ToList();
@@ -158,7 +161,7 @@ namespace MegaNzService
         {
             try
             {
-                var token = await _client.LoginAsync("Email", "Password");
+                var token = await _client.LoginAsync(_configuration["Mega:Email"], _configuration["Mega:Password"]);
                 if (token != null)
                 {
                     var nodes = (await _client.GetNodesAsync()).ToList();
