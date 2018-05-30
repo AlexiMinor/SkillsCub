@@ -25,6 +25,8 @@
                                     <div class="card-body style-default-bright">
                                         @Html.Raw(Model.Exercise.ConditionOfProblem)
                                     </div>
+                                @if (Model.AttachedFiles != null && Model.AttachedFiles.Any())
+                                {
                                     <div class="card-body style-default-bright">
                                         @foreach (var attach in Model.AttachedFiles)
                                         {
@@ -37,10 +39,11 @@
                                                 <div class="col-sm-12 col-md-2">
                                                     <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@Model.Exercise.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
                                                 </div>
-                                                <hr class="special-hr" />
+                                                <hr class="special-hr"/>
                                             </div>
                                         }
                                     </div>
+                                }
                                 </article><!-- end article -->
                             </div>
                         </div>

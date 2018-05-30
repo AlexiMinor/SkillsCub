@@ -80,9 +80,7 @@ namespace SkillsCub.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddAnswer(Guid id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
             var exercise = await _exerciseRepository.GetById(id);
-
 
             var files = await _storageClient.GetFilesFromNodeAsync($"exercise_{id:N}");
 
@@ -115,7 +113,7 @@ namespace SkillsCub.MVC.Controllers
                 Id = targetEx.Id,
                 CourseId = targetEx.CourseId,
                 Name = targetEx.Name,
-                LastEditDate = DateTime.Now,
+                AnswerDateTime = DateTime.Now,
                 OpenDateTime = targetEx.OpenDateTime,
                 CloseDateTime = targetEx.CloseDateTime,
                 ConditionOfProblem = targetEx.ConditionOfProblem,

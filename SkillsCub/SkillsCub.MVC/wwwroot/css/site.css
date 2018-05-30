@@ -19,3 +19,7 @@
 .special-hr {
     margin-bottom: 10px !important;
 }
+
+.special-t-hr {
+    margin-top: 0 !important;
+}

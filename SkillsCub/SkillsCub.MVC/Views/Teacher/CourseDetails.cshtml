@@ -13,7 +13,7 @@
                     <!-- BEGIN ARTICLES -->
                     <div class="col-sm-9">
                         @{
-                            if (Model?.Course?.Exercises!=null)
+                            if (Model?.Course?.Exercises != null)
                             {
                                 foreach (var exercise in Model.Course.Exercises)
                                 {
@@ -27,9 +27,17 @@
                                         </div>
                                         <div class="card-actionbar">
                                             <div class="card-actionbar-row">
-                                                <a asp-action="EditExerciseForCourse" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-danger ink-reaction pull-left"><i class="md md-mode-edit"></i></a>
-                                                <a asp-action="Delete" asp-route-id="@exercise.Id" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="md md-delete"></i></a>
-                                                <a asp-action="AddMarkForAnswer" asp-route-exId="@exercise.Id" class="btn btn-flat btn-default-dark ink-reaction">Ответы</a>
+                                                <a asp-action="EditExerciseForCourse" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-danger ink-reaction pull-left">
+                                                    <i class="md md-mode-edit"></i>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@exercise.Id" class="btn btn-icon-toggle btn-default ink-reaction pull-left">
+                                                    <i class="md md-delete"></i>
+                                                </a>
+                                                @if (!string.IsNullOrEmpty(exercise.AnswerValue))
+                                                {
+                                                    <a asp-action="AddMarkForAnswer" asp-route-exId="@exercise.Id" class="btn btn-flat btn-default-dark ink-reaction">Ответы</a>
+                                                }
+
                                             </div>
                                         </div>
                                     </article>
@@ -61,7 +69,7 @@
                                         </li>
 
                                     }
-                                   
+
                                 }
                             </ul>
                         </div><!-- .card-body -->

@@ -28,9 +28,7 @@
                                             </div>
                                             <div class="card-body style-default-bright">
                                                 @Html.Raw(item.Key.ConditionOfProblem)
-
                                             </div>
-                                            <hr/>
                                             @if (item.Value != null && item.Value.Any())
                                             {
                                                 <div class="card-body">
@@ -54,7 +52,7 @@
 
                                             <div class="card-actionbar">
                                                 <div class="card-actionbar-row">
-                                                    @if (item.Key.CloseDateTime.Date >= DateTime.Now.Date)
+                                                    @if (item.Key.CloseDateTime.Date >= DateTime.Now.Date  && string.IsNullOrEmpty(item.Key.AnswerValue))
                                                     {
                                                         <a asp-action="AddAnswer" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Добавить ответ</a>
                                                     }
