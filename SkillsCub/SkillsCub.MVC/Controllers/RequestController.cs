@@ -66,7 +66,7 @@ namespace SkillsCub.MVC.Controllers
                         };
                         await _telegramLogger.Debug(
                             $"Request created. {Environment.NewLine} Request body: {Environment.NewLine} {JsonConvert.SerializeObject(request)}");
-                        _repository.Add(request);
+                        await _repository.Add(request);
                         var x = _repository.SaveChanges();
                         await _telegramLogger.Debug($"Request {request.Id:D} added to DB with status Requested");
                         return RedirectToAction("Index", "Home");
@@ -170,7 +170,7 @@ namespace SkillsCub.MVC.Controllers
                 await _telegramLogger.Debug($"Message for rejected request {request.Id} sended");
 
                 request.Status = Status.Rejected;
-                _repository.Update(request);
+                await _repository.Update(request);
                 var repoResponse = _repository.SaveChanges();
                 await _telegramLogger.Debug($"Request {id:D} status changes to Rejected in DB.");
                 return Json(repoResponse);

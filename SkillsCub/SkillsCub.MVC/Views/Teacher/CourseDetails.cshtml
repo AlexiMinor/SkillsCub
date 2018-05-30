@@ -10,11 +10,10 @@
         <div class="col-lg-12">
             <div class="card card-tiles style-default-light">
                 <div class="row">
-
                     <!-- BEGIN ARTICLES -->
                     <div class="col-sm-9">
                         @{
-                            if (Model?.Course?.Exercises!=null)
+                            if (Model?.Course?.Exercises != null)
                             {
                                 foreach (var exercise in Model.Course.Exercises)
                                 {
@@ -28,9 +27,17 @@
                                         </div>
                                         <div class="card-actionbar">
                                             <div class="card-actionbar-row">
-                                                <a asp-action="EditExerciseForCourse" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-danger ink-reaction pull-left"><i class="md md-mode-edit"></i></a>
-                                                <a asp-action="Delete" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-default ink-reaction pull-left"><i class="md md-delete"></i></a>
-                                                <a asp-action="AnswersList" asp-route-exId="@exercise.Id" class="btn btn-flat btn-default-dark ink-reaction">Ответы</a>
+                                                <a asp-action="EditExerciseForCourse" asp-route-exId="@exercise.Id" class="btn btn-icon-toggle btn-danger ink-reaction pull-left">
+                                                    <i class="md md-mode-edit"></i>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@exercise.Id" class="btn btn-icon-toggle btn-default ink-reaction pull-left">
+                                                    <i class="md md-delete"></i>
+                                                </a>
+                                                @if (!string.IsNullOrEmpty(exercise.AnswerValue))
+                                                {
+                                                    <a asp-action="AddMarkForAnswer" asp-route-exId="@exercise.Id" class="btn btn-flat btn-default-dark ink-reaction">Ответы</a>
+                                                }
+
                                             </div>
                                         </div>
                                     </article>
@@ -40,7 +47,7 @@
                         <article>
                             <div class="card-body text-center">
                                 <h2>Добавить задачу</h2>
-                                <a asp-action="CreateTaskForCourse" asp-route-id="@Model?.Course?.ID" class="btn ink-reaction btn-floating-action btn-primary"><i class="fa fa-plus"></i></a>
+                                <a asp-action="CreateTaskForCourse" asp-route-id="@Model?.Course?.Id" class="btn ink-reaction btn-floating-action btn-primary"><i class="fa fa-plus"></i></a>
                             </div>
                         </article>
                         <!-- end article -->
@@ -52,15 +59,17 @@
                             <h3 class="text-light">Студенты</h3>
                             <ul class="nav nav-pills nav-stacked nav-transparent">
                                 @{
-                                    if (Model?.Students != null)
+                                    if (Model?.Course?.Student != null)
                                     {
-                                        foreach (var modelStudent in Model.Students)
-                                        {
-                                            <li><a href=""><span class="badge pull-right">42</span>@modelStudent.FirstName @modelStudent.Patronymic @modelStudent.LastName</a></li>
+                                        <li>
+                                            <a href="">
+                                                <span class="badge pull-right">42</span>
+                                                @Model.Course?.Student.FirstName @Model.Course?.Student.Patronymic @Model.Course?.Student.LastName
+                                            </a>
+                                        </li>
 
-                                        }
                                     }
-                                   
+
                                 }
                             </ul>
                         </div><!-- .card-body -->

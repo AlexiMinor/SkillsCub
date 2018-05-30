@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -117,7 +116,7 @@ namespace SkillsCub.MVC.Controllers
             {
                 var course = new Course
                 {
-                    ID = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Type = model.Type,
                     Name = $"{model.Type.ToString()}_{model.StartDate:d}",
                     ConsultationDate = model.ConsultationDate.Date,

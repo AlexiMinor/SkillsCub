@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SkillsCub.Core;
+using SkillsCub.Core.Services;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.MVC.ViewModels;
@@ -13,23 +17,23 @@ namespace SkillsCub.MVC.Controllers
     public class StudentController : Controller
     {
         private readonly IRepository<Course> _courseRepository;
-        private readonly IRepository<Answer> _answerRepository;
         private readonly IRepository<Exercise> _exerciseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITelegramLogger _telegramLogger;
+        private readonly IStorageClient _storageClient;
 
 
         public StudentController(IRepository<Course> courseRepository,
             UserManager<ApplicationUser> userManager,
             IRepository<Exercise> exerciseRepository,
-            IRepository<Answer> answerRepository, 
-            ITelegramLogger telegramLogger)
+            ITelegramLogger telegramLogger,
+            IStorageClient storageClient)
         {
             _courseRepository = courseRepository;
             _userManager = userManager;
             _exerciseRepository = exerciseRepository;
-            _answerRepository = answerRepository;
             _telegramLogger = telegramLogger;
+            _storageClient = storageClient;
         }
 
         public async Task<IActionResult> Index()
@@ -37,14 +41,25 @@ namespace SkillsCub.MVC.Controllers
             try
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
+
                 var course = (await
-                    _courseRepository.FindBy(uc => uc.StudentId.Equals(user.Id))).FirstOrDefault();
-                return course != null
-                    ? (IActionResult) View(
-                        (await _courseRepository.FindBy(c => c.ID.Equals(course.ID), c => c.Exercises))
-                        .FirstOrDefault())
-                    : RedirectToAction("NotAssigned");
-                ;
+                    _courseRepository.FindBy(c => c.StudentId.Equals(user.Id), c => c.Exercises)).FirstOrDefault();
+
+                if (course != null && course.Exercises.Any())
+                {
+                    var dict = new Dictionary<Exercise, IEnumerable<AttachedFile>>();
+
+                    foreach (var exercise in course.Exercises)
+                    {
+                        var files = await _storageClient.GetFilesFromNodeAsync($"exercise_{exercise.Id:N}");
+                        dict.Add(exercise, files);
+                    }
+
+                    var viewModel = new StudentCourseViewModel() { CourseName = course.Name, Exercises = dict };
+                    return View(viewModel);
+                }
+
+                return RedirectToAction("NotAssigned");
             }
             catch (NullReferenceException e)
             {
@@ -65,16 +80,16 @@ namespace SkillsCub.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddAnswer(Guid id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
             var exercise = await _exerciseRepository.GetById(id);
-            var ans = (await _answerRepository.FindBy(answer =>
-                answer.ExerciseId.Equals(id) && answer.UserId.Equals(user.Id))).FirstOrDefault();
+
+            var files = await _storageClient.GetFilesFromNodeAsync($"exercise_{id:N}");
+
             if (exercise != null)
             {
-                return View(new AnswerViewModel()
+                return View(new StudentExerciseDetailsViewModel()
                 {
-                    Answer = ans ??  new Answer() {Id = Guid.NewGuid(), UserId = user.Id, ExerciseId = exercise.Id},
-                    Exercise = exercise
+                    Exercise = exercise,
+                    AttachedFiles = files
                 });
             }
 
@@ -82,29 +97,52 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAnswer(AnswerViewModel model) //add model
+        public async Task<IActionResult> AddAnswer(StudentExerciseDetailsViewModel model) //add model
         {
-            var ans = model.Answer;
-            ans.AnswerDateTime = DateTime.Now;
+            var exercise = model.Exercise;
+            var targetEx = await _exerciseRepository.GetById(model.Exercise.Id);
 
-            if (await _answerRepository.GetById(ans.Id) != null)
-                await _answerRepository.Update(ans);
-            else
-                await _answerRepository.Add(ans);
+            if (targetEx == null)
+                return NotFound();
 
-            await _answerRepository.SaveChanges();
+            targetEx.AnswerValue = exercise.AnswerValue;
+            targetEx.UserId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+
+            await _exerciseRepository.Update(new Exercise()
+            {
+                Id = targetEx.Id,
+                CourseId = targetEx.CourseId,
+                Name = targetEx.Name,
+                AnswerDateTime = DateTime.Now,
+                OpenDateTime = targetEx.OpenDateTime,
+                CloseDateTime = targetEx.CloseDateTime,
+                ConditionOfProblem = targetEx.ConditionOfProblem,
+                AnswerValue = exercise.AnswerValue,
+                UserId = (await _userManager.GetUserAsync(HttpContext.User)).Id
+            });
+            await _exerciseRepository.SaveChanges();
 
             return RedirectToAction("Index");
+
         }
+
         public async Task<IActionResult> ExerciseDetails(Guid id)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var exercise = await _exerciseRepository.GetById(id);
-            var answer =
-                (await _answerRepository.FindBy(a => a.ExerciseId.Equals(exercise.Id) && a.UserId.Equals(user.Id)))
-                .FirstOrDefault();
+            var exercise = (await _exerciseRepository.GetById(id));
 
-            return View(new StudentExerciseDetailsViewModel() {Exercise = exercise, Answer = answer});
+            if (exercise == null)
+            {
+                return NotFound();
+            }
+
+            var files = await _storageClient.GetFilesFromNodeAsync($"exercise_{id:N}");
+
+            return View(new StudentExerciseDetailsViewModel()
+            {
+                Exercise = exercise,
+                AttachedFiles = files
+            });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model SkillsCub.MVC.ViewModels.AnswerViewModel
+﻿@model SkillsCub.MVC.ViewModels.StudentExerciseDetailsViewModel
 
 @{
     ViewBag.Title = "title";
@@ -25,16 +25,36 @@
                                 <div class="card-body">
                                     @Html.Raw(Model.Exercise.ConditionOfProblem)
                                 </div><!--end .card-body -->
-                                
-                                <form asp-action="AddAnswer" method="post" class="well clearfix">
-                                    <h4>Введите ответ</h4>
-                                    @Html.HiddenFor(model => model.Answer.ExerciseId)
-                                    @Html.HiddenFor(model => model.Answer.UserId)
-                                    @Html.HiddenFor(model => model.Answer.Id)
+                                @if (Model.AttachedFiles != null && Model.AttachedFiles.Any())
+                                {
+                                    <div class="card-body">
+                                        <h4>Прикрепленные файлы</h4>
+                                        @foreach (var attach in Model.AttachedFiles)
+                                        {
+                                            <div class="row" id="row-@attach.FileName">
+                                                <div class="col-sm-12 col-md-10">
+                                                    <p>
+                                                        <i class="md md-attach-file"></i>@attach.FileName
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2">
+                                                    <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@Model.Exercise.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
+                                                </div>
+                                                <hr class="special-hr"/>
+                                            </div>
+                                        }
+                                    </div>
+                                }
 
-                                    @Html.TextAreaFor(model => model.Answer.Value, new { id = "summernote" })
-                                    <button class="btn btn-default" type="submit">Подтвердить</button>
-                                </form>
+                                <div class="card-actionbar">
+                                    <form asp-action="AddAnswer" method="post" class="well clearfix">
+                                        <h4>Введите ответ</h4>
+                                        @Html.HiddenFor(model => model.Exercise.Id)
+
+                                        @Html.TextAreaFor(model => model.Exercise.AnswerValue, new { id = "summernote" })
+                                        <button class="btn btn-default" type="submit">Подтвердить</button>
+                                    </form>
+                                </div><!--end .card-body -->
                             </article>
                         </div><!--end .col -->
                     </div><!--end .row -->
@@ -45,12 +65,12 @@
 
 </section>
 @section Css
-{
+    {
     <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/summernote/summernote.css" />
     <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css" />
 }
 @section Scripts
-{
+    {
     <script src="~/js/libs/summernote/summernote.min.js"></script>
     <script src="~/js/core/demo/DemoFormEditors.js"></script>
 }

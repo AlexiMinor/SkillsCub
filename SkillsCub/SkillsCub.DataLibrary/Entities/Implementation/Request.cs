@@ -7,7 +7,7 @@ using MicroOrm.Dapper.Repositories.Attributes;
 namespace SkillsCub.DataLibrary.Entities.Implementation
 {
     [Table("Requests")]
-    public class Request 
+    public class Request : IBaseEntity
     {
         [Key, Identity]
         public Guid Id { get; set; }

@@ -4,10 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkillsCub.DataLibrary.Entities.Implementation
 {
-    public class Course
+    public class Course : IBaseEntity
     {
-
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

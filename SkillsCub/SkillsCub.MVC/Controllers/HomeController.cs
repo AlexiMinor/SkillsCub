@@ -47,6 +47,52 @@ namespace SkillsCub.MVC.Controllers
             {
                 try
                 {
+                    var student = new ApplicationUser()
+                    {
+                        Id = Guid.NewGuid().ToString("D"),
+                        Email = "studentskillscub@outlook.com",
+                        UserName = "studentskillscub@outlook.com",
+                        DateCreated = DateTime.Now,
+                        FirstName = "Student",
+                        LastName = "Student",
+                        Patronymic = "S",
+                        IsActive = true,
+                        LastModified = DateTime.Now,
+                        EmailConfirmed = true,
+                    };
+
+                    await _userManager.CreateAsync(student);
+                    await _userManager.AddPasswordAsync(student, _configuration["User:Password"]);
+                    if (!_roleManager.Roles.Any(role => role.Name.Equals("Student")))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Student"));
+                        await _telegramLogger.Debug("Student role added");
+                    }
+                    await _userManager.AddToRoleAsync(student, "Student");
+
+                    var teacher = new ApplicationUser()
+                    {
+                        Id = Guid.NewGuid().ToString("D"),
+                        Email = "teacherskillscub@outlook.com",
+                        UserName = "teacherskillscub@outlook.com",
+                        DateCreated = DateTime.Now,
+                        FirstName = "Teacher",
+                        LastName = "Teacher",
+                        Patronymic = "T",
+                        IsActive = true,
+                        LastModified = DateTime.Now,
+                        EmailConfirmed = true,
+                    };
+
+                    await _userManager.CreateAsync(teacher);
+                    await _userManager.AddPasswordAsync(teacher, _configuration["User:Password"]);
+                    if (!_roleManager.Roles.Any(role => role.Name.Equals("Teacher")))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Teacher"));
+                        await _telegramLogger.Debug("Teacher role added");
+                    }
+                    await _userManager.AddToRoleAsync(teacher, "Teacher");
+
                     var user = new ApplicationUser()
                     {
                         Id = Guid.Empty.ToString("D"),

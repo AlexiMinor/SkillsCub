@@ -3,12 +3,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Context;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 
 namespace SkillsCub.DataLibrary.Repositories.Implementation
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IBaseEntity
     {
         protected readonly ApplicationDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
@@ -26,7 +27,7 @@ namespace SkillsCub.DataLibrary.Repositories.Implementation
 
         public virtual async Task<TEntity> GetById(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(entity => entity.Id.Equals(id));
         }
 
         public virtual async Task<IQueryable<TEntity>> GetAll()

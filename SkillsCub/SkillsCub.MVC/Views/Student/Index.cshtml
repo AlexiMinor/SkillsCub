@@ -1,4 +1,4 @@
-﻿@model SkillsCub.DataLibrary.Entities.Implementation.Course
+﻿@model SkillsCub.MVC.ViewModels.StudentCourseViewModel
 
 @{
     ViewBag.Title = "title";
@@ -8,36 +8,59 @@
 <section>
     <div class="section-body">
         <div class="container">
-            <h2 class="text-light text-center">@Model.Name</h2>
+            <h2 class="text-light text-center">@Model.CourseName</h2>
             <br>
             <div class="row">
                 <div class="col-lg-12">
-                    @foreach (var item in Model.Exercises.OrderBy(exercise => exercise.OpenDateTime).ToList())
+                    @foreach (var item in Model.Exercises.OrderBy(exercise => exercise.Key.OpenDateTime).ToList())
                     {
-                        if (item.OpenDateTime.Date <= DateTime.Now.Date)
+                        if (item.Key.OpenDateTime.Date <= DateTime.Now.Date)
                         {
                             <div class="card card-tiles style-default-light">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <article>
                                             <div class="card-body style-default-dark">
-                                                <h2>@item.Name</h2>
+                                                <h2>@item.Key.Name</h2>
                                                 <div class="opacity-50">
-                                                    C @item.OpenDateTime.Date.ToString("D") по @item.CloseDateTime.Date.ToString("D")
+                                                    C @item.Key.OpenDateTime.Date.ToString("D") по @item.Key.CloseDateTime.Date.ToString("D")
                                                 </div>
                                             </div>
                                             <div class="card-body style-default-bright">
-                                                @Html.Raw(item.ConditionOfProblem)
-                                                @{
-                                                    if (item.CloseDateTime.Date >= DateTime.Now.Date)
+                                                @Html.Raw(item.Key.ConditionOfProblem)
+                                            </div>
+                                            @if (item.Value != null && item.Value.Any())
+                                            {
+                                                <div class="card-body">
+                                                    <h4>Прикрепленные файлы</h4>
+                                                    @foreach (var attach in item.Value)
                                                     {
-                                                        <a asp-action="AddAnswer" asp-route-id="@item.Id" class="btn btn-default">Добавить ответ</a>
+                                                        <div class="row" id="row-@attach.FileName">
+                                                            <div class="col-sm-12 col-md-10">
+                                                                <p>
+                                                                    <i class="md md-attach-file"></i>@attach.FileName
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-2">
+                                                                <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@item.Key.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
+                                                            </div>
+                                                            <hr class="special-hr"/>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+
+                                            <div class="card-actionbar">
+                                                <div class="card-actionbar-row">
+                                                    @if (item.Key.CloseDateTime.Date >= DateTime.Now.Date  && string.IsNullOrEmpty(item.Key.AnswerValue))
+                                                    {
+                                                        <a asp-action="AddAnswer" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Добавить ответ</a>
                                                     }
                                                     else
                                                     {
-                                                        <a asp-action="ExerciseDetails" asp-route-id="@item.Id" class="btn btn-default">Детали</a>
+                                                        <a asp-action="ExerciseDetails" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Детали</a>
                                                     }
-                                                }
+                                                </div>
                                             </div>
                                         </article><!-- end article -->
                                     </div>
@@ -51,9 +74,9 @@
                                     <div class="col-sm-12">
                                         <article>
                                             <div class="card-body style-default-dark">
-                                                <h2>@item.Name</h2>
+                                                <h2>@item.Key.Name</h2>
                                                 <div class="opacity-50">
-                                                    Откроется @item.OpenDateTime.Date.ToString("D")
+                                                    Откроется @item.Key.OpenDateTime.Date.ToString("D")
                                                 </div>
                                             </div>
                                             <div class="card-body style-default-bright">

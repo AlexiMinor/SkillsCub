@@ -18,7 +18,7 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
 
         public IEnumerable<Course> Courses { get; set; }
         public IEnumerable<Course> CoursesAsTeacher { get; set; }
-        public IEnumerable<Answer> Answers { get; set; }
+        public IEnumerable<Exercise> Exercises { get; set; }
 
     }
 }
