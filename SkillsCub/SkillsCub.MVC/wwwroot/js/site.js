@@ -42,8 +42,6 @@ function reject(id) {
     });
 };
 
-
-
 function removeFile(filename, exId) {
     $.ajax({
         url: '/File/Remove',
@@ -61,6 +59,32 @@ function removeFile(filename, exId) {
         }
     });
 };
+
+function insertMessaage(courseId,  recieverId) {
+    $.ajax({
+        url: '/Message/Insert',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            "messageText": $('#message')[0].value,
+            "recieverId": recieverId,
+            "courseId": courseId
+        },
+        success: function () {
+            removeFileRow(filename);
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function name(parameters) {
+    
+}
+
+
+
 
 $(document).ready(function () {
     $('.remove-file-button').click(function () {
