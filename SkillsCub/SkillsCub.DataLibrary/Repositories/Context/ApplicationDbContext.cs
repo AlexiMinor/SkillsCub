@@ -13,7 +13,6 @@ namespace SkillsCub.DataLibrary.Repositories.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -23,10 +22,11 @@ namespace SkillsCub.DataLibrary.Repositories.Context
             builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.Courses)
                 .WithOne(course => course.Student).HasForeignKey(c=>c.StudentId);
             base.OnModelCreating(builder);
-
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.RecievedMessages)
+                .WithOne(message => message.Reciever).HasForeignKey(c => c.RecieverId); ;
+            builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.SendedMessages)
+                .WithOne(message => message.Sender).HasForeignKey(c => c.SenderId);
+            base.OnModelCreating(builder);
         }
     }
 }

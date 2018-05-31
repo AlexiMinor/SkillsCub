@@ -13,7 +13,7 @@
                     <!-- BEGIN ARTICLES -->
                     <div class="col-sm-9">
                         @{
-                            if (Model?.Course?.Exercises != null)
+                            if (Model.Course.Exercises != null)
                             {
                                 foreach (var exercise in Model.Course.Exercises)
                                 {
@@ -56,20 +56,16 @@
                     <!-- BEGIN BLOG MENUBAR -->
                     <div class="col-sm-3">
                         <div class="card-body">
-                            <h3 class="text-light">Студенты</h3>
+                            <h3 class="text-light">Чат</h3>
+                            <h4 class="text-light">@Model.Course?.Student.FirstName @Model.Course?.Student.Patronymic @Model.Course?.Student.LastName</h4>
                             <ul class="nav nav-pills nav-stacked nav-transparent">
                                 @{
-                                    if (Model?.Course?.Student != null)
-                                    {
-                                        <li>
-                                            <a href="">
-                                                <span class="badge pull-right">42</span>
-                                                @Model.Course?.Student.FirstName @Model.Course?.Student.Patronymic @Model.Course?.Student.LastName
-                                            </a>
-                                        </li>
-
-                                    }
-
+                                    <li>
+                                        <a class="card-body">
+                                            <h4 class="comment-title align-right">Janie Ward <small>20/06/2013 at 4:56 pm</small></h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in tempus lorem. Vivamus ullamcorper leo risus, non vehicula odio.</p>
+                                        </a>
+                                    </li>
                                 }
                             </ul>
                         </div><!-- .card-body -->
