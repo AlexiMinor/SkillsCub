@@ -6,5 +6,6 @@ namespace SkillsCub.MVC.ViewModels
     public class CourseDetailViewModel
     {
         public Course Course { get; set; }
+
     }
 }

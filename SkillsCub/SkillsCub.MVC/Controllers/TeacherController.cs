@@ -20,7 +20,8 @@ namespace SkillsCub.MVC.Controllers
         public TeacherController(
             IRepository<Course> courseRepository,
             IRepository<Exercise> exerciseRepository,
-            UserManager<ApplicationUser> userManager, IStorageClient storageClient)
+            UserManager<ApplicationUser> userManager, 
+            IStorageClient storageClient)
         {
             _courseRepository = courseRepository;
             _exerciseRepository = exerciseRepository;
@@ -43,12 +44,12 @@ namespace SkillsCub.MVC.Controllers
         {
             if (id != Guid.Empty)
             {
-                var model = (await _courseRepository.FindBy(course => course.Id.Equals(id), course => course.Exercises, course => course.Student)).FirstOrDefault();
-                return View(new CourseDetailViewModel() { Course = model });
+                var model = (await _courseRepository.FindBy(c => c.Id.Equals(id), c=> c.Exercises, c=> c.Student)).FirstOrDefault();
 
+                return View(new CourseDetailViewModel() { Course = model });
             }
 
-            return View(new CourseDetailViewModel());
+            return NotFound();
         }
 
         [HttpGet]

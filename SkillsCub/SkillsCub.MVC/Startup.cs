@@ -43,6 +43,7 @@ namespace SkillsCub.MVC
             services.AddTransient<IRepository<Course>, CourseRepository>();
             services.AddTransient<IRepository<Exercise>, ExerciseRepository>();
             services.AddTransient<IRepository<Request>, RequestRepository>();
+            services.AddTransient<IRepository<Message>, MessageRepository>();
             services.AddTransient<IMegaApiClient, MegaApiClient>();
             services.AddTransient<IStorageClient, MegaNzClient>();
             services.AddTransient<IContentTypeResolver, ContentTypeResolver.ContentTypeResolver>();

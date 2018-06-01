@@ -12,9 +12,10 @@ using System;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180530220332_AddMessages")]
+    partial class AddMessages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,19 +272,13 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("CourseId");
-
                     b.Property<string>("MessageText");
 
                     b.Property<string>("RecieverId");
 
-                    b.Property<DateTime>("SendedDateTime");
-
                     b.Property<string>("SenderId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
 
                     b.HasIndex("RecieverId");
 
@@ -396,11 +391,6 @@ namespace SkillsCub.DataLibrary.Migrations
 
             modelBuilder.Entity("SkillsCub.DataLibrary.Entities.Implementation.Message", b =>
                 {
-                    b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser", "Reciever")
                         .WithMany("RecievedMessages")
                         .HasForeignKey("RecieverId");
