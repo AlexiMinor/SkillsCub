@@ -6,12 +6,14 @@
 }
 
 <div class="section-body contain-lg">
+    <h2 class="text-light text-center">@Model.Course.Name</h2>
+    <br />
     <div class="row">
         <div class="col-lg-12">
             <div class="card card-tiles style-default-light">
                 <div class="row">
                     <!-- BEGIN ARTICLES -->
-                    <div class="col-sm-9">
+                    <div class="col-sm-12 col-md-9">
                         @{
                             if (Model.Course.Exercises != null)
                             {
@@ -54,13 +56,12 @@
                     </div><!-- .col -->
                     <!-- END ARTICLES -->
                     <!-- BEGIN BLOG MENUBAR -->
-                    <div class="col-sm-3 shadow style-default-bright">
+                    <div class="col-sm-12 col-md-3 shadow style-default-bright">
                         <div class="card-head">
                             <header>Чат</header>
                             <header class="text-light">@Model.Course?.Student.FirstName @Model.Course?.Student.Patronymic @Model.Course?.Student.LastName</header>
                         </div>
-                        <ul class="nav nav-pills nav-stacked nav-transparent scroll" id="chat" style="height:700px;">
-                        </ul>
+                        <ul class="nav nav-pills nav-stacked nav-transparent scroll" id="chat" style="height: 700px;"></ul>
                         <div class="card-head">
                             <header>Написать</header>
                         </div>

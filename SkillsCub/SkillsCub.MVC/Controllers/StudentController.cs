@@ -43,7 +43,7 @@ namespace SkillsCub.MVC.Controllers
                 var user = await _userManager.GetUserAsync(HttpContext.User);
 
                 var course = (await
-                    _courseRepository.FindBy(c => c.StudentId.Equals(user.Id), c => c.Exercises)).FirstOrDefault();
+                    _courseRepository.FindBy(c => c.StudentId.Equals(user.Id), c => c.Exercises, c => c.Teacher)).FirstOrDefault();
 
                 if (course != null && course.Exercises.Any())
                 {
@@ -55,7 +55,13 @@ namespace SkillsCub.MVC.Controllers
                         dict.Add(exercise, files);
                     }
 
-                    var viewModel = new StudentCourseViewModel() { CourseName = course.Name, Exercises = dict };
+                    var viewModel = new StudentCourseViewModel()
+                    {
+                        CourseTeacherId =course.TeacherId,
+                        CourseTeacherName = $"{course.Teacher.FirstName} {course.Teacher.Patronymic} {course.Student.LastName}",
+                        CourseName = course.Name,
+                        Exercises = dict
+                    };
                     return View(viewModel);
                 }
 

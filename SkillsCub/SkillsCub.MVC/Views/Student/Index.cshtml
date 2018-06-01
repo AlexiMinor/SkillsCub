@@ -5,92 +5,114 @@
     Layout = "_Layout";
 }
 
-<section>
-    <div class="section-body">
-        <div class="container">
-            <h2 class="text-light text-center">@Model.CourseName</h2>
-            <br>
-            <div class="row">
-                <div class="col-lg-12">
-                    @foreach (var item in Model.Exercises.OrderBy(exercise => exercise.Key.OpenDateTime).ToList())
-                    {
-                        if (item.Key.OpenDateTime.Date <= DateTime.Now.Date)
+<div class="section-body  contain-lg">
+    <h2 class="text-light text-center">@Model.CourseName</h2>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-tiles style-default-light">
+                <div class="row">
+                    <!-- BEGIN ARTICLES -->
+                    <div class="col-sm-12 col-md-9">
+                        @foreach (var item in Model.Exercises.OrderBy(exercise => exercise.Key.OpenDateTime).ToList())
                         {
-                            <div class="card card-tiles style-default-light">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <article>
-                                            <div class="card-body style-default-dark">
-                                                <h2>@item.Key.Name</h2>
-                                                <div class="opacity-50">
-                                                    C @item.Key.OpenDateTime.Date.ToString("D") по @item.Key.CloseDateTime.Date.ToString("D")
-                                                </div>
-                                            </div>
-                                            <div class="card-body style-default-bright">
-                                                @Html.Raw(item.Key.ConditionOfProblem)
-                                            </div>
-                                            @if (item.Value != null && item.Value.Any())
+                            if (item.Key.OpenDateTime.Date <= DateTime.Now.Date)
+                            {
+                                <article>
+                                    <div class="card-body style-default-dark">
+                                        <h2>@item.Key.Name</h2>
+                                        <div class="opacity-50">
+                                            C @item.Key.OpenDateTime.Date.ToString("D") по @item.Key.CloseDateTime.Date.ToString("D")
+                                        </div>
+                                    </div>
+                                    <div class="card-body style-default-bright">
+                                        @Html.Raw(item.Key.ConditionOfProblem)
+                                    </div>
+                                    @if (item.Value != null && item.Value.Any())
+                                    {
+                                        <div class="card-body">
+                                            <h4>Прикрепленные файлы</h4>
+                                            @foreach (var attach in item.Value)
                                             {
-                                                <div class="card-body">
-                                                    <h4>Прикрепленные файлы</h4>
-                                                    @foreach (var attach in item.Value)
-                                                    {
-                                                        <div class="row" id="row-@attach.FileName">
-                                                            <div class="col-sm-12 col-md-10">
-                                                                <p>
-                                                                    <i class="md md-attach-file"></i>@attach.FileName
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-sm-12 col-md-2">
-                                                                <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@item.Key.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
-                                                            </div>
-                                                            <hr class="special-hr"/>
-                                                        </div>
-                                                    }
+                                                <div class="row" id="row-@attach.FileName">
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <p>
+                                                            <i class="md md-attach-file"></i>@attach.FileName
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-2">
+                                                        <a asp-controller="File" asp-action="Download" asp-route-filename="@attach.FileName" asp-route-exerciseId="@item.Key.Id" target="_blank" class="btn ink-reaction btn-default-light">Download</a>
+                                                    </div>
+                                                    <hr class="special-hr" />
                                                 </div>
                                             }
+                                        </div>
+                                    }
 
-                                            <div class="card-actionbar">
-                                                <div class="card-actionbar-row">
-                                                    @if (item.Key.CloseDateTime.Date >= DateTime.Now.Date  && string.IsNullOrEmpty(item.Key.AnswerValue))
-                                                    {
-                                                        <a asp-action="AddAnswer" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Добавить ответ</a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a asp-action="ExerciseDetails" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Детали</a>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </article><!-- end article -->
+                                    <div class="card-actionbar">
+                                        <div class="card-actionbar-row">
+                                            @if (item.Key.CloseDateTime.Date >= DateTime.Now.Date && string.IsNullOrEmpty(item.Key.AnswerValue))
+                                            {
+                                                <a asp-action="AddAnswer" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Добавить ответ</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="ExerciseDetails" asp-route-id="@item.Key.Id" class="btn btn-flat btn-accent ink-reaction">Детали</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </article><!-- end article -->
+                            }
+                            else
+                            {
+
+                                <article>
+                                    <div class="card-body style-default-dark">
+                                        <h2>@item.Key.Name</h2>
+                                        <div class="opacity-50">
+                                            Откроется @item.Key.OpenDateTime.Date.ToString("D")
+                                        </div>
+                                    </div>
+                                    <div class="card-body style-default-bright">
+                                        В данный момент недоступно
+                                    </div>
+
+                                </article><!-- end article -->
+                            }
+                        }
+                    </div>
+                    <div class="col-sm-12 col-md-3 shadow style-default-bright">
+                        <div class="card-head">
+                            <header>Чат</header>
+                            <header class="text-light">@Model.CourseTeacherName</header>
+                        </div>
+                        <ul class="nav nav-pills nav-stacked nav-transparent scroll" id="chat" style="height: 700px;"></ul>
+                        <div class="card-head">
+                            <header>Написать</header>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <textarea name="message-text" id="message" class="form-control" rows="3" placeholder="Введите сообщение..."></textarea>
                                     </div>
                                 </div>
                             </div>
-                        }
-                        else
-                        {
-                            <div class="card card-tiles style-default-light">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <article>
-                                            <div class="card-body style-default-dark">
-                                                <h2>@item.Key.Name</h2>
-                                                <div class="opacity-50">
-                                                    Откроется @item.Key.OpenDateTime.Date.ToString("D")
-                                                </div>
-                                            </div>
-                                            <div class="card-body style-default-bright">
-                                                В данный момент недоступно
-                                            </div>
-
-                                        </article><!-- end article -->
-                                    </div>
-                                </div>
+                        </div><!--end .card-body -->
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <button class="btn btn-flat btn-primary ink-reaction" id="send-message-btn" onclick="insertMessage('@Model.CourseTeacherId')">Отправить</button>
                             </div>
-                        }
-                    }
+                        </div>
+                    </div><!--end .col -->
                 </div>
             </div>
-        </div><!--end .container -->
+        </div>
     </div>
-</section>
+</div><!--end .container -->
+
+@section Scripts
+{
+    <script src="~/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+    <script src="~/js/site.js"></script>
+}

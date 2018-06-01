@@ -32,12 +32,12 @@ namespace SkillsCub.MVC.Controllers
             var sender = await _userManager.GetUserAsync(HttpContext.User);
             var id = Guid.NewGuid();
             var dt = DateTime.Now;
-
+            var courseId = !message.CourseId.Equals(Guid.Empty) ? message.CourseId : (await _courseRepository.FindBy(course => course.StudentId.Equals(sender.Id) && course.TeacherId.Equals(message.RecieverId))).FirstOrDefault()?.Id;
             var mes = new Message()
             {
                 Id = id,
                 MessageText = message.MessageText,
-                CourseId = message.CourseId,
+                CourseId = courseId.GetValueOrDefault(),
                 SendedDateTime = dt,
                 SenderId = sender.Id,
                 Sender= sender,
@@ -63,11 +63,13 @@ namespace SkillsCub.MVC.Controllers
         public async Task<IEnumerable<MessageViewModel>> Get(Guid courseId, DateTime? lastMessageTime = null)
         {
             var yourId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
-            if (await _courseRepository.GetById(courseId) != null)
+            var cId = !courseId.Equals(Guid.Empty) ? courseId : (await _courseRepository.FindBy(course => course.StudentId.Equals(yourId))).FirstOrDefault()?.Id;
+
+            if (cId !=  Guid.Empty &&  await _courseRepository.GetById(cId.GetValueOrDefault()) != null)
             {
                 var messages = lastMessageTime != null
                     ? (await _messageRepository.FindBy(message
-                            => message.CourseId.Equals(courseId) && message.SendedDateTime > lastMessageTime,
+                            => message.CourseId.Equals(cId) && message.SendedDateTime > lastMessageTime,
                         message
                             => message.Sender)).Select(message => new MessageViewModel
                     {
@@ -80,7 +82,7 @@ namespace SkillsCub.MVC.Controllers
                         => message.SendedDateTime)
                     .ToList()
                     : (await _messageRepository.FindBy(message
-                            => message.CourseId.Equals(courseId),
+                            => message.CourseId.Equals(cId),
                         message
                             => message.Sender)).Select(message => new MessageViewModel
                     {

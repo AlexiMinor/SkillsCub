@@ -45,11 +45,11 @@ namespace SkillsCub.MVC.Controllers
             if (id != Guid.Empty)
             {
                 var model = (await _courseRepository.FindBy(c => c.Id.Equals(id), c=> c.Exercises, c=> c.Student)).FirstOrDefault();
-                return View(new CourseDetailViewModel() { Course = model });
 
+                return View(new CourseDetailViewModel() { Course = model });
             }
 
-            return View(new CourseDetailViewModel());
+            return NotFound();
         }
 
         [HttpGet]
