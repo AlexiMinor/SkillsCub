@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
+using SkillsCub.MVC.ViewModels;
 
 namespace SkillsCub.MVC.Controllers
 {
@@ -26,9 +27,9 @@ namespace SkillsCub.MVC.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<bool> Insert(Message message)
+        public async Task<MessageViewModel> Insert(Message message)
         {
-            var senderId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+            var sender = await _userManager.GetUserAsync(HttpContext.User);
             var id = Guid.NewGuid();
             var dt = DateTime.Now;
 
@@ -38,40 +39,63 @@ namespace SkillsCub.MVC.Controllers
                 MessageText = message.MessageText,
                 CourseId = message.CourseId,
                 SendedDateTime = dt,
-                SenderId = senderId,
+                SenderId = sender.Id,
+                Sender= sender,
                 RecieverId = message.RecieverId
             };
 
             if (mes.CourseId == Guid.Empty || string.IsNullOrEmpty(mes.SenderId) ||
-                string.IsNullOrEmpty(mes.RecieverId)) return false;
+                string.IsNullOrEmpty(mes.RecieverId)) return null;
 
             await _messageRepository.Add(mes);
             await _messageRepository.SaveChanges();
-            return true;
+            var messageViewModel = new MessageViewModel()
+            {
+                SendedDateTime = dt,
+                MessageText = mes.MessageText,
+                MessageSender = $"{sender.FirstName} {sender.Patronymic} {sender.LastName}",
+                IsYour = true
+            };
+            return messageViewModel;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Message>> Get(Guid courseId, DateTime? lastMessageTime = null)
+        public async Task<IEnumerable<MessageViewModel>> Get(Guid courseId, DateTime? lastMessageTime = null)
         {
+            var yourId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
             if (await _courseRepository.GetById(courseId) != null)
             {
                 var messages = lastMessageTime != null
                     ? (await _messageRepository.FindBy(message
                             => message.CourseId.Equals(courseId) && message.SendedDateTime > lastMessageTime,
                         message
-                            => message.Sender))
+                            => message.Sender)).Select(message => new MessageViewModel
+                    {
+                        MessageText = message.MessageText,
+                        SendedDateTime = message.SendedDateTime,
+                        MessageSender = $"{message.Sender.FirstName} {message.Sender.Patronymic} {message.Sender.LastName}",
+                        IsYour = message.SenderId.Equals(yourId)
+                            })
                     .OrderBy(message
                         => message.SendedDateTime)
                     .ToList()
                     : (await _messageRepository.FindBy(message
                             => message.CourseId.Equals(courseId),
                         message
-                            => message.Sender))
+                            => message.Sender)).Select(message => new MessageViewModel
+                    {
+                        MessageText = message.MessageText,
+                        SendedDateTime = message.SendedDateTime,
+                        MessageSender = $"{message.Sender.FirstName} {message.Sender.Patronymic} {message.Sender.LastName}",
+                        IsYour = message.SenderId.Equals(yourId)
+                    })
                     .OrderBy(message
                         => message.SendedDateTime)
                     .ToList();
-
-                return messages;
+                if (messages.Any())
+                {
+                    return messages;
+                }
             }
 
             return null;

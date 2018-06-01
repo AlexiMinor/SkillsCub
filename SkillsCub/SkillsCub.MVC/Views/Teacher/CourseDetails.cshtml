@@ -60,9 +60,6 @@
                             <header class="text-light">@Model.Course?.Student.FirstName @Model.Course?.Student.Patronymic @Model.Course?.Student.LastName</header>
                         </div>
                         <ul class="nav nav-pills nav-stacked nav-transparent scroll" id="chat" style="height:700px;">
-                            @{
-
-                            }
                         </ul>
                         <div class="card-head">
                             <header>Написать</header>
@@ -78,7 +75,7 @@
                         </div><!--end .card-body -->
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
-                                <button class="btn btn-flat btn-primary ink-reaction" id="send-message-btn" onclick="insertMessaage('@Model.Course.Id', '@Model.Course.StudentId')">Отправить</button>
+                                <button class="btn btn-flat btn-primary ink-reaction" id="send-message-btn" onclick="insertMessage('@Model.Course.StudentId')">Отправить</button>
                             </div>
                         </div>
                     </div><!--end .col -->
