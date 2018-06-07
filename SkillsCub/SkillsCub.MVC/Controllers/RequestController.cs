@@ -65,7 +65,7 @@ namespace SkillsCub.MVC.Controllers
                         };
                         var requestBody = JsonConvert.SerializeObject(request);
                         await _telegramLogger.Debug(
-                            $"Request created. {Environment.NewLine} Request body: {Environment.NewLine} ```JSON  {Environment.NewLine} {requestBody}  {Environment.NewLine}```");
+                            $"Request created. {Environment.NewLine} {Environment.NewLine} **Request body:**  ```JSON  {Environment.NewLine} {requestBody}  {Environment.NewLine}```");
                         await _repository.Add(request);
                         var x = _repository.SaveChanges();
                         await _telegramLogger.Debug($"Request {request.Id:D} added to DB with status Requested");
