@@ -56,7 +56,7 @@ namespace SkillsCub.MVC.Controllers
                         FirstName = "Student",
                         LastName = "Student",
                         Patronymic = "S",
-                        IsActive = true,
+                        IsActive = true,        
                         LastModified = DateTime.Now,
                         EmailConfirmed = true,
                     };
