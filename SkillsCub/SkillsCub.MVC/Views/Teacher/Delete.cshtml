@@ -6,8 +6,6 @@
 
 <section>
     <div class="section-body contain-lg">
-        <!-- BEGIN SUMMERNOTE -->
-
         <div class="card card-bordered style-primary">
             <div class="card-head">
                 <header><i class="fa fa-fw fa-tag"></i> Вы уверены что хотите удалить задание @Model.Name из курса @Model.CourseId</header>
@@ -17,17 +15,15 @@
                 <br><br>
                 @Html.Raw(Model.Detail)
 
-                <!--end .card-body -->
                 <div class="card-actionbar style-default-bright">
                     <div class="card-actionbar-row">
                         <form method="post">
                             @Html.HiddenFor(model => model.Id)
-                            <button type="reset" class="btn btn-flat btn-default ink-reaction">Отменить</button>
+                            <a class="btn btn-flat btn-default ink-reaction" asp-action="CourseDetails" asp-route-id="@Model.CourseId">Отменить</a>
                             <button type="submit" class="btn btn-flat btn-default ink-reaction">Подтвердить</button>
                         </form>
                     </div>
-                </div><!--end .card -->
-                <!-- END SUMMERNOTE -->
+                </div>
             </div>
         </div>
     </div>
