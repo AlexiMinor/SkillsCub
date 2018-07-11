@@ -34,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\img\banner1.svg" />
-    <None Include="wwwroot\img\banner2.svg" />
-    <None Include="wwwroot\img\banner3.svg" />
-    <None Include="wwwroot\img\banner4.svg" />
     <None Include="wwwroot\js\core\demo\Demo.js" />
     <None Include="wwwroot\js\core\demo\DemoCalendar.js" />
     <None Include="wwwroot\js\core\demo\DemoCharts.js" />
