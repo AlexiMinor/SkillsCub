@@ -63,12 +63,16 @@ namespace SkillsCub.MVC.Controllers
                             Source = model.Source,
                             Status = Status.Requested
                         };
+
                         var requestBody = JsonConvert.SerializeObject(request);
                         await _telegramLogger.Debug(
                             $"Request created. {Environment.NewLine} {Environment.NewLine} **Request body:**  ```JSON  {Environment.NewLine} {requestBody}  {Environment.NewLine}```");
+
                         await _repository.Add(request);
-                        var x = _repository.SaveChanges();
+                        var x = await _repository.SaveChanges();
+
                         await _telegramLogger.Debug($"Request {request.Id:D} added to DB with status Requested");
+
                         return RedirectToAction("Index", "Home");
                     }
                     return View();
@@ -144,7 +148,6 @@ namespace SkillsCub.MVC.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             var model = await _repository.GetById(id);
-            //TODO Get Requests from Database
             return View(model);
         }
 

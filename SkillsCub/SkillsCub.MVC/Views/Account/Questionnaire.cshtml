@@ -1,0 +1,87 @@
+﻿@model SkillsCub.DataLibrary.Entities.Implementation.ApplicationUser
+
+@{
+    ViewBag.Title = "Анкета участников SkillsCub™";
+    Layout = "_Layout";
+}
+<section>
+    <div class="section-body contain-lg">
+
+        <!-- BEGIN INTRO -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-primary">Анкета участников SkillsCub™</h1>
+            </div><!--end .col -->
+            <div class="col-lg-9">
+                <article class="margin-bottom-xxl">
+                    <p>
+                        Уважаемые участники! <br />
+                        Помните, на заполнение анкеты дается 3 (три) дня с момента ее отправки Вам. Чем подробнее вы ответите на предложенные вопросы, тем точнее будет произведен экспертный анализ Ваших сильных и слабых сторон.
+                        Все Ваши данные конфиденциальны и будут использоваться только в системе <b>SkillsCub</b> и <b>SkillsCub.Бонус</b>.
+                    </p>
+                </article>
+            </div><!--end .col -->
+        </div><!--end .row -->
+
+        <hr class="ruler-xxl">
+
+        <form>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <article class="margin-bottom-xxl">
+                        <h3>I. О себе</h3>
+                    </article>
+                </div><!--end .col -->
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="Contacts">
+                                    <label>Контактные данные: гор./моб.тел., e-mail, ссылки на соц.сети:</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="City">
+                                    <label>Город проживания: </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="BirthDate">
+                                    <label>Дата рождения (чч.мм.гг): </label>
+                                </div>
+                                <div class="form-group floating-label">
+                                    <select id="select2" class="form-control" asp-for="Education">
+                                        <option value="">&nbsp;</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="50">50</option>
+                                        <option value="60">60</option>
+                                        <option value="70">70</option>
+                                    </select>
+                                    <label for="select2">Образование (последнее, на настоящий момент):</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="AdditionalEducation">
+                                    <label>Дополнительное образование (образовательные курсы, повышение квалификации, профессиональная переподготовка): </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="PreviousActivities">
+                                    <label>Укажите виды деятельности, которыми Вы занимались (в том числе, например, репетиторство, сетевой маркетинг, оформление стенгазеты, монтаж видеороликов и др.): </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="PreviousProjects">
+                                    <label>Участвовали ли Вы в каких-либо конкурсах, хакатонах, проектах (укажите название и в каком качестве участвовали: автор идеи, присоединившийся волонтер): </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="SelfEducation">
+                                    <label>Самообразование (опишите, что Вы изучаете самостоятельно; темы, в которых Вы расширяете знания по Вашей профессии или вне ее рамок): </label>
+                                </div>
+                            </div>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div><!--end .col -->
+            </div>
+            <hr class="ruler-xxl">
+
+        </form>
+    </div>
+</section>

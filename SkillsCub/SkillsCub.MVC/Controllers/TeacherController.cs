@@ -53,32 +53,47 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateTaskForCourse(Guid id)
+        public async Task<IActionResult> CreateTaskForCourse(Guid id)
         {
-            return View(new ExerciseModelRequest() { CourseId = id });
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            var coursesOfTeacher = (await _courseRepository
+                    .FindBy(course 
+                => course.TeacherId.Equals(user.Id) 
+                   && !course.Id.Equals(id)))
+                .ToList();
+
+            var exercises = (await _exerciseRepository.FindBy(exercise =>
+                coursesOfTeacher.Any(course => course.Id.Equals(exercise.Id)))).ToList();
+
+            return View(new CreateExerciseViewModel()
+            {
+                CourseId = id,
+                ExercisesForImport = exercises
+            });
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTaskForCourse(ExerciseModelRequest model)
+        public async Task<IActionResult> CreateTaskForCourse(CreateExerciseViewModel viewModel)
         {
             try
             {
                 var exercise = new Exercise()
                 {
                     Id = Guid.NewGuid(),
-                    CourseId = model.CourseId,
-                    Name = model.Name,
+                    CourseId = viewModel.CourseId,
+                    Name = viewModel.Name,
                     CreationDate = DateTime.Now,
-                    OpenDateTime = model.TimeToOpen,
-                    CloseDateTime = model.TimeToClose,
-                    ConditionOfProblem = model.Detail
+                    OpenDateTime = viewModel.TimeToOpen,
+                    CloseDateTime = viewModel.TimeToClose,
+                    ConditionOfProblem = viewModel.Detail
                 };
                 await _exerciseRepository.Add(exercise);
                 await _exerciseRepository.SaveChanges();
 
-                if (model.Files != null && model.Files.Any())
+                if (viewModel.Files != null && viewModel.Files.Any())
                 {
-                    foreach (var file in model.Files)
+                    foreach (var file in viewModel.Files)
                     {
                         using (var stream = file.OpenReadStream())
                         {
@@ -87,7 +102,7 @@ namespace SkillsCub.MVC.Controllers
                     }
                 }
 
-                return RedirectToAction("CourseDetails", new { id = model.CourseId });
+                return RedirectToAction("CourseDetails", new { id = viewModel.CourseId });
             }
             catch (Exception e)
             {
@@ -102,7 +117,7 @@ namespace SkillsCub.MVC.Controllers
             var model = await _exerciseRepository.GetById(exId);
             if (model != null)
             {
-                var viewModel = new ExerciseModelRequest
+                var viewModel = new CreateExerciseViewModel
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -121,30 +136,30 @@ namespace SkillsCub.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditExerciseForCourse(ExerciseModelRequest model)
+        public async Task<IActionResult> EditExerciseForCourse(CreateExerciseViewModel viewModel)
         {
             await _exerciseRepository.Update(new Exercise()
             {
-                Id = model.Id,
-                CourseId = model.CourseId,
-                Name = model.Name,
+                Id = viewModel.Id,
+                CourseId = viewModel.CourseId,
+                Name = viewModel.Name,
                 LastEditDate = DateTime.Now,
-                OpenDateTime = model.TimeToOpen,
-                CloseDateTime = model.TimeToClose,
-                ConditionOfProblem = model.Detail
+                OpenDateTime = viewModel.TimeToOpen,
+                CloseDateTime = viewModel.TimeToClose,
+                ConditionOfProblem = viewModel.Detail
             });
             await _exerciseRepository.SaveChanges();
-            if (model.Files!=null && model.Files.Any())
+            if (viewModel.Files!=null && viewModel.Files.Any())
             {
-                foreach (var file in model.Files)
+                foreach (var file in viewModel.Files)
                 {
                     using (var stream = file.OpenReadStream())
                     {
-                        await _storageClient.UploadFileAsync(stream, $"{file.FileName}", $"exercise_{model.Id:N}");
+                        await _storageClient.UploadFileAsync(stream, $"{file.FileName}", $"exercise_{viewModel.Id:N}");
                     }
                 }
             }
-            return RedirectToAction("CourseDetails", new { id = model.CourseId });
+            return RedirectToAction("CourseDetails", new { id = viewModel.CourseId });
         }
 
         [HttpGet]

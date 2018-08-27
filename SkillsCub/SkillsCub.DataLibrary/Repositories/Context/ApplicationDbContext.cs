@@ -22,7 +22,7 @@ namespace SkillsCub.DataLibrary.Repositories.Context
             builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.Courses)
                 .WithOne(course => course.Student).HasForeignKey(c=>c.StudentId);
             base.OnModelCreating(builder);
-            builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.RecievedMessages)
+            builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.ReceivedMessages)
                 .WithOne(message => message.Reciever).HasForeignKey(c => c.RecieverId); ;
             builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.SendedMessages)
                 .WithOne(message => message.Sender).HasForeignKey(c => c.SenderId);

@@ -1,5 +1,4 @@
 ﻿using CG.Web.MegaApiClient;
-using ContentTypeResolver;
 using MegaNzService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,7 +67,6 @@ namespace SkillsCub.MVC
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseAuthentication();

@@ -31,7 +31,7 @@ namespace SkillsCub.MVC.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, 
+            ILogger<AccountController> logger,
             RoleManager<IdentityRole> roleManager,
             ITelegramLogger telegramLogger)
         {
@@ -377,33 +377,7 @@ namespace SkillsCub.MVC.Controllers
                 await _telegramLogger.Debug($"Student {id:D} go to create password View");
 
                 //set vmodel to Id and 2 passwords
-                return View(new ConfirmRequsetViewModel(){Id = id});
-
-            }
-            catch (Exception ex)
-            {
-                await _telegramLogger.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
-                return null;
-            }
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> ConfirmRequestForTeacher(Guid id)
-        {
-
-            try
-            {
-                var user = await _userManager.FindByIdAsync(id.ToString("D"));
-                if (user == null)
-                {
-                    await _telegramLogger.Error($"User {id:D} not exist in DB");
-                    return null;
-                }
-                await _telegramLogger.Debug($"User {id:D} go to create password View");
-
-                //set vmodel to Id and 2 passwords
-                return View(new ConfirmRequsetViewModel(){Id = id});
+                return View(new ConfirmRequsetViewModel() { Id = id });
 
             }
             catch (Exception ex)
@@ -462,7 +436,7 @@ namespace SkillsCub.MVC.Controllers
                     _logger.LogInformation("User created a new account with password.");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Questionnaire", "Account");
                 }
                 await _telegramLogger.Error($"Model of creation password of User {model.Id:D} non valid. ");
                 return null;
@@ -471,6 +445,31 @@ namespace SkillsCub.MVC.Controllers
             {
                 await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
 
+                return null;
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmRequestForTeacher(Guid id)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString("D"));
+                if (user == null)
+                {
+                    await _telegramLogger.Error($"User {id:D} not exist in DB");
+                    return null;
+                }
+                await _telegramLogger.Debug($"User {id:D} go to create password View");
+
+                //set vmodel to Id and 2 passwords
+                return View(new ConfirmRequsetViewModel() { Id = id });
+
+            }
+            catch (Exception ex)
+            {
+                await _telegramLogger.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
                 return null;
             }
         }
@@ -562,6 +561,11 @@ namespace SkillsCub.MVC.Controllers
 
         #endregion
 
-      
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Questionnaire()
+        {
+            return View();
+        }
     }
 }
