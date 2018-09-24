@@ -84,7 +84,23 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         /// <summary>
         /// Gets or sets the profession.
         /// </summary>
-        public string Professions { get; set; }
+        public bool IsPrManager { get; set; }
+        public bool IsEventManager { get; set; }
+        public bool IsProjectManager { get; set; }
+        public bool IsMarketer { get; set; }
+        public bool IsClothesDesigner { get; set; }
+        public bool IsWebDesigner { get; set; }
+        public bool IsGraphicalDesigner { get; set; }
+        public bool IsIllustrator { get; set; }
+        public bool IsPhotographer { get; set; }
+        public bool IsCameraman { get; set; }
+        public bool IsWriter { get; set; }
+        public bool IsEditor { get; set; }
+        public bool IsInterpreter { get; set; }
+        public bool IsSmm { get; set; }
+        public bool IsLayer { get; set; }
+        public bool IsArchitect { get; set; }
+        public bool IsScreenwriter  { get; set; }
 
         /// <summary>
         /// Gets or sets the psychotic.
@@ -205,7 +221,7 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         /// <summary>
         /// Gets or sets a value indicating whether mailing lists.
         /// </summary>
-        public bool MailingLists { get; set; }
+        public bool IsAddToTheMailingList { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether full day.

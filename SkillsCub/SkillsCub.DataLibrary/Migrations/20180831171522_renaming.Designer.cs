@@ -10,8 +10,8 @@ using SkillsCub.DataLibrary.Repositories.Context;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180827203625_UserChange")]
-    partial class UserChange
+    [Migration("20180831171522_renaming")]
+    partial class renaming
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,6 +192,8 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool>("IsAddToTheMailingLists");
+
                     b.Property<string>("KindOfActivity");
 
                     b.Property<string>("KindOfThinking");
@@ -203,8 +205,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<bool>("IsAddToTheMailingLists");
 
                     b.Property<string>("MaintainingStatistics");
 

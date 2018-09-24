@@ -567,5 +567,18 @@ namespace SkillsCub.MVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Questionnaire(ApplicationUser user)
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (currentUser != null)
+            {
+                //todo add stupid binding
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

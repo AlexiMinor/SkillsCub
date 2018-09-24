@@ -123,7 +123,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<bool>(
-                name: "MailingLists",
+                name: "IsAddToTheMailingLists",
                 table: "AspNetUsers",
                 nullable: false,
                 defaultValue: false);
@@ -315,7 +315,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "MailingLists",
+                name: "IsAddToTheMailingLists",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(

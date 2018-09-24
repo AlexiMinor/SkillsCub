@@ -10,8 +10,8 @@ using SkillsCub.DataLibrary.Repositories.Context;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180827203625_UserChange")]
-    partial class UserChange
+    [Migration("20180831191903_modelChanging")]
+    partial class modelChanging
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,6 +192,42 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool>("IsAddToTheMailingList");
+
+                    b.Property<bool>("IsArchitect");
+
+                    b.Property<bool>("IsCameraman");
+
+                    b.Property<bool>("IsClothesDesigner");
+
+                    b.Property<bool>("IsEditor");
+
+                    b.Property<bool>("IsEventManager");
+
+                    b.Property<bool>("IsGraphicalDesigner");
+
+                    b.Property<bool>("IsIllustrator");
+
+                    b.Property<bool>("IsInterpreter");
+
+                    b.Property<bool>("IsLayer");
+
+                    b.Property<bool>("IsMarketer");
+
+                    b.Property<bool>("IsPhotographer");
+
+                    b.Property<bool>("IsPrManager");
+
+                    b.Property<bool>("IsProjectManager");
+
+                    b.Property<bool>("IsScreenwriter");
+
+                    b.Property<bool>("IsSmm");
+
+                    b.Property<bool>("IsWebDesigner");
+
+                    b.Property<bool>("IsWriter");
+
                     b.Property<string>("KindOfActivity");
 
                     b.Property<string>("KindOfThinking");
@@ -203,8 +239,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<bool>("IsAddToTheMailingLists");
 
                     b.Property<string>("MaintainingStatistics");
 
@@ -231,8 +265,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<string>("PreviousActivities");
 
                     b.Property<string>("PreviousProjects");
-
-                    b.Property<string>("Professions");
 
                     b.Property<string>("Psychotic");
 
