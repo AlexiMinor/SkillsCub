@@ -5,714 +5,719 @@
     Layout = "_Layout";
 }
 <section>
-    <div class="section-body contain-lg">
+<div class="section-body contain-lg">
 
-        <!-- BEGIN INTRO -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="text-primary">Анкета участников SkillsCub™</h1>
-            </div><!--end .col -->
-            <div class="col-lg-9">
-                <article class="margin-bottom-xxl">
-                    <p>
-                        Уважаемые участники! <br />
-                        Помните, на заполнение анкеты дается 3 (три) дня с момента ее отправки Вам. Чем подробнее вы ответите на предложенные вопросы, тем точнее будет произведен экспертный анализ Ваших сильных и слабых сторон.
-                        Все Ваши данные конфиденциальны и будут использоваться только в системе <b>SkillsCub</b> и <b>SkillsCub.Бонус</b>.
-                    </p>
-                </article>
-            </div><!--end .col -->
-        </div><!--end .row -->
+<!-- BEGIN INTRO -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="text-primary">Анкета участников SkillsCub™</h1>
+    </div><!--end .col -->
+    <div class="col-lg-9">
+        <article class="margin-bottom-xxl">
+            <p>
+                Уважаемые участники! <br />
+                Помните, на заполнение анкеты дается 3 (три) дня с момента ее отправки Вам. Чем подробнее вы ответите на предложенные вопросы, тем точнее будет произведен экспертный анализ Ваших сильных и слабых сторон.
+                Все Ваши данные конфиденциальны и будут использоваться только в системе <b>SkillsCub</b> и <b>SkillsCub.Бонус</b>.
+            </p>
+        </article>
+    </div><!--end .col -->
+</div><!--end .row -->
 
-        <hr class="ruler-xxl">
+<hr class="ruler-xxl">
 
-        <form>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <article class="margin-bottom-xxl">
-                        <h3>I. О себе</h3>
-                    </article>
-                </div><!--end .col -->
-                <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" asp-for="Contacts">
-                                    <label>Контактные данные: гор./моб.тел., e-mail, ссылки на соц.сети:</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" asp-for="City">
-                                    <label>Город проживания: </label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" asp-for="BirthDate">
-                                    <label>Дата рождения (чч.мм.гг): </label>
-                                </div>
-                                <div class="form-group">
-                                    <select id="education-select" class="form-control" asp-for="Education">
-                                        <option value="">&nbsp;</option>
-                                        <option value="Basic">Общее базовое (на базе 9 классов средней школы)</option>
-                                        <option value="Secondary">Общее среднее (на базе 11 классов)</option>
-                                        <option value="Initial vocational">Начальное профессиональное (ПТУ, лицеи)</option>
-                                        <option value="Secondary special">Среднее специальное (техникумы, колледжи)</option>
-                                        <option value="High">Высшее профессиональное (высшие колледжи, институты, университеты, академии)</option>
-                                    </select>
-                                    <label for="education-select">Образование (последнее, на настоящий момент):</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" asp-for="AdditionalEducation">
-                                    <label>Дополнительное образование (образовательные курсы, повышение квалификации, профессиональная переподготовка): </label>
-                                </div>
-                                <div class="form-group">
-                                    <br />
-                                    <input type="text" class="form-control" asp-for="PreviousActivities">
-                                    <label>Укажите виды деятельности, которыми Вы занимались (в том числе, например, репетиторство, сетевой маркетинг, оформление стенгазеты, монтаж видеороликов и др.): </label>
-                                </div>
-                                <div class="form-group">
-                                    <br />
-                                    <input type="text" class="form-control" asp-for="PreviousProjects">
-                                    <label>Участвовали ли Вы в каких-либо конкурсах, хакатонах, проектах (укажите название и в каком качестве участвовали: автор идеи, присоединившийся волонтер): </label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" asp-for="SelfEducation">
-                                    <label>Самообразование (опишите, что Вы изучаете самостоятельно; темы, в которых Вы расширяете знания по Вашей профессии или вне ее рамок): </label>
-                                </div>
-                            </div>
-                        </div><!--end .card-body -->
-                    </div><!--end .card -->
-                </div><!--end .col -->
-            </div>
-            <hr class="ruler-xxl">
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <article class="margin-bottom-xxl">
-                        <h3>II. Выбираем профессию</h3>
-                    </article>
-                </div><!--end .col -->
-                <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form">
-                                <div class="form-group">
-                                    <br />
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsPrManager">
-                                            <span>Пиар-менеджер</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsEventManager">
-                                            <span>Организатор мероприятий (Event manager)</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsProjectManager">
-                                            <span>Управление проектами (Project manager)</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsMarketer">
-                                            <span>Маркетолог</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsClothesDesigner">
-                                            <span>Дизайнер одежды</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsWebDesigner">
-                                            <span>Веб-дизайнер</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsGraphicalDesigner">
-                                            <span>Графический дизайнер</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsIllustrator">
-                                            <span>Иллюстратор</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsPhotographer">
-                                            <span>Фотограф</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsCameraman">
-                                            <span>Видеооператор</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsWriter">
-                                            <span>Писатель</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsEditor">
-                                            <span>Редактор</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsInterpreter">
-                                            <span>Переводчик</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsSmm">
-                                            <span>Контент-менеджер + копирайтер+SMM</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsLayer">
-                                            <span>Юрист</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsArchitect">
-                                            <span>Архитектор</span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-styled">
-                                        <label>
-                                            <input type="checkbox" value="" asp-for="IsScreenwriter">
-                                            <span>Сценарист</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Выберите интересующую Вас профессию (одну или несколько):
-                                    </label>
-                                </div>
-                            </div>
-                        </div><!--end .card-body -->
-                    </div><!--end .card -->
-                </div><!--end .col -->
-            </div>
-            <hr class="ruler-xxl">
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <article class="margin-bottom-xxl">
-                        <h3>III. SkillsCub. Профориентация</h3>
-                    </article>
-                </div><!--end .col -->
-                <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form">
-                                <div class="form-group">
-                                    <br />
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="интроверт"  asp-for="Psychotic">
-                                            <span>Интроверт</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="экстраверт" asp-for="Psychotic">
-                                            <span>Экстраверт</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="амбиверт" asp-for="Psychotic">
-                                            <span>Амбиверт</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Ваш психотип <a href="https://docs.google.com/document/d/15JQFz8N9ApQwrtLCPozzDoFoq-ymf4gp3WKWjXCiwec/edit?usp=sharing">(определить)</a>:
-                                    </label>
-                                    </div>
-                                <div class="form-group">
-                                    <br />
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="теоретическое понятийное" asp-for="KindOfThinking">
-                                            <span>Теоретическое понятийное</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="теоретическое образное" asp-for="KindOfThinking">
-                                            <span>Теоретическое образное</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="наглядно-образное" asp-for="KindOfThinking">
-                                            <span>Наглядно-образное</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="наглядно-действенное" asp-for="KindOfThinking">
-                                            <span>Наглядно-действенное</span>
-                                        </label>
-                                    </div>
-
-                                    <label>
-                                        Ваш вид мышления <a href="https://docs.google.com/document/d/1dBhWBNcWixpYTnVuqRLPy_spV6Mlh00NvndB6E8aUkU/edit?usp=sharing">(определить)</a>:
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <br />
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="В первой половине дня" asp-for="ActivityTime">
-                                            <span>В первой половине дня</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="Во второй половине дня" asp-for="ActivityTime">
-                                            <span>Во второй половине дня</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="амбиверт" asp-for="ActivityTime">
-                                            <span>Вне зависимости от времени суток</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Наиболее комфортабельный для Вас режим физической и интеллектуальной активности:
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <br />
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="интроверт" asp-for="ScheduleOfWorkingDays">
-                                            <span>Интроверт</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="экстраверт" asp-for="ScheduleOfWorkingDays">
-                                            <span>Экстраверт</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Ваш психотип <a href="https://docs.google.com/document/d/15JQFz8N9ApQwrtLCPozzDoFoq-ymf4gp3WKWjXCiwec/edit?usp=sharing">(определить)</a>:
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Ваше отношение к работе в команде: нравится или вызывает трудности? Опишите, почему. </label>
-
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="CommandWork"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Опишите примеры из личного или профессионального опыта по взаимодействию в команде. Укажите, в каком качестве выступали. Например: онлайн-игра "TERA" - руководитель гильдии; участник(ца) музыкальной группы - организация репетиций, концертов.
-                                    </label>
-                                    <br />
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="CommandProfessionalExperience"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Ваше отношение к составлению четкого плана действий: помогает или ограничивает? Опишите, почему.
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="ActionPlan"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Опишите примеры из личного или профессионального опыта в планировании. Например: самостоятельно планировал(а) путешествие в город/страну N.
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="PlanningExperience"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <br />
-                                    <br />
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="true" asp-for="Responsibility">
-                                            <span>большая ответственность помогает мне собраться, мотивирует</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="false" asp-for="Responsibility">
-                                            <span>большая ответственность давит на меня, мешает сосредоточиться</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Готовы ли Вы брать на себя одного(-у) большую ответственность? Например, как на Вас повлияет назначение ответственным за большой проект, части которого будут выполнять другие люди:
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Ваше отношение к необходимости коммуникации с незнакомыми или статусными людьми: притягивает или отталкивает Вас? Опишите, почему.
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="NeedForCommunication"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Опишите примеры из личного или профессионального опыта в сфере коммуникаций и убеждения. Например: обращался(ась) с просьбой в госучреждение, убедил(а) друга не сорить в городе, имел(а) опыт "холодных звонков", улаживал(а) конфликты, мирил(а) спорщиков.
-                                    </label>
-                                    <br />
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="CommunicationExperience"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Вели ли Вы когда-либо блог или группу в соц.сети? Приходилось ли Вам сочинять какие-либо тексты, в том числе на заданную тему? Укажите ссылки.
-                                    </label>
-                                    <br />
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="SMMExperience"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <br />
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="нравится" asp-for="RelationToPerformances">
-                                            <span>Нравится, получаю удовольствие</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="боюсь и хочу"asp-for="RelationToPerformances">
-                                            <span>Боюсь, но хочу побороть свой страх</span>
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-styled">
-                                        <label>
-                                            <input type="radio" value="Боюсь и не хочу" asp-for="RelationToPerformances">
-                                            <span>Боюсь, не хочу связываться никогда</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Ваше отношение к любого рода публичным выступлениям:
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Результат Вашей работы резко раскритиковали. Опишите Ваши ощущения и дальнейшие действия:
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="ResponseForCritic"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Вы получили возможность выполнить творческое задание, но со строгими ограничениями. Опишите Ваши ощущения и дальнейшие действия:
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="CreativityLimitation"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Можете ли Вы сказать, что Вам присуще такое качество как способность сочетать несочетаемое? Приведите примеры, если Вам приходилось это делать:
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="CombineIncongruous"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Замечали ли Вы, что оцениваете попадающуюся Вам на глаза рекламу (афиши, баннеры, видео-ролики, промо-акции)? Как именно Вы ее анализируете?
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="AddAssessment"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Вели ли Вы какую либо статистику? Приведите примеры из личного или профессионального опыта
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="MaintainingStatistics"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Каким образом Вам нравится делать выбор при покупке товара или услуги? Опишите реальные случаи покупки.
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="PurchasingAlgorithm"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Приходилось ли Вам планировать бюджет, например, дня рождения? Опишите свой опыт.
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="BudgetPlanning"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Комфортно ли Вы себя чувствуете объясняя что-то новое детям или пожилыи людям? Опишите, что чувствуете.
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="ExplainingComfort"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Во всех ли случаях цель оправдывает средства? Можете ли вы привести примеры исключений?
-                                    </label>
-                                    <div class="form-group">
-                                        <textarea class="form-control" asp-for="EndJustifiesTheMeans"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Что ужержит Вас от раскрытия определенной тайны?
-                                    </label>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" asp-for="DisclosureOPfSecrecy" />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div><!--end .card-body -->
-                    </div><!--end .card -->
-                </div><!--end .col -->
-            </div>
-
-            <hr class="ruler-xxl">
-
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <article class="margin-bottom-xxl">
-                        <h3>IV. SkillsCub.Бонус </h3>
-                        <p>
-                            Только после прохождения курса по профессии.
-                        </p>
-                    </article>
-                </div><!--end .col -->
-                <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form">
-                                <div class="form-group">
-                                    <div class="checkbox checkbox-styled">
-                                        <br />
-                                        <br />
-                                        <label>
-                                            <input type="checkbox" id="mailing-list" value="true" asp-for="IsAddToTheMailingList">
-                                            <span>Да</span>
-                                        </label>
-                                    </div>
-                                    <label>
-                                        Мы сотрудничаем с социальными и коммерческими проектами, а также работаем по индивидуальным запросам работодателей. Хотите ли Вы, чтобы мы добавили Вас в списки рассылки вакансий по выбранной профессии?
-                                    </label>
-                                </div>
-
-                            </div>
-                        </div><!--end .card-body -->
-                    </div><!--end .card -->
-                </div><!--end .col -->
-            </div>
-
-            <hr class="ruler-xxl">
-
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <article class="margin-bottom-xxl">
-                    <h3>SkillsCub.Бонус </h3>
-                </article>
-            </div><!--end .col -->
-            <div class="col-md-4 col-sm-6">
-                <div class="card">
-                    <div class="card-head style-primary">
-                        <header>Вид занятости</header>
+<form>
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-12">
+        <article class="margin-bottom-xxl">
+            <h3>I. О себе</h3>
+        </article>
+    </div><!--end .col -->
+    <div class="col-lg-9 col-md-8 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Contacts">
+                        <label>Контактные данные: гор./моб.тел., e-mail, ссылки на соц.сети:</label>
                     </div>
-                    <div class="card-body">
-                        <div class="form">
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsFullDay">
-                                        <span>Полная занятость</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsFlexibleSchedule">
-                                        <span>Гибкий график</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox-inline checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsFlextime">
-                                        <span>Скользящий график</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsShiftChart">
-                                        <span>Посменный график</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsTemporaryJob">
-                                        <span>Временная работа</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsOneOffWork">
-                                        <span>Разовая работа</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsFreelanceWork">
-                                        <span>Внештатная работа</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox checkbox-styled">
-                                    <label>
-                                        <input type="checkbox" value="true" asp-for="IsRemoteWork">
-                                        <span>Удаленная работа</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--end .card-body -->
-                </div><!--end .card -->
-            </div><!--end .col -->
-
-            <div class="col-lg-offset-1 col-md-4 col-sm-6">
-                <div class="card">
-                    <div class="card-head style-primary">
-                        <header>Формат работы</header>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="City">
+                        <label>Город проживания: </label>
                     </div>
-                    <div class="card-body">
-                        <div class="form" role="form">
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsInCollective">
-                                    <span>В коллективе</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsIndividual">
-                                    <span>Индивидуально</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsCuratorNeeded">
-                                    <span>Нужен куратор (или ментор)</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsPayable">
-                                    <span>Оплачиваемая</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsFree">
-                                    <span>Безвозмездная</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div><!--end .card-body -->
-                </div><!--end .card -->
-                <div class="card">
-                    <div class="card-head style-primary">
-                        <header>Хотите ли вы получить по завершению</header>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="BirthDate">
+                        <label>Дата рождения (чч.мм.гг): </label>
                     </div>
-                    <div class="card-body">
-                        <div class="form" role="form">
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsNeedRecommendation">
-                                    <span>Рекомендации</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-styled">
-                                <label>
-                                    <input type="checkbox" value="true" asp-for="IsNeedCV">
-                                    <span>Портфолио</span>
-                                </label>
-                            </div>
+                    <div class="form-group">
+                        <select id="education-select" class="form-control" asp-for="Education">
+                            <option value="">&nbsp;</option>
+                            <option value="Basic">Общее базовое (на базе 9 классов средней школы)</option>
+                            <option value="Secondary">Общее среднее (на базе 11 классов)</option>
+                            <option value="Initial vocational">Начальное профессиональное (ПТУ, лицеи)</option>
+                            <option value="Secondary special">Среднее специальное (техникумы, колледжи)</option>
+                            <option value="High">Высшее профессиональное (высшие колледжи, институты, университеты, академии)</option>
+                        </select>
+                        <label for="education-select">Образование (последнее, на настоящий момент):</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="AdditionalEducation">
+                        <label>Дополнительное образование (образовательные курсы, повышение квалификации, профессиональная переподготовка): </label>
+                    </div>
+                    <div class="form-group">
+                        <br />
+                        <input type="text" class="form-control" asp-for="PreviousActivities">
+                        <label>Укажите виды деятельности, которыми Вы занимались (в том числе, например, репетиторство, сетевой маркетинг, оформление стенгазеты, монтаж видеороликов и др.): </label>
+                    </div>
+                    <div class="form-group">
+                        <br />
+                        <input type="text" class="form-control" asp-for="PreviousProjects">
+                        <label>Участвовали ли Вы в каких-либо конкурсах, хакатонах, проектах (укажите название и в каком качестве участвовали: автор идеи, присоединившийся волонтер): </label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="SelfEducation">
+                        <label>Самообразование (опишите, что Вы изучаете самостоятельно; темы, в которых Вы расширяете знания по Вашей профессии или вне ее рамок): </label>
+                    </div>
+                </div>
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </div><!--end .col -->
+</div>
+<hr class="ruler-xxl">
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-12">
+        <article class="margin-bottom-xxl">
+            <h3>II. Выбираем профессию</h3>
+        </article>
+    </div><!--end .col -->
+    <div class="col-lg-9 col-md-8 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form">
+                    <div class="form-group">
+                        <br />
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsPrManager">
+                                <span>Пиар-менеджер</span>
+                            </label>
                         </div>
-                    </div><!--end .card-body -->
-                </div><!--end .card -->
-            </div><!--end .col -->
-        </div>
-        <hr class="ruler-xxl">
-        <div class="row">
-            <div class="col-lg-offset-5 col-lg-2 col-md-offset-4 col-md-4 col-sm-12">
-                <button type="submit" class="btn btn-primary">Подтвердить</button>
-            </div>
-        </div>
-
-
-
-        </form>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsEventManager">
+                                <span>Организатор мероприятий (Event manager)</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsProjectManager">
+                                <span>Управление проектами (Project manager)</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsMarketer">
+                                <span>Маркетолог</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsClothesDesigner">
+                                <span>Дизайнер одежды</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsWebDesigner">
+                                <span>Веб-дизайнер</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsGraphicalDesigner">
+                                <span>Графический дизайнер</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsIllustrator">
+                                <span>Иллюстратор</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsPhotographer">
+                                <span>Фотограф</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsCameraman">
+                                <span>Видеооператор</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsWriter">
+                                <span>Писатель</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsEditor">
+                                <span>Редактор</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsInterpreter">
+                                <span>Переводчик</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsSmm">
+                                <span>Контент-менеджер + копирайтер+SMM</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsLayer">
+                                <span>Юрист</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsArchitect">
+                                <span>Архитектор</span>
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsScreenwriter">
+                                <span>Сценарист</span>
+                            </label>
+                        </div>
+                        <label>
+                            Выберите интересующую Вас профессию (одну или несколько):
+                        </label>
+                    </div>
+                </div>
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </div><!--end .col -->
+</div>
+<hr class="ruler-xxl">
+<div class="row">
+<div class="col-lg-3 col-md-4 col-sm-12">
+    <article class="margin-bottom-xxl">
+        <h3>III. SkillsCub. Профориентация</h3>
+    </article>
+</div><!--end .col -->
+<div class="col-lg-9 col-md-8 col-sm-12">
+<div class="card">
+<div class="card-body">
+<div class="form">
+<div class="form-group">
+    <br />
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="интроверт"  asp-for="Psychotic">
+            <span>Интроверт</span>
+        </label>
     </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="экстраверт" asp-for="Psychotic">
+            <span>Экстраверт</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="амбиверт" asp-for="Psychotic">
+            <span>Амбиверт</span>
+        </label>
+    </div>
+    <label>
+        Ваш психотип <a href="https://docs.google.com/document/d/15JQFz8N9ApQwrtLCPozzDoFoq-ymf4gp3WKWjXCiwec/edit?usp=sharing">(определить)</a>:
+    </label>
+</div>
+<div class="form-group">
+    <br />
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="теоретическое понятийное" asp-for="KindOfThinking">
+            <span>Теоретическое понятийное</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="теоретическое образное" asp-for="KindOfThinking">
+            <span>Теоретическое образное</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="наглядно-образное" asp-for="KindOfThinking">
+            <span>Наглядно-образное</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="наглядно-действенное" asp-for="KindOfThinking">
+            <span>Наглядно-действенное</span>
+        </label>
+    </div>
+
+    <label>
+        Ваш вид мышления <a href="https://docs.google.com/document/d/1dBhWBNcWixpYTnVuqRLPy_spV6Mlh00NvndB6E8aUkU/edit?usp=sharing">(определить)</a>:
+    </label>
+</div>
+<div class="form-group">
+    <br />
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="В первой половине дня" asp-for="ActivityTime">
+            <span>В первой половине дня</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="Во второй половине дня" asp-for="ActivityTime">
+            <span>Во второй половине дня</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="амбиверт" asp-for="ActivityTime">
+            <span>Вне зависимости от времени суток</span>
+        </label>
+    </div>
+    <label>
+        Наиболее комфортабельный для Вас режим физической и интеллектуальной активности:
+    </label>
+</div>
+
+<div class="form-group">
+    <br />
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="интроверт" asp-for="ScheduleOfWorkingDays">
+            <span>Интроверт</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="экстраверт" asp-for="ScheduleOfWorkingDays">
+            <span>Экстраверт</span>
+        </label>
+    </div>
+    <label>
+        Ваш психотип <a href="https://docs.google.com/document/d/15JQFz8N9ApQwrtLCPozzDoFoq-ymf4gp3WKWjXCiwec/edit?usp=sharing">(определить)</a>:
+    </label>
+</div>
+
+<div class="form-group">
+    <label>Ваше отношение к работе в команде: нравится или вызывает трудности? Опишите, почему. </label>
+
+    <div class="form-group">
+        <textarea class="form-control" asp-for="CommandWork"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Опишите примеры из личного или профессионального опыта по взаимодействию в команде. Укажите, в каком качестве выступали. Например: онлайн-игра "TERA" - руководитель гильдии; участник(ца) музыкальной группы - организация репетиций, концертов.
+    </label>
+    <br />
+    <div class="form-group">
+        <textarea class="form-control" asp-for="CommandProfessionalExperience"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Ваше отношение к составлению четкого плана действий: помогает или ограничивает? Опишите, почему.
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="ActionPlan"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Опишите примеры из личного или профессионального опыта в планировании. Например: самостоятельно планировал(а) путешествие в город/страну N.
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="PlanningExperience"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <br />
+    <br />
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="true" asp-for="Responsibility">
+            <span>большая ответственность помогает мне собраться, мотивирует</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="false" asp-for="Responsibility">
+            <span>большая ответственность давит на меня, мешает сосредоточиться</span>
+        </label>
+    </div>
+    <label>
+        Готовы ли Вы брать на себя одного(-у) большую ответственность? Например, как на Вас повлияет назначение ответственным за большой проект, части которого будут выполнять другие люди:
+    </label>
+</div>
+
+<div class="form-group">
+    <label>
+        Ваше отношение к необходимости коммуникации с незнакомыми или статусными людьми: притягивает или отталкивает Вас? Опишите, почему.
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="NeedForCommunication"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Опишите примеры из личного или профессионального опыта в сфере коммуникаций и убеждения. Например: обращался(ась) с просьбой в госучреждение, убедил(а) друга не сорить в городе, имел(а) опыт "холодных звонков", улаживал(а) конфликты, мирил(а) спорщиков.
+    </label>
+    <br />
+    <div class="form-group">
+        <textarea class="form-control" asp-for="CommunicationExperience"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Вели ли Вы когда-либо блог или группу в соц.сети? Приходилось ли Вам сочинять какие-либо тексты, в том числе на заданную тему? Укажите ссылки.
+    </label>
+    <br />
+    <div class="form-group">
+        <textarea class="form-control" asp-for="SMMExperience"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <br />
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="нравится" asp-for="RelationToPerformances">
+            <span>Нравится, получаю удовольствие</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="боюсь и хочу"asp-for="RelationToPerformances">
+            <span>Боюсь, но хочу побороть свой страх</span>
+        </label>
+    </div>
+    <div class="radio radio-styled">
+        <label>
+            <input type="radio" value="Боюсь и не хочу" asp-for="RelationToPerformances">
+            <span>Боюсь, не хочу связываться никогда</span>
+        </label>
+    </div>
+    <label>
+        Ваше отношение к любого рода публичным выступлениям:
+    </label>
+</div>
+
+<div class="form-group">
+    <label>
+        Результат Вашей работы резко раскритиковали. Опишите Ваши ощущения и дальнейшие действия:
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="ResponseForCritic"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Вы получили возможность выполнить творческое задание, но со строгими ограничениями. Опишите Ваши ощущения и дальнейшие действия:
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="CreativityLimitation"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Можете ли Вы сказать, что Вам присуще такое качество как способность сочетать несочетаемое? Приведите примеры, если Вам приходилось это делать:
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="CombineIncongruous"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Замечали ли Вы, что оцениваете попадающуюся Вам на глаза рекламу (афиши, баннеры, видео-ролики, промо-акции)? Как именно Вы ее анализируете?
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="AddAssessment"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Вели ли Вы какую либо статистику? Приведите примеры из личного или профессионального опыта
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="MaintainingStatistics"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Каким образом Вам нравится делать выбор при покупке товара или услуги? Опишите реальные случаи покупки.
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="PurchasingAlgorithm"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Приходилось ли Вам планировать бюджет, например, дня рождения? Опишите свой опыт.
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="BudgetPlanning"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Комфортно ли Вы себя чувствуете объясняя что-то новое детям или пожилыи людям? Опишите, что чувствуете.
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="ExplainingComfort"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Во всех ли случаях цель оправдывает средства? Можете ли вы привести примеры исключений?
+    </label>
+    <div class="form-group">
+        <textarea class="form-control" asp-for="EndJustifiesTheMeans"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>
+        Что ужержит Вас от раскрытия определенной тайны?
+    </label>
+    <div class="form-group">
+        <input type="text" class="form-control" asp-for="DisclosureOPfSecrecy" />
+    </div>
+</div>
+
+</div>
+</div><!--end .card-body -->
+</div><!--end .card -->
+</div><!--end .col -->
+</div>
+
+<hr class="ruler-xxl">
+
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-12">
+        <article class="margin-bottom-xxl">
+            <h3>IV. SkillsCub.Бонус </h3>
+            <p>
+                Только после прохождения курса по профессии.
+            </p>
+        </article>
+    </div><!--end .col -->
+    <div class="col-lg-9 col-md-8 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form">
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <br />
+                            <br />
+                            <label>
+                                <input type="checkbox" id="mailing-list" asp-for="IsAddToTheMailingList">
+                                <span>Да</span>
+                            </label>
+                        </div>
+                        <label>
+                            Мы сотрудничаем с социальными и коммерческими проектами, а также работаем по индивидуальным запросам работодателей. Хотите ли Вы, чтобы мы добавили Вас в списки рассылки вакансий по выбранной профессии?
+                        </label>
+                    </div>
+
+                </div>
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </div><!--end .col -->
+</div>
+
+<hr class="ruler-xxl">
+
+<div class="row" id="only-for-bonus">
+    <div class="col-lg-3 col-md-4 col-sm-12">
+        <article class="margin-bottom-xxl">
+            <h3>SkillsCub.Бонус </h3>
+        </article>
+    </div><!--end .col -->
+    <div class="col-md-4 col-sm-6">
+        <div class="card">
+            <div class="card-head style-primary">
+                <header>Вид занятости</header>
+            </div>
+            <div class="card-body">
+                <div class="form">
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsFullDay">
+                                <span>Полная занятость</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsFlexibleSchedule">
+                                <span>Гибкий график</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-inline checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsFlextime">
+                                <span>Скользящий график</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsShiftChart">
+                                <span>Посменный график</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsTemporaryJob">
+                                <span>Временная работа</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsOneOffWork">
+                                <span>Разовая работа</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsFreelanceWork">
+                                <span>Внештатная работа</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-styled">
+                            <label>
+                                <input type="checkbox" asp-for="IsRemoteWork">
+                                <span>Удаленная работа</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </div><!--end .col -->
+
+    <div class="col-lg-offset-1 col-md-4 col-sm-6">
+        <div class="card">
+            <div class="card-head style-primary">
+                <header>Формат работы</header>
+            </div>
+            <div class="card-body">
+                <div class="form" role="form">
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsInCollective">
+                            <span>В коллективе</span>
+                        </label>
+                    </div>
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsIndividual">
+                            <span>Индивидуально</span>
+                        </label>
+                    </div>
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsCuratorNeeded">
+                            <span>Нужен куратор (или ментор)</span>
+                        </label>
+                    </div>
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsPayable">
+                            <span>Оплачиваемая</span>
+                        </label>
+                    </div>
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsFree">
+                            <span>Безвозмездная</span>
+                        </label>
+                    </div>
+                </div>
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+        <div class="card">
+            <div class="card-head style-primary">
+                <header>Хотите ли вы получить по завершению</header>
+            </div>
+            <div class="card-body">
+                <div class="form" role="form">
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsNeedRecommendation">
+                            <span>Рекомендации</span>
+                        </label>
+                    </div>
+                    <div class="checkbox checkbox-styled">
+                        <label>
+                            <input type="checkbox"  asp-for="IsNeedCV">
+                            <span>Портфолио</span>
+                        </label>
+                    </div>
+                </div>
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </div><!--end .col -->
+</div>
+<hr class="ruler-xxl">
+<div class="row">
+    <div class="col-lg-offset-5 col-lg-2 col-md-offset-4 col-md-4 col-sm-12">
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+    </div>
+</div>
+
+
+
+</form>
+</div>
 </section>
+
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+}

@@ -6,7 +6,7 @@
 {
     <li class="dropdown">
         <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
-            <img src="~/img/avatar1.jpg?1403934956" alt="" />
+            <img src="~/img/avatar.png"  alt="" />
             <span class="profile-info">
                 @((await UserManager.GetUserAsync(User)).FirstName) @((await UserManager.GetUserAsync(User)).LastName)
                 <small>@((await UserManager.GetRolesAsync(await UserManager.GetUserAsync(User)))[0])</small>
@@ -24,7 +24,7 @@ else
 {
     <li class="dropdown">
         <a href="#" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
-            <img src="~/img/avatar1.jpg?1403934956" alt="" />
+            <img src="~/img/avatar.png" alt="" />
             <span class="profile-info">
                 Unauthorized User
                 <small>Guest</small>

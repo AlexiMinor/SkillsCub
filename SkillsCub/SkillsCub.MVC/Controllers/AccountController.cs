@@ -563,6 +563,7 @@ namespace SkillsCub.MVC.Controllers
         #endregion
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Questionnaire()
         {
             return View();

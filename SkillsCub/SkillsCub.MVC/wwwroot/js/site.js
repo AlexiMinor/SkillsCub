@@ -173,8 +173,17 @@ $(document).ready(function () {
         let exId = $('#exerciseId')[0].value;
         removeFile(filename, exId);
     });
+    $('#only-for-bonus').hide();
 
-    GetMessages(lastDateTime);
+    $('#mailing-list').change(function() {
+        if ($('#mailing-list')[0].checked) {
+            $('#only-for-bonus').show("slow");
+        } else {
+            $('#only-for-bonus').hide("slow");
+        }
+    });
+
+    //GetMessages(lastDateTime);
 });
 
 
