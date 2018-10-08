@@ -1,12 +1,83 @@
-/*@import "mixins/hide-text.less";
-@import "mixins/opacity.less";
-@import "mixins/image.less";
-@import "mixins/labels.less";
-@import "mixins/reset-filter.less";
-@import "mixins/resize.less";
-@import "mixins/responsive-visibility.less";
-@import "mixins/size.less";
-@import "mixins/tab-focus.less";*/
+@-webkit-keyframes lock-collapse {
+  from {
+    height: 1200px;
+  }
+  to {
+    height: 380px;
+  }
+}
+@-moz-keyframes lock-collapse {
+  from {
+    height: 1200px;
+  }
+  to {
+    height: 380px;
+  }
+}
+@-o-keyframes lock-collapse {
+  from {
+    height: 1200px;
+  }
+  to {
+    height: 380px;
+  }
+}
+@-ms-keyframes lock-collapse {
+  from {
+    height: 1200px;
+  }
+  to {
+    height: 380px;
+  }
+}
+@keyframes lock-collapse {
+  from {
+    height: 1200px;
+  }
+  to {
+    height: 380px;
+  }
+}
+@-webkit-keyframes login-expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 325px;
+  }
+}
+@-moz-keyframes login-expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 325px;
+  }
+}
+@-o-keyframes login-expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 325px;
+  }
+}
+@-ms-keyframes login-expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 325px;
+  }
+}
+@keyframes login-expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 325px;
+  }
+}
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -55,13 +126,11 @@
     transform-origin: top;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -73,13 +142,11 @@
     transform-origin: top;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -91,13 +158,11 @@
     transform-origin: top;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -109,13 +174,11 @@
     transform-origin: top;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -127,13 +190,11 @@
     transform-origin: top;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -145,13 +206,11 @@
     transform-origin: bottom;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -163,13 +222,11 @@
     transform-origin: bottom;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -181,13 +238,11 @@
     transform-origin: bottom;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -199,13 +254,11 @@
     transform-origin: bottom;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -217,13 +270,11 @@
     transform-origin: bottom;
     -webkit-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     transform: scale(0, 0);
   }
   to {
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     transform: scale(1, 1);
   }
 }
@@ -231,14 +282,12 @@
   from {
     -webkit-transform: translate(-20px, 0);
     -ms-transform: translate(-20px, 0);
-    -o-transform: translate(-20px, 0);
     transform: translate(-20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -247,14 +296,12 @@
   from {
     -webkit-transform: translate(-20px, 0);
     -ms-transform: translate(-20px, 0);
-    -o-transform: translate(-20px, 0);
     transform: translate(-20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -263,14 +310,12 @@
   from {
     -webkit-transform: translate(-20px, 0);
     -ms-transform: translate(-20px, 0);
-    -o-transform: translate(-20px, 0);
     transform: translate(-20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -279,14 +324,12 @@
   from {
     -webkit-transform: translate(-20px, 0);
     -ms-transform: translate(-20px, 0);
-    -o-transform: translate(-20px, 0);
     transform: translate(-20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -295,14 +338,12 @@
   from {
     -webkit-transform: translate(-20px, 0);
     -ms-transform: translate(-20px, 0);
-    -o-transform: translate(-20px, 0);
     transform: translate(-20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -311,14 +352,12 @@
   from {
     -webkit-transform: translate(20px, 0);
     -ms-transform: translate(20px, 0);
-    -o-transform: translate(20px, 0);
     transform: translate(20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -327,14 +366,12 @@
   from {
     -webkit-transform: translate(20px, 0);
     -ms-transform: translate(20px, 0);
-    -o-transform: translate(20px, 0);
     transform: translate(20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -343,14 +380,12 @@
   from {
     -webkit-transform: translate(20px, 0);
     -ms-transform: translate(20px, 0);
-    -o-transform: translate(20px, 0);
     transform: translate(20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -359,14 +394,12 @@
   from {
     -webkit-transform: translate(20px, 0);
     -ms-transform: translate(20px, 0);
-    -o-transform: translate(20px, 0);
     transform: translate(20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -375,14 +408,12 @@
   from {
     -webkit-transform: translate(20px, 0);
     -ms-transform: translate(20px, 0);
-    -o-transform: translate(20px, 0);
     transform: translate(20px, 0);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -391,14 +422,12 @@
   from {
     -webkit-transform: translate(0, -20px);
     -ms-transform: translate(0, -20px);
-    -o-transform: translate(0, -20px);
     transform: translate(0, -20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -407,14 +436,12 @@
   from {
     -webkit-transform: translate(0, -20px);
     -ms-transform: translate(0, -20px);
-    -o-transform: translate(0, -20px);
     transform: translate(0, -20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -423,14 +450,12 @@
   from {
     -webkit-transform: translate(0, -20px);
     -ms-transform: translate(0, -20px);
-    -o-transform: translate(0, -20px);
     transform: translate(0, -20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -439,14 +464,12 @@
   from {
     -webkit-transform: translate(0, -20px);
     -ms-transform: translate(0, -20px);
-    -o-transform: translate(0, -20px);
     transform: translate(0, -20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -455,14 +478,12 @@
   from {
     -webkit-transform: translate(0, -20px);
     -ms-transform: translate(0, -20px);
-    -o-transform: translate(0, -20px);
     transform: translate(0, -20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -471,14 +492,12 @@
   from {
     -webkit-transform: translate(0, 20px);
     -ms-transform: translate(0, 20px);
-    -o-transform: translate(0, 20px);
     transform: translate(0, 20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -487,14 +506,12 @@
   from {
     -webkit-transform: translate(0, 20px);
     -ms-transform: translate(0, 20px);
-    -o-transform: translate(0, 20px);
     transform: translate(0, 20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -503,14 +520,12 @@
   from {
     -webkit-transform: translate(0, 20px);
     -ms-transform: translate(0, 20px);
-    -o-transform: translate(0, 20px);
     transform: translate(0, 20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -519,14 +534,12 @@
   from {
     -webkit-transform: translate(0, 20px);
     -ms-transform: translate(0, 20px);
-    -o-transform: translate(0, 20px);
     transform: translate(0, 20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
@@ -535,33 +548,16 @@
   from {
     -webkit-transform: translate(0, 20px);
     -ms-transform: translate(0, 20px);
-    -o-transform: translate(0, 20px);
     transform: translate(0, 20px);
     opacity: 0;
   }
   to {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
     opacity: 1;
   }
 }
-/*@import "mixins/panels.less";
-@import "mixins/pagination.less";
-@import "mixins/list-group.less";
-@import "mixins/nav-divider.less";
-
-@import "mixins/progress-bar.less";
-@import "mixins/table-row.less";*/
-/*@import "mixins/background-variant.less";
-@import "mixins/border-radius.less";
-@import "mixins/gradients.less";*/
-/*@import "mixins/clearfix.less";
-@import "mixins/center-block.less";
-@import "mixins/nav-vertical-align.less";
-@import "mixins/grid-framework.less";
-@import "mixins/grid.less";*/
 /*! jQuery UI - v1.10.3 - 2013-10-27
 * http://jqueryui.com
 * Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css, jquery.ui.theme.css
@@ -1113,7 +1109,7 @@ button.ui-button::-moz-focus-inner {
 .ui-menu .ui-menu-item a.ui-state-active {
   font-weight: normal;
   margin: -1px;
-  background: #35a6f1;
+  background: #c34d5b;
   color: #fff;
 }
 .ui-menu .ui-state-disabled {
@@ -1331,19 +1327,19 @@ body .ui-tooltip {
   color: #222222;
 }
 .ui-slider.ui-widget-content {
-  background: #e5e6e6;
+  background: #eeeeee;
 }
 .ui-widget-content a {
   color: #222222;
 }
 .ui-widget-header {
   border: 1px solid #aaaaaa;
-  background: #35a6f1;
-  color: #000000;
+  background: #c34d5b;
+  color: #ffffff;
   font-weight: bold;
 }
 .ui-widget-header a {
-  color: #000000;
+  color: #ffffff;
 }
 /* Interaction states
 ----------------------------------*/
@@ -1382,7 +1378,7 @@ body .ui-tooltip {
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-  border: 1px solid #35a6f1;
+  border: 1px solid #c34d5b;
   background: #ffffff url(images/ui-bg_flat_100_ffffff_40x100.png) 50% 50% repeat-x;
   font-weight: normal;
   color: #212121;
@@ -1398,9 +1394,9 @@ body .ui-tooltip {
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-  border: 1px solid #35a6f1;
-  background: #35a6f1;
-  color: #000000;
+  border: 1px solid #c34d5b;
+  background: #c34d5b;
+  color: #ffffff;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,

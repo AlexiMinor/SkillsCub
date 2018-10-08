@@ -115,12 +115,12 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         /// <summary>
         /// Gets or sets the kind of activity.
         /// </summary>
-        public string KindOfActivity { get; set; }
+        public string ActivityTime { get; set; }
 
         /// <summary>
         /// Gets or sets the work time.
         /// </summary>
-        public string WorkTime { get; set; }
+        public string ScheduleOfWorkingDays { get; set; }
 
         /// <summary>
         /// Gets or sets the command work.
@@ -226,43 +226,54 @@ namespace SkillsCub.DataLibrary.Entities.Implementation
         /// <summary>
         /// Gets or sets a value indicating whether full day.
         /// </summary>
-        public bool FullDay { get; set; }
+        public bool IsFullDay { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether flexible schedule.
         /// </summary>
-        public bool FlexibleSchedule { get; set; }
+        public bool IsFlexibleSchedule { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether flextime.
         /// </summary>
-        public bool Flextime { get; set; }
+        public bool IsFlextime { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether shift chart.
         /// </summary>
-        public bool ShiftChart { get; set; }
+        public bool IsShiftChart { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether temporary job.
         /// </summary>
-        public bool TemporaryJob { get; set; }
+        public bool IsTemporaryJob { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether one off work.
         /// </summary>
-        public bool OneOffWork { get; set; }
+        public bool IsOneOffWork { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether freelance work.
         /// </summary>
-        public bool FreelanceWork { get; set; }
+        public bool IsFreelanceWork { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether remote work.
         /// </summary>
-        public bool RemoteWork { get; set; }
+        public bool IsRemoteWork { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsInCollective { get; set; }
+        public bool IsIndividual { get; set; }
+        public bool IsCuratorNeeded { get; set; }
+        public bool IsPayable { get; set; }
+        public bool IsFree { get; set; }
+
+        public bool IsNeedRecommendation { get; set; }
+        public bool IsNeedCV { get; set; }
         #endregion
 
         #region EF_LINKS

@@ -182,9 +182,9 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<bool>("FlexibleSchedule");
+                    b.Property<bool>("IsFlexibleSchedule");
 
-                    b.Property<bool>("Flextime");
+                    b.Property<bool>("IsFlextime");
 
                     b.Property<bool>("FreelanceWork");
 
@@ -194,7 +194,7 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<bool>("IsAddToTheMailingList");
 
-                    b.Property<string>("KindOfActivity");
+                    b.Property<string>("ActivityTime");
 
                     b.Property<string>("KindOfThinking");
 
@@ -252,7 +252,7 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("SelfEducation");
 
-                    b.Property<bool>("ShiftChart");
+                    b.Property<bool>("IsShiftChart");
 
                     b.Property<bool>("TemporaryJob");
 
@@ -261,7 +261,7 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("WorkTime");
+                    b.Property<string>("ScheduleOfWorkingDays");
 
                     b.HasKey("Id");
 

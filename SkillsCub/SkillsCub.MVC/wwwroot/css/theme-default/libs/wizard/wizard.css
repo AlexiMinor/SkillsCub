@@ -607,16 +607,16 @@
   -webkit-transition: border-color 0.4s linear;
   -o-transition: border-color 0.4s linear;
   transition: border-color 0.4s linear;
-  border-color: #0aa89e;
+  border-color: #2196f3;
 }
 .form-wizard.form-wizard-horizontal .nav li.active .title,
 .form-wizard.form-wizard-horizontal .nav li:hover .title {
-  color: #313534;
+  color: #313335;
 }
 .form-wizard.form-wizard-horizontal .nav li.done .step {
   color: #ffffff;
-  border-color: #0aa89e;
-  background-color: #0aa89e;
+  border-color: #2196f3;
+  background-color: #2196f3;
   font-weight: 500;
   -webkit-transition: background-color 0.2s linear;
   -o-transition: background-color 0.2s linear;
@@ -636,7 +636,7 @@
   width: 100%;
   left: 0;
   bottom: -15px;
-  color: #969c9c;
+  color: #96999c;
 }
 .no-padding .form-wizard .pager {
   padding-left: 15px;

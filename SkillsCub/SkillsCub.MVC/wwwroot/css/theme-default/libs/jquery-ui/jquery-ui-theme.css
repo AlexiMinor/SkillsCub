@@ -637,7 +637,7 @@
 }
 /* Icons
 ----------------------------------*/
-/* states and img */
+/* states and images */
 .ui-icon {
   display: block;
   text-indent: -99999px;
@@ -1404,7 +1404,7 @@ body .ui-tooltip {
 }
 .ui-widget-content {
   border: 1px solid #aaaaaa;
-  background: #ffffff url("img/ui-bg_flat_100_ffffff_40x100.png") 50% 50% repeat-x;
+  background: #ffffff url("images/ui-bg_flat_100_ffffff_40x100.png") 50% 50% repeat-x;
   color: #222222;
 }
 .ui-widget-content a {
@@ -1412,7 +1412,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
   border: 1px solid #aaaaaa;
-  background: #ed0000 url("img/ui-bg_flat_0_ed0000_40x100.png") 50% 50% repeat-x;
+  background: #ed0000 url("images/ui-bg_flat_0_ed0000_40x100.png") 50% 50% repeat-x;
   color: #24ee24;
   font-weight: bold;
 }
@@ -1425,7 +1425,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
   border: 1px solid #cecece;
-  background: #ffffff url("img/ui-bg_flat_100_ffffff_40x100.png") 50% 50% repeat-x;
+  background: #ffffff url("images/ui-bg_flat_100_ffffff_40x100.png") 50% 50% repeat-x;
   font-weight: normal;
   color: #555555;
 }
@@ -1442,7 +1442,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
   border: 1px solid #cecece;
-  background: #cecece url("img/ui-bg_flat_100_cecece_40x100.png") 50% 50% repeat-x;
+  background: #cecece url("images/ui-bg_flat_100_cecece_40x100.png") 50% 50% repeat-x;
   font-weight: normal;
   color: #212121;
 }
@@ -1461,7 +1461,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
   border: 1px solid #d82929;
-  background: #ffffff url("img/ui-bg_flat_100_ffffff_40x100.png") 50% 50% repeat-x;
+  background: #ffffff url("images/ui-bg_flat_100_ffffff_40x100.png") 50% 50% repeat-x;
   font-weight: normal;
   color: #212121;
 }
@@ -1477,7 +1477,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
   border: 1px solid #a3a3e8;
-  background: #adb5e8 url("img/ui-bg_flat_55_adb5e8_40x100.png") 50% 50% repeat-x;
+  background: #adb5e8 url("images/ui-bg_flat_55_adb5e8_40x100.png") 50% 50% repeat-x;
   color: #363636;
 }
 .ui-state-highlight a,
@@ -1489,7 +1489,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
   border: 1px solid #cd0a0a;
-  background: #fef1ec url("img/ui-bg_glass_95_fef1ec_1x400.png") 50% 50% repeat-x;
+  background: #fef1ec url("images/ui-bg_glass_95_fef1ec_1x400.png") 50% 50% repeat-x;
   color: #cd0a0a;
 }
 .ui-state-error a,
@@ -1529,34 +1529,34 @@ body .ui-tooltip {
 }
 /* Icons
 ----------------------------------*/
-/* states and img */
+/* states and images */
 .ui-icon {
   width: 16px;
   height: 16px;
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-  background-image: url("img/ui-icons_222222_256x240.png");
+  background-image: url("images/ui-icons_222222_256x240.png");
 }
 .ui-widget-header .ui-icon {
-  background-image: url("img/ui-icons_24ee24_256x240.png");
+  background-image: url("images/ui-icons_24ee24_256x240.png");
 }
 .ui-state-default .ui-icon {
-  background-image: url("img/ui-icons_888888_256x240.png");
+  background-image: url("images/ui-icons_888888_256x240.png");
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-  background-image: url("img/ui-icons_454545_256x240.png");
+  background-image: url("images/ui-icons_454545_256x240.png");
 }
 .ui-state-active .ui-icon {
-  background-image: url("img/ui-icons_454545_256x240.png");
+  background-image: url("images/ui-icons_454545_256x240.png");
 }
 .ui-state-highlight .ui-icon {
-  background-image: url("img/ui-icons_2e83ff_256x240.png");
+  background-image: url("images/ui-icons_2e83ff_256x240.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-  background-image: url("img/ui-icons_cd0a0a_256x240.png");
+  background-image: url("images/ui-icons_cd0a0a_256x240.png");
 }
 /* positioning */
 .ui-icon-blank {
@@ -2114,7 +2114,7 @@ body .ui-tooltip {
 }
 /* Overlays */
 .ui-widget-overlay {
-  background: #aaaaaa url("img/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
+  background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
   opacity: .3;
   filter: alpha(opacity=30);
   /* support: IE8 */
@@ -2122,7 +2122,7 @@ body .ui-tooltip {
 .ui-widget-shadow {
   margin: -8px 0 0 -8px;
   padding: 8px;
-  background: #aaaaaa url("img/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
+  background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
   opacity: .3;
   filter: alpha(opacity=30);
   /* support: IE8 */
@@ -2130,13 +2130,13 @@ body .ui-tooltip {
 }
 .ui-menu .ui-menu-item a.ui-state-focus,
 .ui-menu .ui-menu-item a.ui-state-active {
-  background: #0aa89e;
+  background: #2196f3;
 }
 .ui-slider.ui-widget-content {
   background: #e5e6e6;
 }
 .ui-widget-header {
-  background: #0aa89e;
+  background: #2196f3;
   color: #000000;
 }
 .ui-widget-header a {
@@ -2145,18 +2145,18 @@ body .ui-tooltip {
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-  border-color: #0aa89e;
+  border-color: #2196f3;
 }
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-  border-color: #0aa89e;
-  background: #0aa89e;
+  border-color: #2196f3;
+  background: #2196f3;
   color: #000000;
 }
 .ui-sortable .ui-state-highlight {
   list-style: none;
-  background: #f2f3f3;
+  background: #f2f2f3;
   border: none;
 }
 .ui-spinner {
@@ -2205,13 +2205,13 @@ body .ui-tooltip {
   height: 16px;
   border-color: transparent;
   border-radius: 50%;
-  background: #0aa89e;
+  background: #2196f3;
 }
 .ui-slider .ui-slider-handle:focus,
 .ui-slider .ui-slider-handle.ui-state-hover {
   outline: none;
-  -webkit-box-shadow: 0px 0px 0px 7px rgba(10, 168, 158, 0.2);
-  box-shadow: 0px 0px 0px 7px rgba(10, 168, 158, 0.2);
+  -webkit-box-shadow: 0px 0px 0px 7px rgba(33, 150, 243, 0.2);
+  box-shadow: 0px 0px 0px 7px rgba(33, 150, 243, 0.2);
 }
 .ui-slider .ui-slider-handle.ui-state-active {
   width: 22px;

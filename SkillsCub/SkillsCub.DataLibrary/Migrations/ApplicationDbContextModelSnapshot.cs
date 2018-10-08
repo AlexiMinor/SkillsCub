@@ -15,7 +15,7 @@ namespace SkillsCub.DataLibrary.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -138,6 +138,8 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("ActionPlan");
 
+                    b.Property<string>("ActivityTime");
+
                     b.Property<string>("AddAssessment");
 
                     b.Property<string>("AdditionalEducation");
@@ -180,14 +182,6 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<bool>("FlexibleSchedule");
-
-                    b.Property<bool>("Flextime");
-
-                    b.Property<bool>("FreelanceWork");
-
-                    b.Property<bool>("FullDay");
-
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsAddToTheMailingList");
@@ -198,13 +192,29 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<bool>("IsClothesDesigner");
 
+                    b.Property<bool>("IsCuratorNeeded");
+
                     b.Property<bool>("IsEditor");
 
                     b.Property<bool>("IsEventManager");
 
+                    b.Property<bool>("IsFlexibleSchedule");
+
+                    b.Property<bool>("IsFlextime");
+
+                    b.Property<bool>("IsFree");
+
+                    b.Property<bool>("IsFreelanceWork");
+
+                    b.Property<bool>("IsFullDay");
+
                     b.Property<bool>("IsGraphicalDesigner");
 
                     b.Property<bool>("IsIllustrator");
+
+                    b.Property<bool>("IsInCollective");
+
+                    b.Property<bool>("IsIndividual");
 
                     b.Property<bool>("IsInterpreter");
 
@@ -212,21 +222,33 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<bool>("IsMarketer");
 
+                    b.Property<bool>("IsNeedCV");
+
+                    b.Property<bool>("IsNeedRecommendation");
+
+                    b.Property<bool>("IsOneOffWork");
+
+                    b.Property<bool>("IsPayable");
+
                     b.Property<bool>("IsPhotographer");
 
                     b.Property<bool>("IsPrManager");
 
                     b.Property<bool>("IsProjectManager");
 
+                    b.Property<bool>("IsRemoteWork");
+
                     b.Property<bool>("IsScreenwriter");
 
+                    b.Property<bool>("IsShiftChart");
+
                     b.Property<bool>("IsSmm");
+
+                    b.Property<bool>("IsTemporaryJob");
 
                     b.Property<bool>("IsWebDesigner");
 
                     b.Property<bool>("IsWriter");
-
-                    b.Property<string>("KindOfActivity");
 
                     b.Property<string>("KindOfThinking");
 
@@ -248,8 +270,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<bool>("OneOffWork");
-
                     b.Property<string>("PasswordHash");
 
                     b.Property<string>("Patronymic");
@@ -270,28 +290,22 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("RelationToPerformances");
 
-                    b.Property<bool>("RemoteWork");
-
                     b.Property<string>("ResponseForCritic");
 
                     b.Property<bool>("Responsibility");
 
                     b.Property<string>("SMMExperience");
 
+                    b.Property<string>("ScheduleOfWorkingDays");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<string>("SelfEducation");
-
-                    b.Property<bool>("ShiftChart");
-
-                    b.Property<bool>("TemporaryJob");
 
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
-
-                    b.Property<string>("WorkTime");
 
                     b.HasKey("Id");
 

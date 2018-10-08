@@ -449,6 +449,7 @@ namespace SkillsCub.MVC.Controllers
             }
         }
 
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmRequestForTeacher(Guid id)
@@ -562,20 +563,87 @@ namespace SkillsCub.MVC.Controllers
         #endregion
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Questionnaire()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> Questionnaire(ApplicationUser user)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             if (currentUser != null)
             {
-                //todo add stupid binding
+                currentUser.Contacts = user.Contacts;
+                currentUser.City = user.City;
+                currentUser.BirthDate = user.BirthDate;
+                currentUser.Education = user.Education;
+                currentUser.AdditionalEducation = user.AdditionalEducation;
+                currentUser.PreviousActivities = user.PreviousActivities;
+                currentUser.PreviousProjects = user.PreviousProjects;
+                currentUser.SelfEducation = user.SelfEducation;
+                //second part
+                currentUser.IsPrManager = user.IsPrManager;
+                currentUser.IsEventManager = user.IsEventManager;
+                currentUser.IsProjectManager = user.IsProjectManager;
+                currentUser.IsMarketer = user.IsMarketer;
+                currentUser.IsClothesDesigner = user.IsClothesDesigner;
+                currentUser.IsWebDesigner = user.IsWebDesigner;
+                currentUser.IsGraphicalDesigner = user.IsGraphicalDesigner;
+                currentUser.IsIllustrator = user.IsIllustrator;
+                currentUser.IsPhotographer = user.IsPhotographer;
+                currentUser.IsCameraman = user.IsCameraman;
+                currentUser.IsWriter = user.IsWriter;
+                currentUser.IsEditor = user.IsEditor;
+                currentUser.IsInterpreter = user.IsInterpreter;
+                currentUser.IsSmm = user.IsSmm;
+                currentUser.IsLayer = user.IsLayer;
+                currentUser.IsArchitect = user.IsArchitect;
+                currentUser.IsScreenwriter = user.IsScreenwriter;
+                // third part
+                currentUser.Psychotic = user.Psychotic;
+                currentUser.KindOfThinking = user.KindOfThinking;
+                currentUser.ActivityTime = user.ActivityTime;
+                currentUser.ScheduleOfWorkingDays = user.ScheduleOfWorkingDays;
+                currentUser.CommandWork = user.CommandWork;
+                currentUser.CommandProfessionalExperience = user.CommandProfessionalExperience;
+                currentUser.ActionPlan = user.ActionPlan;
+                currentUser.PlanningExperience = user.PlanningExperience;
+                currentUser.Responsibility = user.Responsibility;
+                currentUser.NeedForCommunication = user.NeedForCommunication;
+                currentUser.CommunicationExperience = user.CommunicationExperience;
+                currentUser.SMMExperience = user.SMMExperience;
+                currentUser.RelationToPerformances = user.RelationToPerformances;
+                currentUser.ResponseForCritic = user.ResponseForCritic;
+                currentUser.CreativityLimitation = user.CreativityLimitation;
+                currentUser.CombineIncongruous = user.CombineIncongruous;
+                currentUser.AddAssessment = user.AddAssessment;
+                currentUser.MaintainingStatistics = user.MaintainingStatistics;
+                currentUser.PurchasingAlgorithm = user.PurchasingAlgorithm;
+                currentUser.BudgetPlanning = user.BudgetPlanning;
+                currentUser.ExplainingComfort = user.ExplainingComfort;
+                currentUser.EndJustifiesTheMeans = user.EndJustifiesTheMeans;
+                currentUser.DisclosureOPfSecrecy = user.DisclosureOPfSecrecy;
+                // bonus (fourth part)
+                currentUser.IsAddToTheMailingList = user.IsAddToTheMailingList;
+
+                currentUser.IsFullDay = user.IsFullDay;
+                currentUser.IsFlexibleSchedule = user.IsFlexibleSchedule;
+                currentUser.IsFlextime = user.IsFlextime;
+                currentUser.IsShiftChart = user.IsShiftChart;
+                currentUser.IsTemporaryJob = user.IsTemporaryJob;
+                currentUser.IsOneOffWork = user.IsOneOffWork;
+                currentUser.IsFreelanceWork = user.IsFreelanceWork;
+                currentUser.IsRemoteWork = user.IsRemoteWork;
+                currentUser.IsInCollective = user.IsInCollective;
+                currentUser.IsIndividual = user.IsIndividual;
+                currentUser.IsCuratorNeeded = user.IsCuratorNeeded;
+                currentUser.IsPayable = user.IsPayable;
+                currentUser.IsFree = user.IsFree;
+                currentUser.IsNeedRecommendation = user.IsNeedRecommendation;
+                currentUser.IsNeedCV = user.IsNeedCV;
+
+                var result = await _userManager.UpdateAsync(user);
             }
 
             return RedirectToAction("Index", "Home");

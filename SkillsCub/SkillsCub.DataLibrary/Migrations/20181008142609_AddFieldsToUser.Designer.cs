@@ -10,14 +10,14 @@ using SkillsCub.DataLibrary.Repositories.Context;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180831171522_renaming")]
-    partial class renaming
+    [Migration("20181008142609_AddFieldsToUser")]
+    partial class AddFieldsToUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -182,17 +182,73 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsAddToTheMailingList");
+
+                    b.Property<bool>("IsArchitect");
+
+                    b.Property<bool>("IsCameraman");
+
+                    b.Property<bool>("IsClothesDesigner");
+
+                    b.Property<bool>("IsCuratorNeeded");
+
+                    b.Property<bool>("IsEditor");
+
+                    b.Property<bool>("IsEventManager");
+
                     b.Property<bool>("IsFlexibleSchedule");
 
                     b.Property<bool>("IsFlextime");
 
-                    b.Property<bool>("FreelanceWork");
+                    b.Property<bool>("IsFree");
 
-                    b.Property<bool>("FullDay");
+                    b.Property<bool>("IsFreelanceWork");
 
-                    b.Property<bool>("IsActive");
+                    b.Property<bool>("IsFullDay");
 
-                    b.Property<bool>("IsAddToTheMailingLists");
+                    b.Property<bool>("IsGraphicalDesigner");
+
+                    b.Property<bool>("IsIllustrator");
+
+                    b.Property<bool>("IsInCollective");
+
+                    b.Property<bool>("IsIndividual");
+
+                    b.Property<bool>("IsInterpreter");
+
+                    b.Property<bool>("IsLayer");
+
+                    b.Property<bool>("IsMarketer");
+
+                    b.Property<bool>("IsNeedCV");
+
+                    b.Property<bool>("IsNeedRecommendation");
+
+                    b.Property<bool>("IsOneOffWork");
+
+                    b.Property<bool>("IsPayable");
+
+                    b.Property<bool>("IsPhotographer");
+
+                    b.Property<bool>("IsPrManager");
+
+                    b.Property<bool>("IsProjectManager");
+
+                    b.Property<bool>("IsRemoteWork");
+
+                    b.Property<bool>("IsScreenwriter");
+
+                    b.Property<bool>("IsShiftChart");
+
+                    b.Property<bool>("IsSmm");
+
+                    b.Property<bool>("IsTemporaryJob");
+
+                    b.Property<bool>("IsWebDesigner");
+
+                    b.Property<bool>("IsWriter");
 
                     b.Property<string>("ActivityTime");
 
@@ -216,8 +272,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<bool>("OneOffWork");
-
                     b.Property<string>("PasswordHash");
 
                     b.Property<string>("Patronymic");
@@ -232,15 +286,11 @@ namespace SkillsCub.DataLibrary.Migrations
 
                     b.Property<string>("PreviousProjects");
 
-                    b.Property<string>("Professions");
-
                     b.Property<string>("Psychotic");
 
                     b.Property<string>("PurchasingAlgorithm");
 
                     b.Property<string>("RelationToPerformances");
-
-                    b.Property<bool>("RemoteWork");
 
                     b.Property<string>("ResponseForCritic");
 
@@ -251,10 +301,6 @@ namespace SkillsCub.DataLibrary.Migrations
                     b.Property<string>("SecurityStamp");
 
                     b.Property<string>("SelfEducation");
-
-                    b.Property<bool>("IsShiftChart");
-
-                    b.Property<bool>("TemporaryJob");
 
                     b.Property<bool>("TwoFactorEnabled");
 

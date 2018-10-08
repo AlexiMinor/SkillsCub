@@ -89,13 +89,13 @@ namespace SkillsCub.DataLibrary.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<bool>(
-                name: "FlexibleSchedule",
+                name: "IsFlexibleSchedule",
                 table: "AspNetUsers",
                 nullable: false,
                 defaultValue: false);
 
             migrationBuilder.AddColumn<bool>(
-                name: "Flextime",
+                name: "IsFlextime",
                 table: "AspNetUsers",
                 nullable: false,
                 defaultValue: false);
@@ -113,7 +113,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 defaultValue: false);
 
             migrationBuilder.AddColumn<string>(
-                name: "KindOfActivity",
+                name: "ActivityTime",
                 table: "AspNetUsers",
                 nullable: true);
 
@@ -207,7 +207,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<bool>(
-                name: "ShiftChart",
+                name: "IsShiftChart",
                 table: "AspNetUsers",
                 nullable: false,
                 defaultValue: false);
@@ -219,7 +219,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 defaultValue: false);
 
             migrationBuilder.AddColumn<string>(
-                name: "WorkTime",
+                name: "ScheduleOfWorkingDays",
                 table: "AspNetUsers",
                 nullable: true);
         }
@@ -291,11 +291,11 @@ namespace SkillsCub.DataLibrary.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "FlexibleSchedule",
+                name: "IsFlexibleSchedule",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "Flextime",
+                name: "IsFlextime",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
@@ -307,7 +307,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "KindOfActivity",
+                name: "ActivityTime",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
@@ -379,7 +379,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "ShiftChart",
+                name: "IsShiftChart",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
@@ -387,7 +387,7 @@ namespace SkillsCub.DataLibrary.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "WorkTime",
+                name: "ScheduleOfWorkingDays",
                 table: "AspNetUsers");
         }
     }
