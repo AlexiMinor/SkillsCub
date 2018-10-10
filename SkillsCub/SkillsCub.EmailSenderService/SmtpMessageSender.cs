@@ -2,13 +2,15 @@
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.EmailSenderService
 {
     public class EmailSender : IEmailSender
     {
-        public EmailSender()
+        public EmailSender(ITelegramLogger telegramLogger)
         {
+            _telegramLogger = telegramLogger;
             //TODO get from settings
             _emailSettings = new EmailSettings()
             {
@@ -21,6 +23,7 @@ namespace SkillsCub.EmailSenderService
         }
 
         private readonly EmailSettings _emailSettings;
+        private ITelegramLogger _telegramLogger;
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
@@ -69,7 +72,9 @@ namespace SkillsCub.EmailSenderService
             }
             catch (Exception ex)
             {
-                //todo something here
+                await _telegramLogger.Error($"Request was rejected with Error {Environment.NewLine} {ex.Message}");
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }

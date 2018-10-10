@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BuildServerSettings">
+    <option name="LOGIN" value="" />
+    <option name="SERVER_URL" value="http://buildserver" />
+    <option name="REMEMBER_ME" value="true" />
+    <option name="USE_IDEA_PROXY_SETTINGS" value="true" />
+    <option name="INSPECTIONS_BUILD_TYPE_IDS" />
+    <option name="DUPLICATES_BUILD_TYPE_IDS" />
+    <option name="COVERAGE_SETTINGS" />
+    <option name="TEST_STATUS_ENABLED" value="true" />
+    <option name="TEST_STATUS_SHOW_SUCCESSFUL" value="false" />
+    <option name="POSTPONE_SUITABLE_CONFIGURATIONS_SEARCH" value="false" />
+    <option name="ARTIFACTS_BUILD_TYPE_IDS" />
+    <option name="PERFORM_COMMIT_IF_SUCCESSFUL" value="true" />
+    <option name="PERFORM_COMMIT_IF_NO_NEW_FAILED_TESTS" value="false" />
+    <option name="REQUEST_CONFIRMATON" value="false" />
+    <option name="PRE_TESTED_COMMIT" value="true" />
+    <option name="FILTER_BY_STATUS" value="false" />
+    <option name="FILTER_MARKED_AS_FIXED" value="false" />
+    <option name="SHOW_CLOSE_PROMPT" value="true" />
+    <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
+    <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
+    <treeState key="project">
+      <selectedPath>
+        <pathElement>
+          <option name="myNodeId" value="helperText" />
+          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.LinkedTextDescriptor" />
+        </pathElement>
+      </selectedPath>
+    </treeState>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c7d240c4-21db-4d33-9741-f76e9aae968c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SkillsCub/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SkillsCub/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SkillsCub/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SkillsCub/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SkillsCub/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SkillsCub/riderModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SkillsCub.DataLibrary/Repositories/Context/ApplicationDbContextFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SkillsCub.MVC/Views/Request/Edit.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MegaNzService/MegaNzService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MegaNzService/MegaNzService.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.Core/Services/IStorageClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.Core/Services/IStorageClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Entities/Implementation/Request.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.DataLibrary/Entities/Implementation/Request.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180530125559_Init.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180530125559_Init.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180530220332_AddMessages.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180530220332_AddMessages.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180530220838_FixMessages.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180530220838_FixMessages.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180531091854_Messages.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180531091854_Messages.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180827203625_UserChange.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180827203625_UserChange.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831171522_renaming.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831171522_renaming.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831171659_renaming2.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831171659_renaming2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831181047_editingProfessions.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831181047_editingProfessions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831191903_modelChanging.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20180831191903_modelChanging.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181008142609_AddFieldsToUser.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181008142609_AddFieldsToUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181008192134_FixedNamingForUser.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181008192134_FixedNamingForUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181008194303_data.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181008194303_data.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.DataLibrary/SkillsCub.DataLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.DataLibrary/SkillsCub.DataLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.EmailSenderService/SkillsCub.EmailSenderService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.EmailSenderService/SkillsCub.EmailSenderService.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.EmailSenderService/SmtpMessageSender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.EmailSenderService/SmtpMessageSender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.MVC/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.MVC/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.MVC/SkillsCub.MVC.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.MVC/SkillsCub.MVC.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkillsCub.MVC/Views/License/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/SkillsCub.MVC/Views/License/Index.cshtml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1435630438">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cs" value="12" />
+          <entry key="cshtml" value="1" />
+          <entry key="json" value="1" />
+          <entry key="targets" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="C#" value="12" />
+          <entry key="JSON" value="1" />
+          <entry key="MsBuild targets file" value="2" />
+          <entry key="Razor" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cs" value="32" />
+          <entry key="json" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="C#" value="32" />
+          <entry key="JSON" value="4" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.EmailSenderService/SmtpMessageSender.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+              <folding>
+                <marker date="1539202930070" expanded="true" signature="6:116" ph="..." />
+                <marker date="1539202930070" expanded="true" signature="156:2615" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="202:2613" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="267:678" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="422:667" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="865:1150" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="891:1019" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="1051:1140" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="1232:2607" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="1258:2358" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="1467:1559" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="1682:1793" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="2088:2344" ph="{...}" />
+                <marker date="1539202930070" expanded="true" signature="2391:2597" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.Core/Services/IStorageClient.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+              <folding>
+                <marker date="1539202656873" expanded="true" signature="6:80" ph="..." />
+                <marker date="1539202656873" expanded="true" signature="115:599" ph="{...}" />
+                <marker date="1539202656873" expanded="true" signature="153:597" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MegaNzService/MegaNzClient.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+              <folding>
+                <marker date="1539203325150" expanded="true" signature="6:236" ph="..." />
+                <marker date="1539203325150" expanded="true" signature="261:7210" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="310:7208" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="504:598" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="690:1398" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="845:1346" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="1493:2978" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="1519:2833" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="1685:2744" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="2054:2726" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="2313:2602" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="2866:2968" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="3075:3917" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="3230:3839" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="3991:4752" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="4145:4686" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="4837:6128" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="4863:5982" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="5029:5892" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="5402:5874" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="5635:5852" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="6015:6118" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="6198:7202" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="6224:7056" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="6390:6966" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="6751:6948" ph="{...}" />
+                <marker date="1539203325150" expanded="true" signature="7089:7192" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <marker date="1539203902146" expanded="false" signature="6:63" ph="..." />
+                <marker date="1539203902146" expanded="true" signature="88:451" ph="{...}" />
+                <marker date="1539203902146" expanded="true" signature="115:449" ph="{...}" />
+                <marker date="1539203902146" expanded="true" signature="168:226" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Repositories/Context/ApplicationDbContextFactory.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+              <folding>
+                <marker date="1539205644192" expanded="true" signature="6:105" ph="..." />
+                <marker date="1539205644192" expanded="true" signature="159:961" ph="{...}" />
+                <marker date="1539205644192" expanded="true" signature="262:955" ph="{...}" />
+                <marker date="1539205644192" expanded="true" signature="343:945" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/ApplicationDbContextModelSnapshot.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1539205679290" expanded="false" signature="28:281" ph="..." />
+                <marker date="1539205679290" expanded="true" signature="325:17925" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="441:17923" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="517:17917" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="925:1643" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="1742:2323" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="2422:3003" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="3102:3562" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="3660:3942" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="4041:4402" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="4507:10112" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="10208:11060" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="11158:12185" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="12282:12902" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="12999:13875" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="13974:14229" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="14328:14602" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="14701:14975" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="15073:15567" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="15666:15940" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="16036:16488" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="16586:17074" ph="{...}" />
+                <marker date="1539205679290" expanded="true" signature="17171:17872" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181010210759_InitialCreateDB.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1539205679289" expanded="true" signature="6:107" ph="..." />
+                <marker date="1539205679289" expanded="true" signature="151:22412" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="206:22410" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="282:21432" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="426:757" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="796:899" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="1036:7431" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="7470:7573" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="7707:8472" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="8511:8611" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="8753:9163" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="9202:9631" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="9773:10183" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="10222:10651" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="10793:11107" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="11146:11609" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="11750:11904" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="11943:12712" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="12854:13147" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="13186:13652" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="13785:14583" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="14622:15359" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="15494:16518" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="16557:17283" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="17416:17854" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="17893:18938" ph="{...}" />
+                <marker date="1539205679289" expanded="true" signature="21505:22404" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Entities/Implementation/Request.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+              <folding>
+                <marker date="1539204314811" expanded="false" signature="6:110" ph="..." />
+                <marker date="1539204314811" expanded="true" signature="167:1079" ph="{...}" />
+                <marker date="1539204314811" expanded="true" signature="232:1077" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Startup.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-364">
+              <caret line="32" column="89" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="89" />
+              <folding>
+                <marker date="1537868011142" expanded="false" signature="6:596" ph="..." />
+                <marker date="1537868011142" expanded="true" signature="621:3058" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="648:3056" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="707:770" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="993:2265" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="2453:3050" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="2500:2659" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="2676:2760" ph="{...}" />
+                <marker date="1537868011142" expanded="true" signature="2867:3038" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/appsettings.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/SkillsCub.MVC/Views/License/Index.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.MVC/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.EmailSenderService/SmtpMessageSender.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Entities/Implementation/Request.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.Core/Services/IStorageClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.MVC/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181010210759_InitialCreateDB.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/ApplicationDbContextModelSnapshot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Repositories/Context/ApplicationDbContextFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.MVC/Controllers/RequestController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SkillsCub.MVC/Views/Request/Edit.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MegaNzService/MegaNzClient.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/SkillsCub.Core/Services/IStorageClient.cs" />
+        <option value="$PROJECT_DIR$/SkillsCub.MVC/Views/License/Index.cshtml" />
+        <option value="$PROJECT_DIR$/SkillsCub.MVC/Views/Request/Edit.cshtml" />
+        <option value="$PROJECT_DIR$/SkillsCub.EmailSenderService/SmtpMessageSender.cs" />
+        <option value="$PROJECT_DIR$/MegaNzService/MegaNzClient.cs" />
+        <option value="$PROJECT_DIR$/SkillsCub.MVC/Program.cs" />
+        <option value="$PROJECT_DIR$/SkillsCub.DataLibrary/Entities/Implementation/Request.cs" />
+        <option value="$PROJECT_DIR$/SkillsCub.MVC/appsettings.json" />
+        <option value="$PROJECT_DIR$/SkillsCub.DataLibrary/Repositories/Context/ApplicationDbContextFactory.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="FileSystemExplorer" />
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Services" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Services" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="MegaNzService" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.DataLibrary" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.DataLibrary" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Dependencies" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.DataLibrary" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Entities" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.DataLibrary" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Entities" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Implementation" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.DataLibrary" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Repositories" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.DataLibrary" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Repositories" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Context" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.MVC" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.MVC" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Controllers" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.MVC" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="ViewModels" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.MVC" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Views" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.MVC" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Views" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="License" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SkillsCub" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SkillsCub.TelegramLogger" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-files" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/SkillsCub.MVC/bin/Debug/netcoreapp2.1/SkillsCub.MVC.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SkillsCub.MVC" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs>
+        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+        <env name="ASPNETCORE_URLS" value="http://localhost:4171/" />
+      </envs>
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/SkillsCub.MVC/SkillsCub.MVC.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.1" />
+      <browser name="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" start="true" with-js-debugger="true" url="http://localhost:4171/" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Default JavaScript" type="JavascriptDebugType" factoryName="JavaScript Debug" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:4171/">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue=".NET Project.Default" />
+      <item itemvalue="JavaScript Debug.Default JavaScript" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d79fff12-2777-467d-b0ca-f4f4cec1a5a8" name="Default Changelist" comment="" />
+      <created>1537868431112</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1537868431112</updated>
+      <workItem from="1537868433547" duration="3254000" />
+      <workItem from="1539200616485" duration="3507000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3019000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32891566" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3253012" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.32891566" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unit Tests" order="11" />
+      <window_info anchor="bottom" id="REST Client" order="12" />
+      <window_info anchor="bottom" id="TeamCity" order="13" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" order="14" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" order="15" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="16" weight="0.32891566" />
+      <window_info anchor="right" id="Errors In Solution" order="0" />
+      <window_info anchor="right" id="Database" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="5" visible="true" weight="0.2446352" />
+    </layout>
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SkillsCub.Core/Services/IStorageClient.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding>
+            <marker date="1539202656873" expanded="true" signature="6:80" ph="..." />
+            <marker date="1539202656873" expanded="true" signature="115:599" ph="{...}" />
+            <marker date="1539202656873" expanded="true" signature="153:597" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Views/License/Index.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="74" column="34" selection-start-line="29" selection-start-column="40" selection-end-line="74" selection-end-column="34" />
+          <folding>
+            <marker date="1539202682973" expanded="true" signature="1:84" ph="@..." />
+            <marker date="1539202682973" expanded="true" signature="85:12300" ph="&lt;section.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="99:12289" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="145:12278" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="175:12263" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="215:417" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="253:394" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="434:12244" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="508:895" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="556:868" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="604:837" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="938:12199" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="1007:12172" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="1054:1388" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="1127:1353" ph="&lt;article.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="1173:1310" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="1433:3258" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="1506:2374" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="2407:2765" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="2798:3223" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="3287:4198" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="3426:4163" ph="&lt;ul.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="4227:4990" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="4300:4400" ph="&lt;h3.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="4433:4955" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="5019:7233" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="5092:5206" ph="&lt;h3.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="5239:7198" ph="&lt;ul.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="7262:7901" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="7415:7865" ph="&lt;ul.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="7930:8373" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="8003:8107" ph="&lt;h3.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="8140:8338" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="8402:11449" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="8539:11413" ph="&lt;ul.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="9745:11375" ph="&lt;li.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="10006:10180" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="10221:11044" ph="&lt;ul.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="11132:11333" ph="&lt;p.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="11478:12141" ph="&lt;div.../&gt;" />
+            <marker date="1539202682973" expanded="true" signature="11593:12106" ph="&lt;ul.../&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Views/Request/Edit.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <marker date="1539202733820" expanded="true" signature="62:119" ph="@..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Controllers/RequestController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="40" />
+          <folding>
+            <marker date="1537868011140" expanded="false" signature="6:429" ph="..." />
+            <marker date="1537868011140" expanded="true" signature="466:7876" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="516:7874" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="975:1159" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="1219:1266" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="1416:3264" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="1442:2989" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="1496:2975" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="1564:2922" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="1663:2277" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="3022:3227" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="3368:3541" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="3652:5970" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="3765:5801" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="3953:5551" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="5588:5787" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="6081:6188" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="6299:7868" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="6325:7618" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="6437:6591" ph="{...}" />
+            <marker date="1537868011140" expanded="true" signature="7651:7857" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.EmailSenderService/SmtpMessageSender.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding>
+            <marker date="1539202930070" expanded="true" signature="6:116" ph="..." />
+            <marker date="1539202930070" expanded="true" signature="156:2615" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="202:2613" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="267:678" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="422:667" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="865:1150" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="891:1019" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="1051:1140" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="1232:2607" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="1258:2358" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="1467:1559" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="1682:1793" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="2088:2344" ph="{...}" />
+            <marker date="1539202930070" expanded="true" signature="2391:2597" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MegaNzService/MegaNzClient.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+          <folding>
+            <marker date="1539203325150" expanded="true" signature="6:236" ph="..." />
+            <marker date="1539203325150" expanded="true" signature="261:7210" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="310:7208" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="504:598" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="690:1398" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="845:1346" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="1493:2978" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="1519:2833" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="1685:2744" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="2054:2726" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="2313:2602" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="2866:2968" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="3075:3917" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="3230:3839" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="3991:4752" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="4145:4686" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="4837:6128" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="4863:5982" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="5029:5892" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="5402:5874" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="5635:5852" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="6015:6118" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="6198:7202" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="6224:7056" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="6390:6966" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="6751:6948" ph="{...}" />
+            <marker date="1539203325150" expanded="true" signature="7089:7192" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/share/dotnet/sdk/2.1.402/Microsoft.Common.CurrentVersion.targets">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="4347" column="48" lean-forward="true" selection-start-line="4347" selection-start-column="48" selection-end-line="4347" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/share/dotnet/sdk/2.1.402/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.ObsoleteReferences.targets">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/appsettings.Development.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <marker date="1539203902146" expanded="false" signature="6:63" ph="..." />
+            <marker date="1539203902146" expanded="true" signature="88:451" ph="{...}" />
+            <marker date="1539203902146" expanded="true" signature="115:449" ph="{...}" />
+            <marker date="1539203902146" expanded="true" signature="168:226" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181010205007_InitialCreate.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Entities/Implementation/Request.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <marker date="1539204314811" expanded="false" signature="6:110" ph="..." />
+            <marker date="1539204314811" expanded="true" signature="167:1079" ph="{...}" />
+            <marker date="1539204314811" expanded="true" signature="232:1077" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181010205520_InitialCreate2.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/appsettings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.MVC/Startup.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-364">
+          <caret line="32" column="89" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="89" />
+          <folding>
+            <marker date="1537868011142" expanded="false" signature="6:596" ph="..." />
+            <marker date="1537868011142" expanded="true" signature="621:3058" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="648:3056" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="707:770" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="993:2265" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="2453:3050" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="2500:2659" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="2676:2760" ph="{...}" />
+            <marker date="1537868011142" expanded="true" signature="2867:3038" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Repositories/Context/ApplicationDbContextFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+          <folding>
+            <marker date="1539205644192" expanded="true" signature="6:105" ph="..." />
+            <marker date="1539205644192" expanded="true" signature="159:961" ph="{...}" />
+            <marker date="1539205644192" expanded="true" signature="262:955" ph="{...}" />
+            <marker date="1539205644192" expanded="true" signature="343:945" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/ApplicationDbContextModelSnapshot.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1539205679290" expanded="false" signature="28:281" ph="..." />
+            <marker date="1539205679290" expanded="true" signature="325:17925" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="441:17923" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="517:17917" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="925:1643" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="1742:2323" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="2422:3003" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="3102:3562" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="3660:3942" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="4041:4402" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="4507:10112" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="10208:11060" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="11158:12185" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="12282:12902" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="12999:13875" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="13974:14229" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="14328:14602" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="14701:14975" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="15073:15567" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="15666:15940" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="16036:16488" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="16586:17074" ph="{...}" />
+            <marker date="1539205679290" expanded="true" signature="17171:17872" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SkillsCub.DataLibrary/Migrations/20181010210759_InitialCreateDB.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1539205679289" expanded="true" signature="6:107" ph="..." />
+            <marker date="1539205679289" expanded="true" signature="151:22412" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="206:22410" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="282:21432" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="426:757" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="796:899" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="1036:7431" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="7470:7573" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="7707:8472" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="8511:8611" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="8753:9163" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="9202:9631" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="9773:10183" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="10222:10651" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="10793:11107" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="11146:11609" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="11750:11904" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="11943:12712" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="12854:13147" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="13186:13652" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="13785:14583" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="14622:15359" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="15494:16518" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="16557:17283" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="17416:17854" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="17893:18938" ph="{...}" />
+            <marker date="1539205679289" expanded="true" signature="21505:22404" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

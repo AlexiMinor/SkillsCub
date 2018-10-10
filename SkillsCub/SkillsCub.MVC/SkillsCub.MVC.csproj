@@ -20,6 +20,10 @@
     <EmbeddedResource Remove="Repositories\**" />
     <None Remove="Data\**" />
     <None Remove="Repositories\**" />
+    <Compile Remove="Pages\**" />
+    <EmbeddedResource Remove="Pages\**" />
+    <None Remove="Pages\**" />
+    <Content Remove="Pages\**" />
   </ItemGroup>
 
 
@@ -865,10 +869,6 @@
 
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Account\" />
   </ItemGroup>
 
 </Project>

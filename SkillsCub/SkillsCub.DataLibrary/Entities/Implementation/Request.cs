@@ -1,15 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Dapper;
-using MicroOrm.Dapper.Repositories.Attributes;
 
 namespace SkillsCub.DataLibrary.Entities.Implementation
 {
     [Table("Requests")]
     public class Request : IBaseEntity
     {
-        [Key, Identity]
+        [Key]
         public Guid Id { get; set; }
 
         [Required]
