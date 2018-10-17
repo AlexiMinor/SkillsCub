@@ -10,8 +10,8 @@ using SkillsCub.DataLibrary.Repositories.Context;
 namespace SkillsCub.DataLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181010210759_InitialCreateDB")]
-    partial class InitialCreateDB
+    [Migration("20181017191107_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
