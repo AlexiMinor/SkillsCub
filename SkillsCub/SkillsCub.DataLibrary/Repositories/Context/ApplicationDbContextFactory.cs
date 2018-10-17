@@ -4,8 +4,16 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace SkillsCub.DataLibrary.Repositories.Context
 {
+        /// <summary>
+        /// The aplication database context factory.
+        /// </summary>
         public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
         {
+            /// <summary>
+            /// The create database context.
+            /// </summary>
+            /// <param name="args"></param>
+            /// <returns></returns>
             public ApplicationDbContext CreateDbContext(string[] args)
             {
                 var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
