@@ -1,5 +1,8 @@
 ﻿namespace SkillsCub.DataLibrary.Entities.Implementation
 {
+    /// <summary>
+    /// The source.
+    /// </summary>
     public enum Source
     {
         SocialNetwork,
