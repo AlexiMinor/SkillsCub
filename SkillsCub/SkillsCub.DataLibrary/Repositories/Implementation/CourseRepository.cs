@@ -3,8 +3,15 @@ using SkillsCub.DataLibrary.Repositories.Context;
 
 namespace SkillsCub.DataLibrary.Repositories.Implementation
 {
+    /// <summary>
+    /// The course repository.
+    /// </summary>
     public class CourseRepository : Repository<Course>
     {
+        /// <summary>
+        /// The course repository designer.
+        /// </summary>
+        /// <param name="context"></param>
         public CourseRepository(ApplicationDbContext context) : base(context)
         {
         }
