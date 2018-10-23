@@ -27,7 +27,7 @@ namespace SkillsCub.DataLibrary.Repositories.Context
         /// <summary>
         /// The database designer.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="options">The database context  options</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -36,7 +36,7 @@ namespace SkillsCub.DataLibrary.Repositories.Context
         /// <summary>
         /// The database relationship model.
         /// </summary>
-        /// <param name="builder"></param>
+        /// <param name="builder">The database model builder</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>().ToTable("Users").HasMany(u => u.CoursesAsTeacher)

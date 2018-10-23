@@ -8,6 +8,9 @@ using SkillsCub.DataLibrary.Repositories.Context;
 
 namespace SkillsCub.DataLibrary.Migrations
 {
+    /// <summary>
+    /// The aplication database context 
+    /// </summary>
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {

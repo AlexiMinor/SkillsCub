@@ -11,7 +11,7 @@ namespace SkillsCub.DataLibrary.Repositories.Implementation
         /// <summary>
         /// The course repository designer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The aplication database context.</param>
         public CourseRepository(ApplicationDbContext context) : base(context)
         {
         }
