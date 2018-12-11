@@ -1,6 +1,0 @@
-E:\programs\C#.Net\Projects\SkillsCub\SkillsCub\Logger\bin\Debug\netcoreapp2.1\Logger.deps.json
-E:\programs\C#.Net\Projects\SkillsCub\SkillsCub\Logger\bin\Debug\netcoreapp2.1\Logger.dll
-E:\programs\C#.Net\Projects\SkillsCub\SkillsCub\Logger\obj\Debug\netcoreapp2.1\Logger.csprojAssemblyReference.cache
-E:\programs\C#.Net\Projects\SkillsCub\SkillsCub\Logger\obj\Debug\netcoreapp2.1\Logger.csproj.CoreCompileInputs.cache
-E:\programs\C#.Net\Projects\SkillsCub\SkillsCub\Logger\obj\Debug\netcoreapp2.1\Logger.AssemblyInfoInputs.cache
-E:\programs\C#.Net\Projects\SkillsCub\SkillsCub\Logger\obj\Debug\netcoreapp2.1\Logger.AssemblyInfo.cs
