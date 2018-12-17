@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
-using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC.Controllers.API
 {
@@ -13,17 +12,14 @@ namespace SkillsCub.MVC.Controllers.API
     [ApiController]
     public class ExercisesController : ControllerBase
     {
-        private readonly ITelegramLogger _telegramLogger;
         private readonly IRepository<Exercise> _exerciseRepository;
         private readonly IRepository<Course> _courseRepository;
 
 
 
-        public ExercisesController(IRepository<Exercise> exerciseRepository, 
-            ITelegramLogger telegramLogger)
+        public ExercisesController(IRepository<Exercise> exerciseRepository)
         {
             _exerciseRepository = exerciseRepository;
-            _telegramLogger = telegramLogger;
         }
 
         [HttpGet]

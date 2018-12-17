@@ -10,7 +10,6 @@ using SkillsCub.Core.Services;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.MVC.ViewModels;
-using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC.Controllers
 {
@@ -19,20 +18,17 @@ namespace SkillsCub.MVC.Controllers
         private readonly IRepository<Course> _courseRepository;
         private readonly IRepository<Exercise> _exerciseRepository;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ITelegramLogger _telegramLogger;
         private readonly IStorageClient _storageClient;
 
 
         public StudentController(IRepository<Course> courseRepository,
             UserManager<ApplicationUser> userManager,
             IRepository<Exercise> exerciseRepository,
-            ITelegramLogger telegramLogger,
             IStorageClient storageClient)
         {
             _courseRepository = courseRepository;
             _userManager = userManager;
             _exerciseRepository = exerciseRepository;
-            _telegramLogger = telegramLogger;
             _storageClient = storageClient;
         }
 
@@ -73,7 +69,7 @@ namespace SkillsCub.MVC.Controllers
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
+                //await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
                 return BadRequest();
             }
         }
