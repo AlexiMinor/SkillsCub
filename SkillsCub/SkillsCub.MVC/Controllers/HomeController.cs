@@ -6,23 +6,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.MVC.ViewModels;
-using SkillsCub.TelegramLogger;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace SkillsCub.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITelegramLogger _telegramLogger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-
+        private readonly ILogger _logger;
         private readonly IConfiguration _configuration;
-        public HomeController(ITelegramLogger emailSender, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, SignInManager<ApplicationUser> signInManager)
+        public HomeController(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager, 
+            IConfiguration configuration, SignInManager<ApplicationUser> signInManager  )
         {
-            _telegramLogger = emailSender;
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
@@ -66,7 +67,7 @@ namespace SkillsCub.MVC.Controllers
                     if (!_roleManager.Roles.Any(role => role.Name.Equals("Student")))
                     {
                         await _roleManager.CreateAsync(new IdentityRole("Student"));
-                        await _telegramLogger.Debug("Student role added");
+                        Log.Debug("Student role added");
                     }
                     await _userManager.AddToRoleAsync(student, "Student");
 
@@ -89,7 +90,7 @@ namespace SkillsCub.MVC.Controllers
                     if (!_roleManager.Roles.Any(role => role.Name.Equals("Teacher")))
                     {
                         await _roleManager.CreateAsync(new IdentityRole("Teacher"));
-                        await _telegramLogger.Debug("Teacher role added");
+                        Log.Debug("Teacher role added");
                     }
                     await _userManager.AddToRoleAsync(teacher, "Teacher");
 
@@ -112,7 +113,7 @@ namespace SkillsCub.MVC.Controllers
                     if (!_roleManager.Roles.Any(role => role.Name.Equals("Admin")))
                     {
                         await _roleManager.CreateAsync(new IdentityRole("Admin"));
-                        await _telegramLogger.Debug("Admin role added");
+                        Log.Debug("Admin role added");
                     }
                     await _userManager.AddToRoleAsync(user, "Admin");
 

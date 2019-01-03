@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCub.DataLibrary", "Sk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCub.Utilities", "SkillsCub.Utilities\SkillsCub.Utilities.csproj", "{CC1D3A04-EA6D-473A-8C06-FE633B6344BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCub.TelegramLogger", "SkillsCub.TelegramLogger\SkillsCub.TelegramLogger.csproj", "{02D4A823-D7B3-425F-8382-DCE9E5E71297}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCub.MVC", "SkillsCub.MVC\SkillsCub.MVC.csproj", "{0DF89722-167D-41F3-B855-DE08331F3BCE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{88349075-46F8-4812-AFE7-A82D33A95709}"
@@ -19,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaNzService", "MegaNzServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCub.Core", "SkillsCub.Core\SkillsCub.Core.csproj", "{17245134-6609-4F71-B5B7-57FD04F047D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTypeResolver", "ContentTypeResolver\ContentTypeResolver.csproj", "{FAF03B41-CB4A-457E-B1F2-E6C0536E84C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentTypeResolver", "ContentTypeResolver\ContentTypeResolver.csproj", "{FAF03B41-CB4A-457E-B1F2-E6C0536E84C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{CC1D3A04-EA6D-473A-8C06-FE633B6344BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1D3A04-EA6D-473A-8C06-FE633B6344BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC1D3A04-EA6D-473A-8C06-FE633B6344BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02D4A823-D7B3-425F-8382-DCE9E5E71297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02D4A823-D7B3-425F-8382-DCE9E5E71297}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02D4A823-D7B3-425F-8382-DCE9E5E71297}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02D4A823-D7B3-425F-8382-DCE9E5E71297}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0DF89722-167D-41F3-B855-DE08331F3BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DF89722-167D-41F3-B855-DE08331F3BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DF89722-167D-41F3-B855-DE08331F3BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU

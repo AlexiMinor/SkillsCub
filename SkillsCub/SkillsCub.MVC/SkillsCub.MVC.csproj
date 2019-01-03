@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkillsCub.MVC-BB8E4BB9-01DF-48A0-AA55-0760AA3AE34C</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/08072aeb-29f9-48f7-891d-c97a4bed00a6/resourcegroups/SkillsCub/providers/microsoft.insights/components/SkillsCub</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/08072aeb-29f9-48f7-891d-c97a4bed00a6/resourcegroups/SkillsCub/providers/microsoft.insights/components/SkillsCub</ApplicationInsightsAnnotationResourceId>
@@ -29,11 +29,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" PrivateAssets="all">
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="2.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.TelegramClient" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -863,7 +867,6 @@
     <ProjectReference Include="..\SkillsCub.Core\SkillsCub.Core.csproj" />
     <ProjectReference Include="..\SkillsCub.DataLibrary\SkillsCub.DataLibrary.csproj" />
     <ProjectReference Include="..\SkillsCub.EmailSenderService\SkillsCub.EmailSenderService.csproj" />
-    <ProjectReference Include="..\SkillsCub.TelegramLogger\SkillsCub.TelegramLogger.csproj" />
     <ProjectReference Include="..\SkillsCub.Utilities\SkillsCub.Utilities.csproj" />
   </ItemGroup>
 

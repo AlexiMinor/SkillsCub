@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Serilog;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.EmailSenderService;
 using SkillsCub.MVC.ViewModels;
-using SkillsCub.TelegramLogger;
 using SkillsCub.Utilities;
 
 namespace SkillsCub.MVC.Controllers
@@ -18,19 +18,16 @@ namespace SkillsCub.MVC.Controllers
     {
         private readonly IEmailSender _emailSender;
         private readonly IRepository<Request> _repository;
-        private readonly ITelegramLogger _telegramLogger;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public RequestController(
             IEmailSender emailSender,
             IRepository<Request> repository,
-            UserManager<ApplicationUser> userManager,
-            ITelegramLogger telegramLogger)
+            UserManager<ApplicationUser> userManager)
         {
             _emailSender = emailSender;
             _repository = repository;
             _userManager = userManager;
-            _telegramLogger = telegramLogger;
         }
         // GET: Request
         public ActionResult Index()
@@ -65,13 +62,13 @@ namespace SkillsCub.MVC.Controllers
                         };
 
                         var requestBody = JsonConvert.SerializeObject(request);
-                        await _telegramLogger.Debug(
+                        Log.Debug(
                             $"Request created. {Environment.NewLine} {Environment.NewLine} **Request body:**  ```JSON  {Environment.NewLine} {requestBody}  {Environment.NewLine}```");
 
                         await _repository.Add(request);
                         var x = await _repository.SaveChanges();
 
-                        await _telegramLogger.Debug($"Request {request.Id:D} added to DB with status Requested");
+                        Log.Debug($"Request {request.Id:D} added to DB with status Requested");
 
                         return RedirectToAction("Index", "Home");
                     }
@@ -80,7 +77,7 @@ namespace SkillsCub.MVC.Controllers
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Request was created with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Request was created with Error {Environment.NewLine} {ex.Message}");
                 Console.WriteLine(ex);
                 throw;
             }
@@ -103,11 +100,11 @@ namespace SkillsCub.MVC.Controllers
             
             if (request != null)
             {
-                await _telegramLogger.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {Json(request)}");
+                Log.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {Json(request)}");
                 try
                 {
                     var user = RequestToUserConverter.ConvertToUser(request);
-                    await _telegramLogger.Debug($"User {user.Id:D} created from request from Request {id:D}. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
+                    Log.Debug($"User {user.Id:D} created from request from Request {id:D}. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
 
                     var message =
                         $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
@@ -116,28 +113,28 @@ namespace SkillsCub.MVC.Controllers
                         $"https://{Request.Host}/Account/ConfirmRequest/?id={user.Id} {Environment.NewLine}" +
                         " Если вы не регистрировались, то проигноирируйте данное сообщение.";
                     await _emailSender.SendEmailAsync(request.Email, "test", message);
-                    await _telegramLogger.Debug($"Message for Student {user.Id} sended");
+                    Log.Debug($"Message for Student {user.Id} sended");
 
                     var userIdentity = await _userManager.CreateAsync(user);
-                    await _telegramLogger.Debug($"Student {JsonConvert.SerializeObject(userIdentity)} created in DB");
+                    Log.Debug($"Student {JsonConvert.SerializeObject(userIdentity)} created in DB");
 
                     request.Status = Status.WaitingApprove;
 
                     await _repository.Update(request);
                     await _repository.SaveChanges();
 
-                    await _telegramLogger.Debug($"Request {id:D} status changes to WaitingApprove in DB.");
+                    Log.Debug($"Request {id:D} status changes to WaitingApprove in DB.");
 
 
                     return Json(userIdentity);
                 }
                 catch (Exception ex)
                 {
-                    await _telegramLogger.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
+                    Log.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
                     Console.WriteLine(ex);
                 }
             }
-            await _telegramLogger.Debug($"Request {id:D} not exist in DB.");
+            Log.Debug($"Request {id:D} not exist in DB.");
 
             //TODO not sure about is it a good practise
             return null;
@@ -160,27 +157,27 @@ namespace SkillsCub.MVC.Controllers
                 var request = await _repository.GetById(id);
                 if (request == null)
                 {
-                    await _telegramLogger.Debug($"Request {id:D} not exist in DB.");
+                    Log.Debug($"Request {id:D} not exist in DB.");
                     return null;
                 }
-                await _telegramLogger.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {JsonConvert.SerializeObject(request)}");
+                Log.Debug($"Request {id:D} loaded from DB. {Environment.NewLine} Request body: {Environment.NewLine} {JsonConvert.SerializeObject(request)}");
 
                 var message =
                     $"Уважаемый {request.FirstName} {request.Patronymic}  {request.LastName}! {Environment.NewLine}" +
                     $"Вы подали заявку на skillscub.com.Ваше участие было отклонено.{Environment.NewLine}" + 
                     " Если вы не регистрировались, то проигноирируйте данное сообщение.";
                 await _emailSender.SendEmailAsync(request.Email, "test", message);
-                await _telegramLogger.Debug($"Message for rejected request {request.Id} sended");
+                Log.Debug($"Message for rejected request {request.Id} sended");
 
                 request.Status = Status.Rejected;
                 await _repository.Update(request);
                 var repoResponse = _repository.SaveChanges();
-                await _telegramLogger.Debug($"Request {id:D} status changes to Rejected in DB.");
+                Log.Debug($"Request {id:D} status changes to Rejected in DB.");
                 return Json(repoResponse);
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Request was rejected with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Request was rejected with Error {Environment.NewLine} {ex.Message}");
                 Console.WriteLine(ex);
                 throw;
             }
