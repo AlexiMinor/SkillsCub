@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Serilog;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.EmailSenderService;
@@ -56,8 +57,8 @@ namespace SkillsCub.MVC.Controllers
                     user.LastModified = DateTime.Now;
                     user.UserName = user.Email;
 
-                    //await _telegramLogger.Debug(
-                    //    $"Teacher with Id {user.Id:D} created. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
+                    Log.Debug(
+                        $"Teacher with Id {user.Id:D} created. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
                     //TODO fix security
                     var message =
                         $"Уважаемый {user.FirstName} {user.Patronymic}  {user.LastName}! {Environment.NewLine}" +
@@ -66,17 +67,17 @@ namespace SkillsCub.MVC.Controllers
                         $"https://{Request.Host}/Account/ConfirmRequestForTeacher/?id={user.Id} {Environment.NewLine}" +
                         " Если вы не регистрировались, то проигноирируйте данное сообщение.";
                     await _emailSender.SendEmailAsync(user.Email, "Подтверждение регистрации", message);
-                    //await _telegramLogger.Debug($"Message for User {user.Id} sended");
+                    Log.Debug($"Message for User {user.Id} sended");
 
                     var userIdentity = await _userManager.CreateAsync(user);
-                    //await _telegramLogger.Debug($"User {JsonConvert.SerializeObject(userIdentity)} created in DB");
+                    Log.Debug($"User {JsonConvert.SerializeObject(userIdentity)} created in DB");
 
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                //await _telegramLogger.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
                 Console.WriteLine(ex);
             }
 

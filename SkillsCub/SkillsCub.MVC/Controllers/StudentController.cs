@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using SkillsCub.Core;
 using SkillsCub.Core.Services;
 using SkillsCub.DataLibrary.Entities.Implementation;
@@ -69,7 +70,7 @@ namespace SkillsCub.MVC.Controllers
             }
             catch (Exception ex)
             {
-                //await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
                 return BadRequest();
             }
         }
