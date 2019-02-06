@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.MVC.ViewModels;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace SkillsCub.MVC.Controllers
 {
@@ -18,7 +17,6 @@ namespace SkillsCub.MVC.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger _logger;
         private readonly IConfiguration _configuration;
         public HomeController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager, 
