@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace SkillsCub.DataLibrary.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +13,9 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,26 +27,90 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    LastModified = table.Column<DateTime>(nullable: false),
-                    LastName = table.Column<string>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
-                    Patronymic = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Patronymic = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    Contacts = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    BirthDate = table.Column<DateTime>(nullable: false),
+                    Education = table.Column<string>(nullable: true),
+                    AdditionalEducation = table.Column<string>(nullable: true),
+                    PreviousActivities = table.Column<string>(nullable: true),
+                    PreviousProjects = table.Column<string>(nullable: true),
+                    SelfEducation = table.Column<string>(nullable: true),
+                    IsPrManager = table.Column<bool>(nullable: false),
+                    IsEventManager = table.Column<bool>(nullable: false),
+                    IsProjectManager = table.Column<bool>(nullable: false),
+                    IsMarketer = table.Column<bool>(nullable: false),
+                    IsClothesDesigner = table.Column<bool>(nullable: false),
+                    IsWebDesigner = table.Column<bool>(nullable: false),
+                    IsGraphicalDesigner = table.Column<bool>(nullable: false),
+                    IsIllustrator = table.Column<bool>(nullable: false),
+                    IsPhotographer = table.Column<bool>(nullable: false),
+                    IsCameraman = table.Column<bool>(nullable: false),
+                    IsWriter = table.Column<bool>(nullable: false),
+                    IsEditor = table.Column<bool>(nullable: false),
+                    IsInterpreter = table.Column<bool>(nullable: false),
+                    IsSmm = table.Column<bool>(nullable: false),
+                    IsLayer = table.Column<bool>(nullable: false),
+                    IsArchitect = table.Column<bool>(nullable: false),
+                    IsScreenwriter = table.Column<bool>(nullable: false),
+                    Psychotic = table.Column<string>(nullable: true),
+                    KindOfThinking = table.Column<string>(nullable: true),
+                    ActivityTime = table.Column<string>(nullable: true),
+                    ScheduleOfWorkingDays = table.Column<string>(nullable: true),
+                    CommandWork = table.Column<string>(nullable: true),
+                    CommandProfessionalExperience = table.Column<string>(nullable: true),
+                    ActionPlan = table.Column<string>(nullable: true),
+                    PlanningExperience = table.Column<string>(nullable: true),
+                    Responsibility = table.Column<bool>(nullable: false),
+                    NeedForCommunication = table.Column<string>(nullable: true),
+                    CommunicationExperience = table.Column<string>(nullable: true),
+                    SMMExperience = table.Column<string>(nullable: true),
+                    RelationToPerformances = table.Column<string>(nullable: true),
+                    ResponseForCritic = table.Column<string>(nullable: true),
+                    CreativityLimitation = table.Column<string>(nullable: true),
+                    CombineIncongruous = table.Column<string>(nullable: true),
+                    AddAssessment = table.Column<string>(nullable: true),
+                    MaintainingStatistics = table.Column<string>(nullable: true),
+                    PurchasingAlgorithm = table.Column<string>(nullable: true),
+                    BudgetPlanning = table.Column<string>(nullable: true),
+                    ExplainingComfort = table.Column<string>(nullable: true),
+                    EndJustifiesTheMeans = table.Column<string>(nullable: true),
+                    DisclosureOPfSecrecy = table.Column<string>(nullable: true),
+                    IsAddToTheMailingList = table.Column<bool>(nullable: false),
+                    IsFullDay = table.Column<bool>(nullable: false),
+                    IsFlexibleSchedule = table.Column<bool>(nullable: false),
+                    IsFlextime = table.Column<bool>(nullable: false),
+                    IsShiftChart = table.Column<bool>(nullable: false),
+                    IsTemporaryJob = table.Column<bool>(nullable: false),
+                    IsOneOffWork = table.Column<bool>(nullable: false),
+                    IsFreelanceWork = table.Column<bool>(nullable: false),
+                    IsRemoteWork = table.Column<bool>(nullable: false),
+                    IsInCollective = table.Column<bool>(nullable: false),
+                    IsIndividual = table.Column<bool>(nullable: false),
+                    IsCuratorNeeded = table.Column<bool>(nullable: false),
+                    IsPayable = table.Column<bool>(nullable: false),
+                    IsFree = table.Column<bool>(nullable: false),
+                    IsNeedRecommendation = table.Column<bool>(nullable: false),
+                    IsNeedCV = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,15 +122,15 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    AppliedDate = table.Column<DateTime>(nullable: false),
-                    Course = table.Column<int>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
-                    FirstTime = table.Column<bool>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
                     Patronymic = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    AppliedDate = table.Column<DateTime>(nullable: false),
                     Phone = table.Column<string>(nullable: true),
+                    Course = table.Column<int>(nullable: false),
                     Source = table.Column<int>(nullable: false),
+                    FirstTime = table.Column<bool>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -81,9 +144,9 @@ namespace SkillsCub.DataLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: false)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,9 +165,9 @@ namespace SkillsCub.DataLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -186,16 +249,16 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    AssignationDate = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     ConsultationDate = table.Column<DateTime>(nullable: false),
                     ConsultationPlace = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    StudentId = table.Column<string>(nullable: true),
+                    Type = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    AssignationDate = table.Column<DateTime>(nullable: false),
                     TeacherId = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: false)
+                    StudentId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -219,19 +282,19 @@ namespace SkillsCub.DataLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    AnswerDateTime = table.Column<DateTime>(nullable: false),
-                    AnswerValue = table.Column<string>(nullable: true),
-                    CloseDateTime = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     ConditionOfProblem = table.Column<string>(nullable: true),
-                    CourseId = table.Column<Guid>(nullable: false),
+                    OpenDateTime = table.Column<DateTime>(nullable: false),
+                    CloseDateTime = table.Column<DateTime>(nullable: false),
                     CreationDate = table.Column<DateTime>(nullable: false),
                     LastEditDate = table.Column<DateTime>(nullable: true),
+                    CourseId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    AnswerValue = table.Column<string>(nullable: true),
                     Mark = table.Column<int>(nullable: false),
                     MarkComment = table.Column<string>(nullable: true),
-                    MarkDateTime = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    OpenDateTime = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    AnswerDateTime = table.Column<DateTime>(nullable: false),
+                    MarkDateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,6 +308,40 @@ namespace SkillsCub.DataLibrary.Migrations
                     table.ForeignKey(
                         name: "FK_Exercises_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Message",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    MessageText = table.Column<string>(nullable: true),
+                    SendedDateTime = table.Column<DateTime>(nullable: false),
+                    SenderId = table.Column<string>(nullable: true),
+                    RecieverId = table.Column<string>(nullable: true),
+                    CourseId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Message", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Message_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Message_AspNetUsers_RecieverId",
+                        column: x => x.RecieverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Message_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -308,6 +405,21 @@ namespace SkillsCub.DataLibrary.Migrations
                 name: "IX_Exercises_UserId",
                 table: "Exercises",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Message_CourseId",
+                table: "Message",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Message_RecieverId",
+                table: "Message",
+                column: "RecieverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Message_SenderId",
+                table: "Message",
+                column: "SenderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -329,6 +441,9 @@ namespace SkillsCub.DataLibrary.Migrations
 
             migrationBuilder.DropTable(
                 name: "Exercises");
+
+            migrationBuilder.DropTable(
+                name: "Message");
 
             migrationBuilder.DropTable(
                 name: "Requests");

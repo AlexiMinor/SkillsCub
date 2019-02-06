@@ -9,7 +9,6 @@ namespace SkillsCub.Utilities
         {
             //this Id'll be send to e-mail
             Id = Guid.NewGuid().ToString("D"),
-
             FirstName = request.FirstName,
             LastName = request.LastName,
             Patronymic = request.Patronymic,

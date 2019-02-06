@@ -69,7 +69,8 @@ namespace SkillsCub.EmailSenderService
             }
             catch (Exception ex)
             {
-                //todo something here
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }

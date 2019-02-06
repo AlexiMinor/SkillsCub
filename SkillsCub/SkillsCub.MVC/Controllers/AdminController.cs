@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Serilog;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.DataLibrary.Repositories.Interfaces;
 using SkillsCub.EmailSenderService;
 using SkillsCub.MVC.ViewModels;
-using SkillsCub.TelegramLogger;
 
 namespace SkillsCub.MVC.Controllers
 {
@@ -18,19 +18,16 @@ namespace SkillsCub.MVC.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ITelegramLogger _telegramLogger;
         private readonly IEmailSender _emailSender;
         private readonly IRepository<Course> _courseRepository;
 
         public AdminController(
             UserManager<ApplicationUser> userManager,
-            ITelegramLogger telegramLogger,
             IEmailSender emailSender,
             IRepository<Course> courseRepository
         )
         {
             _userManager = userManager;
-            _telegramLogger = telegramLogger;
             _emailSender = emailSender;
             _courseRepository = courseRepository;
         }
@@ -60,7 +57,7 @@ namespace SkillsCub.MVC.Controllers
                     user.LastModified = DateTime.Now;
                     user.UserName = user.Email;
 
-                    await _telegramLogger.Debug(
+                    Log.Debug(
                         $"Teacher with Id {user.Id:D} created. {Environment.NewLine} User body: {Environment.NewLine} {JsonConvert.SerializeObject(user)}");
                     //TODO fix security
                     var message =
@@ -70,17 +67,17 @@ namespace SkillsCub.MVC.Controllers
                         $"https://{Request.Host}/Account/ConfirmRequestForTeacher/?id={user.Id} {Environment.NewLine}" +
                         " Если вы не регистрировались, то проигноирируйте данное сообщение.";
                     await _emailSender.SendEmailAsync(user.Email, "Подтверждение регистрации", message);
-                    await _telegramLogger.Debug($"Message for User {user.Id} sended");
+                    Log.Debug($"Message for User {user.Id} sended");
 
                     var userIdentity = await _userManager.CreateAsync(user);
-                    await _telegramLogger.Debug($"User {JsonConvert.SerializeObject(userIdentity)} created in DB");
+                    Log.Debug($"User {JsonConvert.SerializeObject(userIdentity)} created in DB");
 
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Request was submited with Error {Environment.NewLine} {ex.Message}");
                 Console.WriteLine(ex);
             }
 

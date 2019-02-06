@@ -2,11 +2,11 @@
 var lastDateTime;
 function removeRow(id) {
     $('#row-' + id).hide('slow', function () { $(this).remove(); });
-};
+}
 
 function removeFileRow(id) {
     $(`[id="row-${id}"]`).eq(0).hide('slow', function () { $(this).remove(); });
-};
+}
 
 function submit(id) {
     $.ajax({
@@ -40,7 +40,7 @@ function reject(id) {
 
         }
     });
-};
+}
 
 function removeFile(filename, exId) {
     $.ajax({
@@ -58,7 +58,7 @@ function removeFile(filename, exId) {
 
         }
     });
-};
+}
 
 function insertMessage(recieverId) {
     $.ajax({
@@ -173,8 +173,33 @@ $(document).ready(function () {
         let exId = $('#exerciseId')[0].value;
         removeFile(filename, exId);
     });
+    $('#only-for-bonus').hide();
 
-    GetMessages(lastDateTime);
+    $('#mailing-list').change(function() {
+        if ($('#mailing-list')[0].checked) {
+            $('#only-for-bonus').show("slow");
+        } else {
+            $('#only-for-bonus').hide("slow");
+        }
+    });
+
+    //GetMessages(lastDateTime);
 });
 
 
+function Import(id) {
+    $.ajax({
+        url: '/api/exercises?id=' + id,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            id: id
+        },
+        success: function() {
+            console.log(this);
+        },
+        error: function() {
+
+        }
+    });
+}

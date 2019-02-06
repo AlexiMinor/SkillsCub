@@ -1,5 +1,5 @@
 ﻿@using SkillsCub.MVC.ViewModels
-@model ExerciseModelRequest
+@model CreateExerciseViewModel
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
@@ -46,7 +46,7 @@
                         <div class="input-daterange input-group">
                             <div class="input-group-content">
                                 <label>Доп. материалы</label>
-                                <input type="file" asp-for="Files" multiple />
+                                <input type="file" asp-for="Files" class="btn ink-reaction btn-raised btn-primary" multiple />
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,24 @@
                 <!--end .card-body -->
                 <div class="card-actionbar style-default-bright">
                     <div class="card-actionbar-row">
+                        
+                        <button type="button" class="btn-flat btn-default ink-reaction">
+                            ИМПОРТ
+                        </button>
+
                         <a class="btn btn-flat btn-default ink-reaction" asp-action="CourseDetails" asp-route-id="@Model.CourseId">Отменить</a>
+                        @*@if (Model.ExercisesForImport.Any())*@
+                        @*  {*@
+
+                        @*<button class="btn ink-reaction btn-flat dropdown-toggle" role="menu">
+                                <li><a href="#" onclick="Import('8297686c-afbd-4e5e-96cd-a5ca0f401dbe')">Empty</a></li>
+                                @foreach (var exercise in Model.ExercisesForImport)
+                                {
+                                    <li><a href="#" onclick="Import(@exercise.Id)">@exercise.Name</a></li>
+                                }
+                            </button>*@
+                        <!--end .btn-group -->
+                        @*  }*@
                         <button type="submit" class="btn btn-flat btn-default ink-reaction">Подтвердить</button>
                     </div>
                 </div><!--end .card -->
@@ -73,10 +90,12 @@
     <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/bootstrap-datepicker/datepicker3.css" />
     <link type="text/css" rel="stylesheet" href="~/css/theme-default/libs/jquery-ui/jquery-ui-theme.css" />
 }
+
 @section Scripts
     {
     <script src="~/js/libs/summernote/summernote.min.js"></script>
     <script src="~/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
     <script src="~/js/core/demo/DemoFormEditors.js"></script>
     <script src="~/js/core/demo/DemoFormComponents.js"></script>
-    }
+    <script src="~/js/site.js"></script>
+}

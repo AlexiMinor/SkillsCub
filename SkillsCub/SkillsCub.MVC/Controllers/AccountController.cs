@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using SkillsCub.DataLibrary.Entities.Implementation;
 using SkillsCub.MVC.Extensions;
 using SkillsCub.MVC.Models.AccountViewModels;
 using SkillsCub.MVC.ViewModels.AccountViewModels;
-using SkillsCub.TelegramLogger;
 using IEmailSender = SkillsCub.EmailSenderService.IEmailSender;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace SkillsCub.MVC.Controllers
 {
@@ -25,22 +26,19 @@ namespace SkillsCub.MVC.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
-        private readonly ITelegramLogger _telegramLogger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, 
-            RoleManager<IdentityRole> roleManager,
-            ITelegramLogger telegramLogger)
+            ILogger<AccountController> logger,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _roleManager = roleManager;
-            _telegramLogger = telegramLogger;
         }
 
         [TempData]
@@ -371,44 +369,18 @@ namespace SkillsCub.MVC.Controllers
                 var user = await _userManager.FindByIdAsync(id.ToString("D"));
                 if (user == null)
                 {
-                    await _telegramLogger.Error($"Student {id:D} not exist in DB");
+                    Log.Error($"Student {id:D} not exist in DB");
                     return null;
                 }
-                await _telegramLogger.Debug($"Student {id:D} go to create password View");
+                Log.Debug($"Student {id:D} go to create password View");
 
                 //set vmodel to Id and 2 passwords
-                return View(new ConfirmRequsetViewModel(){Id = id});
+                return View(new ConfirmRequsetViewModel() { Id = id });
 
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
-                return null;
-            }
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> ConfirmRequestForTeacher(Guid id)
-        {
-
-            try
-            {
-                var user = await _userManager.FindByIdAsync(id.ToString("D"));
-                if (user == null)
-                {
-                    await _telegramLogger.Error($"User {id:D} not exist in DB");
-                    return null;
-                }
-                await _telegramLogger.Debug($"User {id:D} go to create password View");
-
-                //set vmodel to Id and 2 passwords
-                return View(new ConfirmRequsetViewModel(){Id = id});
-
-            }
-            catch (Exception ex)
-            {
-                await _telegramLogger.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
                 return null;
             }
         }
@@ -422,36 +394,36 @@ namespace SkillsCub.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _telegramLogger.Debug($"Student {model.Id:D} create password");
+                    Log.Debug($"Student {model.Id:D} create password");
 
                     var user = await _userManager.FindByIdAsync(model.Id.ToString("D"));
                     if (user == null)
                     {
-                        await _telegramLogger.Error($"Student {model.Id:D} not exist in DB");
+                        Log.Error($"Student {model.Id:D} not exist in DB");
                         return null;
                     }
                     //possible move activation after password set
                     user.IsActive = true;
                     user.EmailConfirmed = true;
                     var result = await _userManager.UpdateAsync(user);
-                    await _telegramLogger.Debug($"Student {model.Id:D} email confirmed & activate");
+                    Log.Debug($"Student {model.Id:D} email confirmed & activate");
 
                     var result2 = await _userManager.AddPasswordAsync(user, model.Password);
-                    await _telegramLogger.Debug($"Student {model.Id:D} password added");
+                    Log.Debug($"Student {model.Id:D} password added");
 
                     if (!_roleManager.Roles.Any(role => role.Name.Equals("Student")))
                     {
                         await _roleManager.CreateAsync(new IdentityRole("Student"));
-                        await _telegramLogger.Debug("Student role added");
+                        Log.Debug("Student role added");
 
                     }
                     var result3 = await _userManager.AddToRoleAsync(user, "Student");
-                    await _telegramLogger.Debug($"Role added to Student {model.Id:D} ");
+                    Log.Debug($"Role added to Student {model.Id:D} ");
 
 
                     if (!result.Succeeded || !result2.Succeeded || !result3.Succeeded)
                     {
-                        await _telegramLogger.Error($"SMTH with Student {model.Id:D} went wrong. " +
+                        Log.Error($"SMTH with Student {model.Id:D} went wrong. " +
                                                     $"{Environment.NewLine} Activation: {Json(result)} " +
                                                     $"{Environment.NewLine} Adding password: {Json(result2)} " +
                                                     $"{Environment.NewLine} Adding role: {Json(result3)}");
@@ -462,15 +434,41 @@ namespace SkillsCub.MVC.Controllers
                     _logger.LogInformation("User created a new account with password.");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Questionnaire", "Account");
                 }
-                await _telegramLogger.Error($"Model of creation password of User {model.Id:D} non valid. ");
+                Log.Error($"Model of creation password of User {model.Id:D} non valid. ");
                 return null;
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
 
+                return null;
+            }
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmRequestForTeacher(Guid id)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString("D"));
+                if (user == null)
+                {
+                    Log.Error($"User {id:D} not exist in DB");
+                    return null;
+                }
+                Log.Debug($"User {id:D} go to create password View");
+
+                //set vmodel to Id and 2 passwords
+                return View(new ConfirmRequsetViewModel() { Id = id });
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Request was confirmed with Error {Environment.NewLine} {ex.Message}");
                 return null;
             }
         }
@@ -484,36 +482,36 @@ namespace SkillsCub.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _telegramLogger.Debug($"Teacher {model.Id:D} create password");
+                    Log.Debug($"Teacher {model.Id:D} create password");
 
                     var user = await _userManager.FindByIdAsync(model.Id.ToString("D"));
                     if (user == null)
                     {
-                        await _telegramLogger.Error($"Teacher {model.Id:D} not exist in DB");
+                        Log.Error($"Teacher {model.Id:D} not exist in DB");
                         return null;
                     }
                     //possible move activation after password set
                     user.IsActive = true;
                     user.EmailConfirmed = true;
                     var result = await _userManager.UpdateAsync(user);
-                    await _telegramLogger.Debug($"Teacher {model.Id:D} email confirmed & activate");
+                    Log.Debug($"Teacher {model.Id:D} email confirmed & activate");
 
                     var result2 = await _userManager.AddPasswordAsync(user, model.Password);
-                    await _telegramLogger.Debug($"Teacher {model.Id:D} password added");
+                    Log.Debug($"Teacher {model.Id:D} password added");
 
                     if (!_roleManager.Roles.Any(role => role.Name.Equals("Teacher")))
                     {
                         await _roleManager.CreateAsync(new IdentityRole("Teacher"));
-                        await _telegramLogger.Debug($"Teacher role added");
+                        Log.Debug($"Teacher role added");
 
                     }
                     var result3 = await _userManager.AddToRoleAsync(user, "Teacher");
-                    await _telegramLogger.Debug($"Role added to Teacher {model.Id:D} ");
+                    Log.Debug($"Role added to Teacher {model.Id:D} ");
 
 
                     if (!result.Succeeded || !result2.Succeeded || !result3.Succeeded)
                     {
-                        await _telegramLogger.Error($"SMTH with User {model.Id:D} went wrong. " +
+                        Log.Error($"SMTH with User {model.Id:D} went wrong. " +
                                                     $"{Environment.NewLine} Activation: {Json(result)} " +
                                                     $"{Environment.NewLine} Adding password: {Json(result2)} " +
                                                     $"{Environment.NewLine} Adding role: {Json(result3)}");
@@ -526,12 +524,12 @@ namespace SkillsCub.MVC.Controllers
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToAction("Index", "Home");
                 }
-                await _telegramLogger.Error($"Model of creation password of User {model.Id:D} non valid. ");
+                Log.Error($"Model of creation password of User {model.Id:D} non valid. ");
                 return null;
             }
             catch (Exception ex)
             {
-                await _telegramLogger.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
+                Log.Error($"Password was added with Error {Environment.NewLine} {ex.Message}");
 
                 return null;
             }
@@ -562,6 +560,92 @@ namespace SkillsCub.MVC.Controllers
 
         #endregion
 
-      
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Questionnaire()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Questionnaire(ApplicationUser user)
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (currentUser != null)
+            {
+                currentUser.Contacts = user.Contacts;
+                currentUser.City = user.City;
+                currentUser.BirthDate = user.BirthDate;
+                currentUser.Education = user.Education;
+                currentUser.AdditionalEducation = user.AdditionalEducation;
+                currentUser.PreviousActivities = user.PreviousActivities;
+                currentUser.PreviousProjects = user.PreviousProjects;
+                currentUser.SelfEducation = user.SelfEducation;
+                //second part
+                currentUser.IsPrManager = user.IsPrManager;
+                currentUser.IsEventManager = user.IsEventManager;
+                currentUser.IsProjectManager = user.IsProjectManager;
+                currentUser.IsMarketer = user.IsMarketer;
+                currentUser.IsClothesDesigner = user.IsClothesDesigner;
+                currentUser.IsWebDesigner = user.IsWebDesigner;
+                currentUser.IsGraphicalDesigner = user.IsGraphicalDesigner;
+                currentUser.IsIllustrator = user.IsIllustrator;
+                currentUser.IsPhotographer = user.IsPhotographer;
+                currentUser.IsCameraman = user.IsCameraman;
+                currentUser.IsWriter = user.IsWriter;
+                currentUser.IsEditor = user.IsEditor;
+                currentUser.IsInterpreter = user.IsInterpreter;
+                currentUser.IsSmm = user.IsSmm;
+                currentUser.IsLayer = user.IsLayer;
+                currentUser.IsArchitect = user.IsArchitect;
+                currentUser.IsScreenwriter = user.IsScreenwriter;
+                // third part
+                currentUser.Psychotic = user.Psychotic;
+                currentUser.KindOfThinking = user.KindOfThinking;
+                currentUser.ActivityTime = user.ActivityTime;
+                currentUser.ScheduleOfWorkingDays = user.ScheduleOfWorkingDays;
+                currentUser.CommandWork = user.CommandWork;
+                currentUser.CommandProfessionalExperience = user.CommandProfessionalExperience;
+                currentUser.ActionPlan = user.ActionPlan;
+                currentUser.PlanningExperience = user.PlanningExperience;
+                currentUser.Responsibility = user.Responsibility;
+                currentUser.NeedForCommunication = user.NeedForCommunication;
+                currentUser.CommunicationExperience = user.CommunicationExperience;
+                currentUser.SMMExperience = user.SMMExperience;
+                currentUser.RelationToPerformances = user.RelationToPerformances;
+                currentUser.ResponseForCritic = user.ResponseForCritic;
+                currentUser.CreativityLimitation = user.CreativityLimitation;
+                currentUser.CombineIncongruous = user.CombineIncongruous;
+                currentUser.AddAssessment = user.AddAssessment;
+                currentUser.MaintainingStatistics = user.MaintainingStatistics;
+                currentUser.PurchasingAlgorithm = user.PurchasingAlgorithm;
+                currentUser.BudgetPlanning = user.BudgetPlanning;
+                currentUser.ExplainingComfort = user.ExplainingComfort;
+                currentUser.EndJustifiesTheMeans = user.EndJustifiesTheMeans;
+                currentUser.DisclosureOPfSecrecy = user.DisclosureOPfSecrecy;
+                // bonus (fourth part)
+                currentUser.IsAddToTheMailingList = user.IsAddToTheMailingList;
+
+                currentUser.IsFullDay = user.IsFullDay;
+                currentUser.IsFlexibleSchedule = user.IsFlexibleSchedule;
+                currentUser.IsFlextime = user.IsFlextime;
+                currentUser.IsShiftChart = user.IsShiftChart;
+                currentUser.IsTemporaryJob = user.IsTemporaryJob;
+                currentUser.IsOneOffWork = user.IsOneOffWork;
+                currentUser.IsFreelanceWork = user.IsFreelanceWork;
+                currentUser.IsRemoteWork = user.IsRemoteWork;
+                currentUser.IsInCollective = user.IsInCollective;
+                currentUser.IsIndividual = user.IsIndividual;
+                currentUser.IsCuratorNeeded = user.IsCuratorNeeded;
+                currentUser.IsPayable = user.IsPayable;
+                currentUser.IsFree = user.IsFree;
+                currentUser.IsNeedRecommendation = user.IsNeedRecommendation;
+                currentUser.IsNeedCV = user.IsNeedCV;
+
+                var result = await _userManager.UpdateAsync(user);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
