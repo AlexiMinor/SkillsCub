@@ -115,6 +115,30 @@ namespace SkillsCub.MVC.Controllers
                     }
                     await _userManager.AddToRoleAsync(user, "Admin");
 
+
+                    var user2 = new ApplicationUser()
+                    {
+                        Id = Guid.NewGuid().ToString("D"),
+                        Email = "vifr.schu@gmail.com",
+                        UserName = "vifr.schu@gmail.com",
+                        DateCreated = DateTime.Now,
+                        FirstName = "Viktoria",
+                        LastName = "Schurovskaya",
+                        Patronymic = "",
+                        IsActive = true,
+                        LastModified = DateTime.Now,
+                        EmailConfirmed = true,
+                    };
+
+                    await _userManager.CreateAsync(user2);
+                    await _userManager.AddPasswordAsync(user2, _configuration["User:Password"]);
+                    if (!_roleManager.Roles.Any(role => role.Name.Equals("Admin")))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                        Log.Debug("Admin role added");
+                    }
+                    await _userManager.AddToRoleAsync(user2, "Admin");
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index");
                 }
